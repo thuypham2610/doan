@@ -12,5 +12,5 @@
 */
 
 Route::prefix('blog')->group(function() {
-    Route::get('/', 'BlogController@index');
+    Route::view('/', 'blog::index');
 });
