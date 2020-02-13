@@ -89,14 +89,14 @@ class LoginController extends Controller
             'password' => $request->password
         ];
         if ($this->guard()->attempt($login)) {
-            $user = User::find($login["username"])->first()->toArray();
+            $user = User::query()->where('username',$login['username'])->first()->toArray();
             if ($user['role'] == 1 || $user['role'] == 2) {
                 $request->session()->put('username', $login["username"]);
                 session(['username' => $login["username"]]);
                 session(['role' => $user['role']]);
                 return redirect('admin/success');
             }else{
-                return redirect()->back()->with('status', 'Khong cos quyen truy cap');
+                return redirect()->back()->with('status', 'Khong co quyen truy cap');
             }
         } else {
             return redirect()->back()->with('status', 'User hoặc Password không chính xác');
