@@ -21,7 +21,6 @@ Route::prefix('admin')->group(function() {
     Route::group(['middleware'=>'auth:admin'],function()
     {
         Route::view('success', 'admin::profile')->name('profile');
-        Route::view('shop/regist', 'admin::shop')->name('shop');
         Route::view('regist', 'admin::registeradmin');
         Route::post('registadmin', 'AdminRegisterController@registadmin')->name('registadmin');
     });

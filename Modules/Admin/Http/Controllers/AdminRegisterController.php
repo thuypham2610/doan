@@ -3,23 +3,22 @@
 namespace Modules\Admin\Http\Controllers;
 
 use App\User;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Modules\Admin\Http\Requests\AdminregisterRequest;
 
-class LoginController extends Controller
+class AdminRegisterController extends Controller
 {
-    use AuthenticatesUsers;
-
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        return view('admin::home');
+        return view('admin::index');
     }
 
     /**
@@ -82,36 +81,29 @@ class LoginController extends Controller
         //
     }
 
-    public function postLogin(Request $request)
+    public function registadmin(AdminregisterRequest $request)
     {
-        $login = [
+        $login = $request->all();
+
+        $insert = [
             'username' => $request->username,
-            'password' => $request->password
+            'email'    => $request->email,
+            'address'  => $request->address,
+            'phone'    => $request->phone,
+            'password' => Hash::make($request->password)
         ];
-        if ($this->guard()->attempt($login)) {
-            $user = User::find($login["username"])->first()->toArray();
-            if ($user['role'] == 1 || $user['role'] == 2) {
-                $request->session()->put('username', $login["username"]);
-                session(['username' => $login["username"]]);
-                session(['role' => $user['role']]);
-                return redirect('admin/success');
-            }else{
-                return redirect()->back()->with('status', 'Khong cos quyen truy cap');
-            }
-        } else {
-            return redirect()->back()->with('status', 'User hoặc Password không chính xác');
+
+        if (session('role') == 2) {
+            $insert['role'] = $request->role;
         }
-    }
-
-
-    public function getLogout()
-    {
-        $this->guard()->logout();
-        return redirect()->route('getLogin');
-    }
-
-    private function guard()
-    {
-        return Auth::guard('admin');
+        $admin = User::where('username', $login['username'])->get()->toArray();
+        if ($admin != null) {
+            return redirect()->back()->with('status', 'Username da ton tai');
+        } elseif ($login['password'] != $login['password_confirmation']) {
+            return redirect()->back()->with('status', 'Password khong chinh xac');
+        } else {
+            DB::table('users')->insert($insert);
+            return redirect('admin/success');
+        }
     }
 }
