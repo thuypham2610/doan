@@ -13,7 +13,7 @@
                              alt="User profile picture">
                     </div>
 
-                    <h3 class="profile-username text-center">{!! Auth::user()->login_id !!}</h3>
+                    <h3 class="profile-username text-center">{!! Auth::user()->username !!}</h3>
 
                     <p class="text-muted text-center">Software Engineer</p>
 
@@ -43,23 +43,23 @@
                 <!-- /.card-header -->
                 <div class="card-body">
 
-                    <strong><i class="fas fa-map-marker-alt mr-1"></i> User_sei</strong>
+                    <strong><i class="fas fa-map-marker-alt mr-1"></i> username</strong>
 
-                    <p class="text-muted"> {!! Auth::user()->user_sei !!}</p>
+                    <p class="text-muted"> {!! Auth::user()->username !!}</p>
 
                     <hr>
 
-                    <strong><i class="fas fa-pencil-alt mr-1"></i> User_mei</strong>
+                    <strong><i class="fas fa-pencil-alt mr-1"></i> email</strong>
 
                     <p class="text-muted">
-                        <span class="tag tag-danger"> {!! Auth::user()->user_mei !!}</span>
+                        <span class="tag tag-danger"> {!! Auth::user()->email !!}</span>
                     </p>
 
                     <hr>
 
                     <strong><i class="far fa-file-alt mr-1"></i> Tel_no</strong>
 
-                    <p class="text-muted">{!! Auth::user()->tel_no !!}</p>
+                    <p class="text-muted">{!! Auth::user()->phone !!}</p>
                 </div>
                 <!-- /.card-body -->
             </div>

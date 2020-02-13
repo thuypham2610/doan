@@ -17,9 +17,10 @@ class Products extends Migration
             $table->bigIncrements('id')->autoIncrement();
             $table->string('name')->unique();
             $table->integer('quantity');
+            $table->integer('price');
             $table->string('picture');
             $table->string('description');
-            $table->integer('user_id')->unsigned();
+            $table->integer('trademark_id')->unsigned();
             $table->integer('cate_id')->unsigned();
             $table->timestamps();
         });

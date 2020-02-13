@@ -405,7 +405,7 @@ class SeedMenuTableSeeder extends Seeder
             }
 
             if (isset($menu1['child'])) {
-               /* foreach ($menu1['child'] as $child) {
+                foreach ($menu1['child'] as $child) {
                     $arr = [
                         'icon'      => $child['icon'],
                         'text'      => $child['text'],
@@ -436,8 +436,7 @@ class SeedMenuTableSeeder extends Seeder
                             DB::table('menu')->insert($arr1);
                         }
                     }
-                }*/
-               $this->menu($menu1['child']);
+                }
             }
 
 

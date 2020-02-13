@@ -13,7 +13,7 @@
 
 Route::prefix('admin')->group(function() {
     Route::view('login', 'admin::login');
-    Route::post('check', 'AdminLoginController@postLogin')->name('postLogin');
+    Route::post('check', 'LoginController@postLogin')->name('postLogin');
     Route::view('forgotpassword', 'admin::forgotpassword');
     Route::view('recover-password', 'admin::recover-password');
     Route::view('register', 'admin::register');

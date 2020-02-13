@@ -17,6 +17,7 @@ class CreateMenuTable extends Migration
             $table->bigIncrements('id');
             $table->string('text',255)->nullable(false);
             $table->string('icon');
+            $table->string('url')->nullable();
             $table->integer('parent-id')->nullable();
         });
     }
