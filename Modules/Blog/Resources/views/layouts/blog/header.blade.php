@@ -24,8 +24,8 @@
                                     <div class="facts">
                                         <div class="register">
                                             <form action="#" method="post">
-                                                <input name="Email" placeholder="Email Address" type="text" required="">
-                                                <input name="Password" placeholder="Password" type="password" required="">
+                                                <input name="username" placeholder="Email Address" type="text" required="">
+                                                <input name="password" placeholder="Password" type="password" required="">
                                                 <div class="sign-up">
                                                     <input type="submit" value="Sign in"/>
                                                 </div>
@@ -93,7 +93,7 @@
             <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         </div>
         <div class="w3l_logo">
-            <h1><a href="index.html">Electronic Store<span>Your stores. Your place.</span></a></h1>
+            <h1><a href="index.html">An Dương<span>Your stores. Your place.</span></a></h1>
         </div>
         <div class="search">
             <input class="search_box" type="checkbox" id="search_box">
