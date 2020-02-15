@@ -12,5 +12,5 @@
 */
 
 Route::prefix('blog')->group(function() {
-    Route::view('/', 'blog::index');
+    Route::get('/','CategoryController@getdanhsach');
 });
