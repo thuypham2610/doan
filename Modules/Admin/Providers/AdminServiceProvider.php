@@ -22,6 +22,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(module_path('Admin', 'Database/Migrations'));
+        $this->loadViewsFrom(__DIR__.'/path/to/views', 'admin');
     }
 
     /**
