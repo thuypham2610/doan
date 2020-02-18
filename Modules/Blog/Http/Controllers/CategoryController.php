@@ -102,6 +102,12 @@ class CategoryController extends Controller
             ->get();
         $productlap = json_decode(json_encode($productlap),1);
 
-        return view('blog::index',['producttab'=>$producttab,'productdesk'=>$productdesk,'productlap'=>$productlap]);
+        $newproduct = DB::table('products')
+            ->orderBy('created_at')
+            ->limit(4)
+            ->get();
+        $newproduct = json_decode(json_encode($newproduct),1);
+
+        return view('blog::index',['producttab'=>$producttab,'productdesk'=>$productdesk,'productlap'=>$productlap,'newproduct'=>$newproduct]);
     }
 }

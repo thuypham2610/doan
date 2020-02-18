@@ -16,11 +16,6 @@ class Cate extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
             $table->string('name')->unique();
-            $table->string('alias');
-            $table->integer('order');
-            $table->integer('parent_id');
-            $table->string('keywords');
-            $table->string('description');
             $table->timestamps();
         });
     }
