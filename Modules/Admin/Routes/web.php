@@ -23,5 +23,6 @@ Route::prefix('admin')->group(function() {
         Route::view('success', 'admin::profile')->name('profile');
         Route::view('regist', 'admin::registeradmin');
         Route::post('registadmin', 'AdminRegisterController@registadmin')->name('registadmin');
+        Route::view('danhsach', 'admin::danhsach');
     });
 });
