@@ -19,7 +19,7 @@ class Products extends Migration
             $table->integer('quantity');
             $table->integer('price');
             $table->string('picture');
-            $table->string('description');
+            $table->longText('description');
             $table->integer('trademark_id')->unsigned();
             $table->integer('cate_id')->unsigned();
             $table->timestamps();

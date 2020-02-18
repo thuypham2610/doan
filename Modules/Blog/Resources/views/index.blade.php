@@ -218,7 +218,7 @@
             <div class="sliderfig">
                 <ul id="flexiselDemo1">
                     <li>
-                        <img src="{{Module::asset('blog:images/tb1.jpg')}}" alt=" " class="img-responsive" />
+                        <a><img src="{{Module::asset('blog:images/tb1.jpg')}}" alt=" " class="img-responsive" /></a>
                     </li>
                     <li>
                         <img src="{{Module::asset('blog:images/tb2.jpg')}}" alt=" " class="img-responsive" />
