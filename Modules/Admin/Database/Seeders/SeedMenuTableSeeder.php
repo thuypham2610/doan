@@ -21,361 +21,68 @@ class SeedMenuTableSeeder extends Seeder
         $menu2c = [
             [
                 'icon'  => 'nav-icon fas fa-tachometer-alt',
-                'text'  => 'Dashboard',
+                'text'  => 'Product',
                 'badge' => [
                     ['text' => '', 'icon' => 'right fas fa-angle-left', 'type' => ''],
                 ],
                 'child' => [
                     [
-                        'text' => 'Dashboard v1',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Dashboard v2',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Dashboard v3',
+                        'text' => 'Add',
                         'icon' => 'far fa-circle nav-icon'
                     ]
                 ]
             ],
             [
-                'icon'  => 'nav-icon fas fa-th',
-                'text'  => 'Widgets',
+                'icon'  => 'nav-icon fas fa-tachometer-alt',
+                'text'  => 'Category',
                 'badge' => [
-                    ['text' => 'New', 'icon' => '', 'type' => 'danger'],
-                ],
-            ],
-            [
-                'icon'  => 'nav-icon fas fa-copy',
-                'text'  => 'Layout Options',
-                'badge' => [
-                    ['text' => '6', 'icon' => 'fas fa-angle-left right', 'type' => 'info'],
+                    ['text' => '', 'icon' => 'right fas fa-angle-left', 'type' => ''],
                 ],
                 'child' => [
                     [
-                        'text' => 'Top Navigation',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Boxed',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Dashboard v3',
+                        'text' => 'Add',
                         'icon' => 'far fa-circle nav-icon'
                     ]
                 ]
             ],
             [
-                'icon'  => 'nav-icon fas fa-chart-pie',
-                'text'  => 'Charts',
+                'icon'  => 'nav-icon fas fa-tachometer-alt',
+                'text'  => 'Trademark',
                 'badge' => [
-                    ['text' => '', 'icon' => 'right fas fa-angle-left', 'type' => '']
+                    ['text' => '', 'icon' => 'right fas fa-angle-left', 'type' => ''],
                 ],
                 'child' => [
                     [
-                        'text' => 'ChartJS',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Flot',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Inline',
+                        'text' => 'Add',
                         'icon' => 'far fa-circle nav-icon'
                     ]
                 ]
             ],
             [
-                'icon'  => 'nav-icon fas fa-tree',
-                'text'  => ' UI Elements',
+                'icon'  => 'nav-icon fas fa-tachometer-alt',
+                'text'  => 'Order',
                 'badge' => [
-                    ['text' => '', 'icon' => 'fas fa-angle-left right', 'type' => ''],
+                    ['text' => '', 'icon' => 'right fas fa-angle-left', 'type' => ''],
                 ],
                 'child' => [
                     [
-                        'text' => 'General',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Icons',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Buttons',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Sliders',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Modals & Alerts',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Navbar & Tabs',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Timeline',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Ribbons',
+                        'text' => 'Add',
                         'icon' => 'far fa-circle nav-icon'
                     ]
                 ]
             ],
             [
-                'icon'  => 'nav-icon fas fa-edit',
-                'text'  => 'Forms',
+                'icon'  => 'nav-icon fas fa-tachometer-alt',
+                'text'  => 'Order Detail',
                 'badge' => [
-                    ['text' => '', 'icon' => 'fas fa-angle-left right', 'type' => '']
+                    ['text' => '', 'icon' => 'right fas fa-angle-left', 'type' => ''],
                 ],
                 'child' => [
                     [
-                        'text' => 'Advanced Elements',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Editors',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Validation',
+                        'text' => 'Add',
                         'icon' => 'far fa-circle nav-icon'
                     ]
                 ]
-            ],
-            [
-                'icon'  => 'nav-icon fas fa-table',
-                'text'  => 'Tables',
-                'badge' => [
-                    ['text' => '', 'icon' => 'fas fa-angle-left right', 'type' => '']
-                ],
-                'child' => [
-                    [
-                        'text' => 'Simple Tables',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'DataTables',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'jsGrid',
-                        'icon' => 'far fa-circle nav-icon'
-                    ]
-                ]
-            ],
-            [
-                'icon'  => 'nav-icon far fa-calendar-alt',
-                'text'  => 'Calendar',
-                'badge' => [
-                    ['text' => '2', 'icon' => '', 'type' => 'info']
-                ],
-            ],
-            [
-                'icon'  => 'nav-icon far fa-image',
-                'text'  => 'Gallery',
-                'badge' => [
-                    ['text' => '', 'icon' => '', 'type' => '']
-                ],
-            ],
-            [
-                'icon'  => 'nav-icon far fa-envelope',
-                'text'  => 'Mailbox',
-                'badge' => [
-                    ['text' => '', 'icon' => 'fas fa-angle-left right', 'type' => '']
-                ],
-                'child' => [
-                    [
-                        'text' => 'Inbox',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Compose',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Read',
-                        'icon' => 'far fa-circle nav-icon'
-                    ]
-                ]
-            ],
-            [
-                'icon'  => 'nav-icon fas fa-book',
-                'text'  => 'Pages',
-                'badge' => [
-                    ['text' => '', 'icon' => 'fas fa-angle-left right', 'type' => '']
-                ],
-                'child' => [
-                    [
-                        'text' => 'Invoice',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Profile',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'E-commerce',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Projects',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Project Add',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Project Edit',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Project Detail',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Contacts',
-                        'icon' => 'far fa-circle nav-icon'
-                    ]
-                ]
-            ],
-            [
-                'icon'  => 'nav-icon fas fa-book',
-                'text'  => 'Extras',
-                'badge' => [
-                    ['text' => '', 'icon' => 'fas fa-angle-left right', 'type' => '']
-                ],
-                'child' => [
-                    [
-                        'text' => 'Login',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Register',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Forgot Password',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Recover Password',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Lockscreen',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Legacy User Menu',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Language Menu',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Error 404',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Error 500',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Pace',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Blank Page',
-                        'icon' => 'far fa-circle nav-icon'
-                    ],
-                    [
-                        'text' => 'Starter Page',
-                        'icon' => 'far fa-circle nav-icon'
-                    ]
-                ]
-            ],
-            [
-                'icon'  => 'nav-icon fas fa-circle',
-                'text'  => 'Level 1',
-                'badge' => [
-                    ['text' => '', 'icon' => '', 'type' => '']
-                ],
-            ],
-            [
-                'icon'  => 'nav-icon fas fa-circle',
-                'text'  => 'Level 1',
-                'badge' => [
-                    ['text' => '', 'icon' => 'right fas fa-angle-left', 'type' => '']
-                ],
-                'child' => [
-                    [
-                        'text'  => 'Level 2',
-                        'icon'  => 'far fa-circle nav-icon',
-                        'badge' => [
-                            ['text' => '', 'icon' => '', 'type' => '']
-                        ],
-                    ],
-                    [
-                        'text'  => 'Level 21',
-                        'icon'  => 'far fa-circle nav-icon',
-                        'badge' => [
-                            ['text' => '', 'icon' => 'right fas fa-angle-left', 'type' => '']
-                        ],
-                        'child' => [
-                            [
-                                'text' => 'Level 3',
-                                'icon' => 'far fa-dot-circle nav-icon',
-                            ],
-                            [
-                                'text' => 'Level 3',
-                                'icon' => 'far fa-dot-circle nav-icon',
-                            ],
-                            [
-                                'text' => 'Level 3',
-                                'icon' => 'far fa-dot-circle nav-icon',
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            [
-                'icon'  => 'nav-icon far fa-circle text-danger',
-                'text'  => 'Important',
-                'badge' => [
-                    ['text' => '', 'icon' => '', 'type' => '']
-                ],
-            ],
-            [
-                'icon'  => 'nav-icon far fa-circle text-warning',
-                'text'  => 'Warning',
-                'badge' => [
-                    ['text' => '', 'icon' => '', 'type' => '']
-                ],
-            ],
-            [
-                'icon'  => 'nav-icon fas fa-circle',
-                'text'  => 'Level 1',
-                'badge' => [
-                    ['text' => '', 'icon' => '', 'type' => '']
-                ],
-            ],
-            [
-                'icon'  => 'nav-icon far fa-circle text-info',
-                'text'  => 'Informational',
-                'badge' => [
-                    ['text' => '', 'icon' => '', 'type' => '']
-                ],
             ]
         ];
 

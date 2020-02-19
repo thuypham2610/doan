@@ -85,7 +85,7 @@
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success toastsDefaultSuccess">
-                            保存
+                            Save
                         </button>
                         <button type="submit" class="btn btn-default float-right">Reset</button>
                     </div>

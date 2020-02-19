@@ -21,8 +21,32 @@ Route::prefix('admin')->group(function() {
     Route::group(['middleware'=>'auth:admin'],function()
     {
         Route::view('success', 'admin::profile')->name('profile');
-        Route::view('regist', 'admin::registeradmin');
+        Route::view('regist', 'admin::registeradmin')->name('regist');
         Route::post('registadmin', 'AdminRegisterController@registadmin')->name('registadmin');
-        Route::view('danhsach', 'admin::danhsach');
+
+        //product
+        Route::get('prolist', 'PageController@getpro')->name('prolist');
+        Route::view('pro/regist', 'admin::proregist')->name('addproduct');
+        Route::get('pro/edit/{id}', 'PageController@getedit')->name('proedit');
+
+        //trademark
+        Route::get('tradelist', 'TrademarkController@gettrade')->name('tradelist');
+        Route::view('trade/regist', 'admin::cateregist')->name('addtrade');
+        Route::post('trade/registtrade', 'AdminRegisterController@registadmin')->name('registtrade');
+        Route::get('trade/edit/{id}', 'TrademarkController@getedit')->name('tradeedit');
+        Route::post('trade/edittrade', 'AdminRegisterController@registadmin')->name('edittrade');
+
+        //category
+        Route::get('catelist', 'CategoryController@getcate')->name('catelist');
+        Route::view('cate/regist', 'admin::cateregist')->name('addcate');
+        Route::get('cate/edit/{id}', 'CategoryController@getedit')->name('cateedit');
+
+        //order
+        Route::get('orderlist', 'OrderController@getorder')->name('orderlist');
+        Route::view('order/edit/{id}', 'admin::proregist')->name('orderedit');
+
+        //order detail
+        Route::get('detaillist', 'OrderDetailController@getorderdetail')->name('detaillist');
+        Route::view('detail/edit/{id}', 'admin::proregist')->name('detailedit');
     });
 });

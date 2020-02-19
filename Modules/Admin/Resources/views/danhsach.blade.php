@@ -14,34 +14,80 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Picture</th>
-                                    <th>Description</th>
-                                    <th>Trademark ID</th>
-                                    <th>Category ID</th>
-                                    <th>Action</th>
+                                    @foreach($column as $name)
+                                        @foreach($name as $key => $va)
+                                            <th>{!! $va !!}</th>
+                                        @endforeach
+                                    @endforeach
+                                    <th>action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $pro = \App\Product::query()->get()->toArray();
-                                    $pro = json_decode(json_encode($pro),1);
-                                ?>
-                                @foreach($pro as $item)
-                                <tr>
-                                    <td>{!! $item['id'] !!}</td>
-                                    <td>{!! $item['name'] !!}</td>
-                                    <td>{!! $item['quantity'] !!}</td>
-                                    <td>{!! $item['price'] !!}</td>
-                                    <td><img src="{{Module::asset('admin:dist/img/')}}/{{$item['picture']}}" alt=" " style="width: 50px; height: 50px" /></td>
-                                    <td>{!! $item['description'] !!}</td>
-                                    <td>{!! $item['trademark_id'] !!}</td>
-                                    <td>{!! $item['cate_id'] !!}</td>
-                                    <td></td>
-                                </tr>
-                                    @endforeach
+                                @foreach($base as $item)
+                                    <tr>
+                                        @foreach($item as $key => $base)
+                                            @if($key == 'picture')
+                                                <td><img src="{{Module::asset('admin:dist/img/')}}/{{$base}}" alt=" "
+                                                         style="width: 50px; height: 50px"/></td>
+                                            @else
+                                                <td>{!! $base !!}</td>
+                                            @endif
+                                        @endforeach
+                                        <td>
+                                            @if($table == 'product')
+                                                <a href="{{ route('proedit', ['id' => $item['id']]) }}"
+                                                   class="btn btn-success toastsDefaultSuccess" style="color: white">
+                                                    Edit
+                                                </a>
+                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
+                                                   style="color: white">
+                                                    Delete
+                                                </a>
+                                            @endif
+
+                                            @if($table == 'trademark')
+                                                <a href="{{ route('tradeedit', ['id' => $item['id']]) }}"
+                                                   class="btn btn-success toastsDefaultSuccess" style="color: white">
+                                                    Edit
+                                                </a>
+                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
+                                                   style="color: white">
+                                                    Delete
+                                                </a>
+                                            @endif
+                                            @if($table == 'category')
+                                                <a href="{{ route('cateedit', ['id' => $item['id']]) }}"
+                                                   class="btn btn-success toastsDefaultSuccess" style="color: white">
+                                                    Edit
+                                                </a>
+                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
+                                                   style="color: white">
+                                                    Delete
+                                                </a>
+                                            @endif
+                                            @if($table == 'order')
+                                                <a href="{{ route('orderedit', ['id' => $item['id']]) }}"
+                                                   class="btn btn-success toastsDefaultSuccess" style="color: white">
+                                                    Edit
+                                                </a>
+                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
+                                                   style="color: white">
+                                                    Delete
+                                                </a>
+                                            @endif
+                                            @if($table == 'order_detail')
+                                                <a href="{{ route('detailedit', ['id' => $item['id']]) }}"
+                                                   class="btn btn-success toastsDefaultSuccess" style="color: white">
+                                                    Edit
+                                                </a>
+                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
+                                                   style="color: white">
+                                                    Delete
+                                                </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

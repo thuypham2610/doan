@@ -15,7 +15,7 @@
                      alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{!! \Illuminate\Support\Facades\Auth::user()->username !!}</a>
             </div>
         </div>
 
@@ -23,7 +23,62 @@
             <ul class='nav nav-pills nav-sidebar flex-column' data-widget='treeview' role='menu' data-accordion='false'>
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                {!! $menu !!}
+                <li class='nav-item has-treeview menu-open'><a href="" class='nav-link'>
+                        <i class='nav-icon far fa-circle text-warning'></i>
+                        <p>User<i class='right fas fa-angle-left'></i></p></a>
+                    <ul class='nav nav-treeview'>
+                        <li class='nav-item '><a href="{!! route('prolist') !!}" class='nav-link active'>
+                                <i class='far fa-circle nav-icon'></i>
+                                <p>List</p></a></li>
+                        <li class='nav-item '><a href="{!! route('regist') !!}" class='nav-link '>
+                                <i class='far fa-circle nav-icon'></i>
+                                <p>Add</p></a></li>
+                    </ul>
+                </li>
+                <li class='nav-item '><a href="" class='nav-link '>
+                        <i class='nav-icon fas fa-tachometer-alt'></i>
+                        <p>Product<i class='right fas fa-angle-left'></i></p></a>
+                    <ul class='nav nav-treeview'>
+                        <li class='nav-item '><a href="{!! route('prolist') !!}" class='nav-link '>
+                                <i class='far fa-circle nav-icon'></i>
+                                <p>List</p></a></li>
+                        <li class='nav-item '><a href="{!! route('addproduct') !!}" class='nav-link '>
+                                <i class='far fa-circle nav-icon'></i>
+                                <p>Add</p></a></li>
+                    </ul>
+                </li>
+                <li class='nav-item '><a href="" class='nav-link '>
+                        <i class='nav-icon fas fa-tachometer-alt'></i>
+                        <p>Category<i class='right fas fa-angle-left'></i></p></a>
+                    <ul class='nav nav-treeview'>
+                        <li class='nav-item '><a href="{!! route('catelist') !!}" class='nav-link '>
+                                <i class='far fa-circle nav-icon'></i>
+                                <p>List</p></a></li>
+                        <li class='nav-item '><a href="{!! route('addcate') !!}" class='nav-link '>
+                                <i class='far fa-circle nav-icon'></i>
+                                <p>Add</p></a></li>
+                    </ul>
+                </li>
+                <li class='nav-item '><a href="" class='nav-link '>
+                        <i class='nav-icon far fa-circle text-warning'></i>
+                        <p>Trademark<i class='right fas fa-angle-left'></i></p></a>
+                    <ul class='nav nav-treeview'>
+                        <li class='nav-item '><a href="{!! route('tradelist') !!}" class='nav-link '>
+                                <i class='far fa-circle nav-icon'></i>
+                                <p>List</p></a></li>
+                        <li class='nav-item '><a href="{!! route('addtrade') !!}" class='nav-link '>
+                                <i class='far fa-circle nav-icon'></i>
+                                <p>Add</p></a></li>
+                    </ul>
+                </li>
+                <li class='nav-item '><a href="{!! route('detaillist') !!}" class='nav-link '>
+                        <i class='nav-icon far fa-circle text-info'></i>
+                        <p>Order</p></a>
+                </li>
+                <li class='nav-item '><a href="{!! route('orderlist') !!}" class='nav-link '>
+                        <i class='nav-icon far fa-circle text-info'></i>
+                        <p>Order Detail</p></a>
+                </li>
             </ul>
         </nav>
     </div>

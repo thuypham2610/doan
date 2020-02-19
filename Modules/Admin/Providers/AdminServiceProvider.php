@@ -68,11 +68,11 @@ class AdminServiceProvider extends ServiceProvider
             return $path . '/modules/admin';
         }, \Config::get('view.paths')), [$sourcePath]), 'admin');
 
-        $menu = $this->menu();
-        View::share('menu', $menu);
+        /*$menu = $this->menu();
+        View::share('menu', $menu);*/
     }
 
-     public function menu()
+    /* public function menu()
      {
          $menu = Menu::query()->get()->toArray();
          $menu_nn = [];
@@ -162,7 +162,7 @@ class AdminServiceProvider extends ServiceProvider
              $i++;
          }
          return $menu_array;
-     }
+     }*/
 
     /**
      * Register translations.
