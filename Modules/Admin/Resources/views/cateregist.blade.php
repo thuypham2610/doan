@@ -23,7 +23,7 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form class="form-horizontal" enctype="multipart/form-data" method="POST"
-                      action="{{route('registadmin')}}">
+                      action="@if(isset($cate)){{route('editcate', ['id' => $cate['id']])}} @else {{route('registcate')}} @endif">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="card-body">
                         <div class="form-group row">

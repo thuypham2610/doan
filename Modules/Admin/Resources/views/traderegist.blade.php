@@ -23,7 +23,7 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form class="form-horizontal" enctype="multipart/form-data" method="POST"
-                      action="@if(isset($trade)){{route('edittrade')}} @else {{route('registtrade')}} @endif">
+                      action="@if(isset($trade)){{route('edittrade', ['id' => $trade['id']])}} @else {{route('registtrade')}} @endif">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="card-body">
                         <div class="form-group row">

@@ -9,6 +9,8 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Modules\Admin\Http\Requests\ProductRequest;
+use Modules\Admin\Http\Requests\TradeRequest;
 
 class PageController extends Controller
 {
@@ -101,5 +103,21 @@ class PageController extends Controller
         $pro = Product::find($id);
         $pro = json_decode(json_encode($pro), 1);
         return view('admin::proregist',['pro'=>$pro]);
+    }
+
+    public function regist(Request $request)
+    {
+        $pro = $request->all();
+        $fileName = $request->file('picture')->getClientOriginalName();
+        $pro['picture'] = $fileName;
+        $request->file('picture')->move('dist/img/',$fileName);
+        unset($pro['_token']);
+        $pro_esist = Trademark::where('name', $pro['name'])->get()->toArray();
+        if ($pro_esist != null) {
+            return redirect()->back()->with('status', 'Da ton tai');
+        } else {
+            DB::table('products')->insert($pro);
+            return redirect('admin/prolist');
+        }
     }
 }

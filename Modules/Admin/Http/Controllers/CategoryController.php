@@ -10,6 +10,8 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Modules\Admin\Http\Requests\CateRequest;
+use Modules\Admin\Http\Requests\TradeRequest;
 
 class CategoryController extends Controller
 {
@@ -67,9 +69,12 @@ class CategoryController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(CateRequest $request, $id)
     {
-        //
+        $cate = $request->all();
+        unset($cate['_token']);
+        DB::table('categories')->where('id',$id)->update($cate);
+        return redirect('admin/catelist');
     }
 
     /**
@@ -102,5 +107,17 @@ class CategoryController extends Controller
         $cate = Category::find($id);
         $cate = json_decode(json_encode($cate), 1);
         return view('admin::cateregist',['cate'=>$cate]);
+    }
+
+    public function regist(CateRequest $request)
+    {
+        $cate = ['name'=>$request->name];
+        $cate_esist = Category::where('name', $cate['name'])->get()->toArray();
+        if ($cate_esist != null) {
+            return redirect()->back()->with('status', 'Da ton tai');
+        } else {
+            DB::table('categories')->insert($cate);
+            return redirect('admin/catelist');
+        }
     }
 }

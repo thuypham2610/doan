@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Modules\Admin\Http\Requests\TradeRequest;
 
 class TrademarkController extends Controller
 {
@@ -65,9 +66,12 @@ class TrademarkController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(TradeRequest $request, $id)
     {
-        //
+        $trade = $request->all();
+        unset($trade['_token']);
+        DB::table('Trademark')->where('id',$id)->update($trade);
+        return redirect('admin/tradelist');
     }
 
     /**
@@ -101,5 +105,17 @@ class TrademarkController extends Controller
         $trade = Trademark::find($id);
         $trade = json_decode(json_encode($trade), 1);
         return view('admin::traderegist',['trade'=>$trade]);
+    }
+
+    public function regist(TradeRequest $request)
+    {
+        $trade = ['name'=>$request->name];
+        $trade_esist = Trademark::where('name', $trade['name'])->get()->toArray();
+        if ($trade_esist != null) {
+            return redirect()->back()->with('status', 'Da ton tai');
+        } else {
+            DB::table('Trademark')->insert($trade);
+            return redirect('admin/tradelist');
+        }
     }
 }

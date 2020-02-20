@@ -27,19 +27,23 @@ Route::prefix('admin')->group(function() {
         //product
         Route::get('prolist', 'PageController@getpro')->name('prolist');
         Route::view('pro/regist', 'admin::proregist')->name('addproduct');
+        Route::post('pro/registpro', 'PageController@regist')->name('registpro');
         Route::get('pro/edit/{id}', 'PageController@getedit')->name('proedit');
+        Route::get('pro/update/{id}', 'PageController@update')->name('update');
 
         //trademark
         Route::get('tradelist', 'TrademarkController@gettrade')->name('tradelist');
-        Route::view('trade/regist', 'admin::cateregist')->name('addtrade');
-        Route::post('trade/registtrade', 'AdminRegisterController@registadmin')->name('registtrade');
+        Route::view('trade/regist', 'admin::traderegist')->name('addtrade');
+        Route::post('trade/registtrade', 'TrademarkController@regist')->name('registtrade');
         Route::get('trade/edit/{id}', 'TrademarkController@getedit')->name('tradeedit');
-        Route::post('trade/edittrade', 'AdminRegisterController@registadmin')->name('edittrade');
+        Route::post('trade/update/{id}', 'TrademarkController@update')->name('edittrade');
 
         //category
         Route::get('catelist', 'CategoryController@getcate')->name('catelist');
         Route::view('cate/regist', 'admin::cateregist')->name('addcate');
+        Route::post('cate/registcate', 'CategoryController@regist')->name('registcate');
         Route::get('cate/edit/{id}', 'CategoryController@getedit')->name('cateedit');
+        Route::post('cate/update/{id}', 'CategoryController@update')->name('editcate');
 
         //order
         Route::get('orderlist', 'OrderController@getorder')->name('orderlist');

@@ -23,7 +23,7 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form class="form-horizontal" enctype="multipart/form-data" method="POST"
-                      action="{{route('registadmin')}}">
+                      action="@if(isset($pro)){{route('edittrade', ['id' => $pro['id']])}} @else {{route('registpro')}} @endif">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="card-body">
                         @if(isset($pro))
@@ -69,7 +69,7 @@
                                     $trade = \App\Trademark::query()->get()->toArray();
                                     $trade = json_decode(json_encode($trade), 1);
                                     ?>
-                                    <select class="form-control input_width">
+                                    <select class="form-control input_width" name="trademark_id" multiple="multiple">
                                         @foreach($trade as $item)
                                             <option value="{!! $item['id'] !!}" @if($item['id']==$pro['trademark_id']) selected @endif>{!! $item['name'] !!}</option>
                                         @endforeach
@@ -83,9 +83,9 @@
                                     $cate = \App\Category::query()->get()->toArray();
                                     $cate = json_decode(json_encode($cate), 1);
                                     ?>
-                                    <select class="form-control input_width">
+                                    <select class="form-control input_width" name="cate_id">
                                         @foreach($cate as $item)
-                                            <option value="{!! $item['id'] !!}" @if($item['id']==$pro['cate_id']) selected @endif>{!! $item['name'] !!}</option>
+                                            <option value="{!! $item['id'] !!}" @if($item['id']==$pro['cate_id']) @endif>{!! $item['name'] !!}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -133,9 +133,9 @@
                                     $trade = \App\Trademark::query()->get()->toArray();
                                     $trade = json_decode(json_encode($trade), 1);
                                     ?>
-                                    <select class="form-control input_width">
+                                    <select class="form-control input_width" name="trademark_id" id="trademark_id">
                                         @foreach($trade as $item)
-                                            <option value="{!! $item['id'] !!}">{!! $item['name'] !!}</option>
+                                            <option value="{{ $item['id'] }}">{!! $item['name'] !!}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -147,7 +147,7 @@
                                     $cate = \App\Category::query()->get()->toArray();
                                     $cate = json_decode(json_encode($cate), 1);
                                     ?>
-                                    <select class="form-control input_width">
+                                    <select class="form-control input_width" name="cate_id" id="cate_id">
                                         @foreach($cate as $item)
                                             <option value="{!! $item['id'] !!}">{!! $item['name'] !!}</option>
                                         @endforeach
