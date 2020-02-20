@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Bordered Table</h3>
+                            <h3 class="card-title">{!! $table !!} Table</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -39,7 +39,8 @@
                                                    class="btn btn-success toastsDefaultSuccess" style="color: white">
                                                     Edit
                                                 </a>
-                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
+                                                <a href="{{ route('prodelete', ['id' => $item['id']]) }}"
+                                                   class="btn btn-danger toastsDefaultSuccess"
                                                    style="color: white">
                                                     Delete
                                                 </a>
@@ -50,7 +51,8 @@
                                                    class="btn btn-success toastsDefaultSuccess" style="color: white">
                                                     Edit
                                                 </a>
-                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
+                                                <a href="{{ route('tradedelete', ['id' => $item['id']]) }}"
+                                                   class="btn btn-danger toastsDefaultSuccess"
                                                    style="color: white">
                                                     Delete
                                                 </a>
@@ -60,7 +62,8 @@
                                                    class="btn btn-success toastsDefaultSuccess" style="color: white">
                                                     Edit
                                                 </a>
-                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
+                                                <a href="{{ route('catedelete', ['id' => $item['id']]) }}"
+                                                   class="btn btn-danger toastsDefaultSuccess"
                                                    style="color: white">
                                                     Delete
                                                 </a>
@@ -76,6 +79,16 @@
                                                 </a>
                                             @endif
                                             @if($table == 'order_detail')
+                                                <a href="{{ route('detailedit', ['id' => $item['id']]) }}"
+                                                   class="btn btn-success toastsDefaultSuccess" style="color: white">
+                                                    Edit
+                                                </a>
+                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
+                                                   style="color: white">
+                                                    Delete
+                                                </a>
+                                            @endif
+                                            @if($table == 'users')
                                                 <a href="{{ route('detailedit', ['id' => $item['id']]) }}"
                                                    class="btn btn-success toastsDefaultSuccess" style="color: white">
                                                     Edit

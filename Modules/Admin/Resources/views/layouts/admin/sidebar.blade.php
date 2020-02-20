@@ -27,7 +27,7 @@
                         <i class='nav-icon far fa-circle text-warning'></i>
                         <p>User<i class='right fas fa-angle-left'></i></p></a>
                     <ul class='nav nav-treeview'>
-                        <li class='nav-item '><a href="{!! route('prolist') !!}" class='nav-link active'>
+                        <li class='nav-item '><a href="{!! route('userlist') !!}" class='nav-link active'>
                                 <i class='far fa-circle nav-icon'></i>
                                 <p>List</p></a></li>
                         <li class='nav-item '><a href="{!! route('regist') !!}" class='nav-link '>

@@ -84,7 +84,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cate = Category::find($id);
+        $cate->delete();
+
+        return redirect('admin/catelist');
     }
 
     public function getcate()

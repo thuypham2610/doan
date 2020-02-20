@@ -21,48 +21,46 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <ul class="multi-column-dropdown">
-                                        <h6>Mobiles</h6>
-                                        <li><a href="products.html">Mobile Phones</a></li>
-                                        <li><a href="products.html">Mp3 Players <span>New</span></a></li>
-                                        <li><a href="products.html">Popular Models</a></li>
-                                        <li><a href="products.html">All Tablets<span>New</span></a></li>
+                                        <?php
+                                        $cate = \App\Category::query()->get()->toArray();
+                                        $cate = json_decode(json_encode($cate), 1);
+                                        ?>
+                                        <h6>Category</h6>
+                                        @foreach($cate as $item)
+                                            <li><a href="{{route('catefilter',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                                 <div class="col-sm-3">
                                     <ul class="multi-column-dropdown">
-                                        <h6>Accessories</h6>
-                                        <li><a href="products1.html">Laptop</a></li>
-                                        <li><a href="products1.html">Desktop</a></li>
-                                        <li><a href="products1.html">Wearables <span>New</span></a></li>
-                                        <li><a href="products1.html"><i>Summer Store</i></a></li>
+                                        <?php
+                                        $trade = \App\Trademark::query()->get()->toArray();
+                                        $trade = json_decode(json_encode($trade), 1);
+                                        ?>
+                                        <h6>Trademark</h6>
+                                        @foreach($trade as $item)
+                                            <li><a href="{{route('filter',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 <div class="col-sm-2">
                                     <ul class="multi-column-dropdown">
-                                        <h6>Home</h6>
-                                        <li><a href="products2.html">Tv</a></li>
-                                        <li><a href="products2.html">Camera</a></li>
-                                        <li><a href="products2.html">AC</a></li>
-                                        <li><a href="products2.html">Grinders</a></li>
+                                        <?php
+                                        $cate = \App\Category::query()->get()->toArray();
+                                        $cate = json_decode(json_encode($cate), 1);
+                                        ?>
+                                        <h6>Category</h6>
+                                        @foreach($cate as $item)
+                                            <li><a href="products.html">{!! $item['name'] !!}</a></li>
+                                        @endforeach
                                     </ul>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="w3ls_products_pos">
-                                        <h4>30%<i>Off/-</i></h4>
-                                        <img src="{{Module::asset('blog:images/1.jpg')}}" alt=" " class="img-responsive" />
-                                    </div>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                         </ul>
                     </li>
                     <li><a href="about.html">About Us</a></li>
-                    <li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="icons.html">Web Icons</a></li>
-                            <li><a href="codes.html">Short Codes</a></li>
-                        </ul>
-                    </li>
                     <li><a href="mail.html">Mail Us</a></li>
                 </ul>
             </div>

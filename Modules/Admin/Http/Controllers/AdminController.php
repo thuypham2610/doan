@@ -2,9 +2,12 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Trademark;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -14,7 +17,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin::index');
+        $user = User::query()->get()->toArray();
+        $user = json_decode(json_encode($user), 1);
+
+        $name = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "doan.users" ORDER BY ORDINAL_POSITION');
+        $name = json_decode(json_encode($name), 1);
+
+        return view('admin::danhsach', ['base' => $user, 'column' => $name,'table'=>'users']);
     }
 
     /**

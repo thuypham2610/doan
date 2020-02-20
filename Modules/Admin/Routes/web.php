@@ -21,6 +21,7 @@ Route::prefix('admin')->group(function() {
     Route::group(['middleware'=>'auth:admin'],function()
     {
         Route::view('success', 'admin::profile')->name('profile');
+        Route::get('userlist', 'AdminController@index')->name('userlist');
         Route::view('regist', 'admin::registeradmin')->name('regist');
         Route::post('registadmin', 'AdminRegisterController@registadmin')->name('registadmin');
 
@@ -29,7 +30,8 @@ Route::prefix('admin')->group(function() {
         Route::view('pro/regist', 'admin::proregist')->name('addproduct');
         Route::post('pro/registpro', 'PageController@regist')->name('registpro');
         Route::get('pro/edit/{id}', 'PageController@getedit')->name('proedit');
-        Route::get('pro/update/{id}', 'PageController@update')->name('update');
+        Route::post('pro/update/{id}', 'PageController@update')->name('update');
+        Route::get('pro/delete/{id}', 'PageController@destroy')->name('prodelete');
 
         //trademark
         Route::get('tradelist', 'TrademarkController@gettrade')->name('tradelist');
@@ -37,6 +39,7 @@ Route::prefix('admin')->group(function() {
         Route::post('trade/registtrade', 'TrademarkController@regist')->name('registtrade');
         Route::get('trade/edit/{id}', 'TrademarkController@getedit')->name('tradeedit');
         Route::post('trade/update/{id}', 'TrademarkController@update')->name('edittrade');
+        Route::get('trade/delete/{id}', 'TrademarkController@destroy')->name('tradedelete');
 
         //category
         Route::get('catelist', 'CategoryController@getcate')->name('catelist');
@@ -44,6 +47,7 @@ Route::prefix('admin')->group(function() {
         Route::post('cate/registcate', 'CategoryController@regist')->name('registcate');
         Route::get('cate/edit/{id}', 'CategoryController@getedit')->name('cateedit');
         Route::post('cate/update/{id}', 'CategoryController@update')->name('editcate');
+        Route::get('cate/delete/{id}', 'CategoryController@destroy')->name('catedelete');
 
         //order
         Route::get('orderlist', 'OrderController@getorder')->name('orderlist');

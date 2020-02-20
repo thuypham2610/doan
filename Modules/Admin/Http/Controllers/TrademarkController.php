@@ -81,7 +81,10 @@ class TrademarkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $trade = Trademark::find($id);
+        $trade->delete();
+
+        return redirect('admin/tradelist');
     }
 
 

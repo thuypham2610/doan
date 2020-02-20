@@ -14,13 +14,15 @@ class Product extends Authenticatable
     protected $primaryKey   = 'id';
     protected $guard        = 'admin';
 
+    public $timestamps = true;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name','quantity','price','picture','description','trademark_id','cate_id'
+        'name','quantity','price','picture','description','trademark_id','cate_id','created_at','updated_at'
     ];
 
     /**

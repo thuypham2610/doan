@@ -2,8 +2,7 @@
 <script type="text/javascript" src="{{Module::asset('blog:js/bootstrap-3.1.1.min.js')}}"></script>
 <!-- //for bootstrap working -->
 <!-- header modal -->
-<div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
-     aria-hidden="true">
+<div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -82,9 +81,9 @@
         </div>
     </div>
 </div>
-<script>
-    $('#myModal88').modal('show');
-</script>
+{{--<script>--}}
+{{--    $('#myModal88').modal('show');--}}
+{{--</script>--}}
 <!-- header modal -->
 <!-- header -->
 <div class="header" id="home1">
@@ -93,7 +92,7 @@
             <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         </div>
         <div class="w3l_logo">
-            <h1><a href="index.html">An Dương<span>Your stores. Your place.</span></a></h1>
+            <h1><a href="{{route('home')}}">An Dương<span>Your stores. Your place.</span></a></h1>
         </div>
         <div class="search">
             <input class="search_box" type="checkbox" id="search_box">

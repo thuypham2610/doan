@@ -68,9 +68,18 @@ class PageController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $pro_esists = Product::find($id);
+        $pro = $request->all();
+        $fileName = $request->file('picture')->getClientOriginalName();
+        $request->file('picture')->move('modules/admin/dist/img/', $fileName);
+        unlink("modules/admin/dist/img/" . $pro_esists['picture']);
+        $pro['picture'] = $fileName;
+        $pro['updated_at'] = now();
+        unset($pro['_token']);
+        DB::table('products')->where('id', $id)->update($pro);
+        return redirect('admin/prolist');
     }
 
     /**
@@ -80,7 +89,10 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pro = Product::find($id);
+        $pro->delete();
+
+        return redirect('admin/prolist');
     }
 
     public function getpro()
@@ -92,7 +104,7 @@ class PageController extends Controller
             $name = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "products" ORDER BY ORDINAL_POSITION');
             $name = json_decode(json_encode($name), 1);
 
-            return view('admin::danhsach', ['base' => $pro, 'column' => $name,'table'=>'product']);
+            return view('admin::danhsach', ['base' => $pro, 'column' => $name, 'table' => 'product']);
         } else {
             return view('admin::login');
         }
@@ -102,15 +114,16 @@ class PageController extends Controller
     {
         $pro = Product::find($id);
         $pro = json_decode(json_encode($pro), 1);
-        return view('admin::proregist',['pro'=>$pro]);
+        return view('admin::proregist', ['pro' => $pro]);
     }
 
-    public function regist(Request $request)
+    public function regist(ProductRequest $request)
     {
         $pro = $request->all();
         $fileName = $request->file('picture')->getClientOriginalName();
         $pro['picture'] = $fileName;
-        $request->file('picture')->move('dist/img/',$fileName);
+        $request->file('picture')->move('modules/admin/dist/img/', $fileName);
+        $pro['created_at'] = now();
         unset($pro['_token']);
         $pro_esist = Trademark::where('name', $pro['name'])->get()->toArray();
         if ($pro_esist != null) {

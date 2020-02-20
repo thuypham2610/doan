@@ -14,9 +14,14 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('blog::index');
+        $product = DB::table('products')
+            ->where('id',$id)
+            ->first();
+        $product = json_decode(json_encode($product),1);
+
+        return view('blog::product',['product'=>$product]);
     }
 
     /**
@@ -82,21 +87,21 @@ class CategoryController extends Controller
     public function getdanhsach()
     {
         $producttab = DB::table('products')
-            ->select('products.name', 'products.picture','products.price')
+            ->select('products.name', 'products.picture','products.price','products.id')
             ->join('doan.categories', 'products.cate_id', '=', 'doan.categories.id')
             ->where('doan.categories.name','Máy tính bảng')->limit(3)
             ->get();
         $producttab = json_decode(json_encode($producttab),1);
 
         $productdesk = DB::table('products')
-            ->select('products.name', 'products.picture','products.price')
+            ->select('products.name', 'products.picture','products.price','products.id')
             ->join('doan.categories', 'products.cate_id', '=', 'doan.categories.id')
             ->where('doan.categories.name','Desktop')->limit(3)
             ->get();
         $productdesk = json_decode(json_encode($productdesk),1);
 
         $productlap = DB::table('products')
-            ->select('products.name', 'products.picture','products.price')
+            ->select('products.name', 'products.picture','products.price','products.id')
             ->join('doan.categories', 'products.cate_id', '=', 'doan.categories.id')
             ->where('doan.categories.name','Laptop')->limit(3)
             ->get();
@@ -109,5 +114,25 @@ class CategoryController extends Controller
         $newproduct = json_decode(json_encode($newproduct),1);
 
         return view('blog::index',['producttab'=>$producttab,'productdesk'=>$productdesk,'productlap'=>$productlap,'newproduct'=>$newproduct]);
+    }
+
+    public function producttrade($id)
+    {
+        $product = DB::table('products')
+            ->where('trademark_id',$id)
+            ->get();
+        $product = json_decode(json_encode($product),1);
+
+        return view('blog::productfilter',['product'=>$product]);
+    }
+
+    public function productcate($id)
+    {
+        $product = DB::table('products')
+            ->where('cate_id',$id)
+            ->get();
+        $product = json_decode(json_encode($product),1);
+
+        return view('blog::productfilter',['product'=>$product]);
     }
 }

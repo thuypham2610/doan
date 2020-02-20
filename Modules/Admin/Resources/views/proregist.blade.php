@@ -23,7 +23,7 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form class="form-horizontal" enctype="multipart/form-data" method="POST"
-                      action="@if(isset($pro)){{route('edittrade', ['id' => $pro['id']])}} @else {{route('registpro')}} @endif">
+                      action="@if(isset($pro)){{route('update', ['id' => $pro['id']])}} @else {{route('registpro')}} @endif">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="card-body">
                         @if(isset($pro))
@@ -69,7 +69,7 @@
                                     $trade = \App\Trademark::query()->get()->toArray();
                                     $trade = json_decode(json_encode($trade), 1);
                                     ?>
-                                    <select class="form-control input_width" name="trademark_id" multiple="multiple">
+                                    <select class="form-control input_width" name="trademark_id">
                                         @foreach($trade as $item)
                                             <option value="{!! $item['id'] !!}" @if($item['id']==$pro['trademark_id']) selected @endif>{!! $item['name'] !!}</option>
                                         @endforeach

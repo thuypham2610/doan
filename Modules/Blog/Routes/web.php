@@ -12,5 +12,8 @@
 */
 
 Route::prefix('blog')->group(function() {
-    Route::get('/','CategoryController@getdanhsach');
+    Route::get('/','CategoryController@getdanhsach')->name('home');
+    Route::get('/product/{id}','CategoryController@index')->name('detail');
+    Route::get('/producttradefilter/{id}','CategoryController@producttrade')->name('filter');
+    Route::get('/productcatefilter/{id}','CategoryController@productcate')->name('catefilter');
 });
