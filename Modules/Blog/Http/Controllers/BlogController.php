@@ -2,9 +2,11 @@
 
 namespace Modules\Blog\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -75,5 +77,34 @@ class BlogController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function postLogin(Request $request)
+    {
+        $login = [
+            'username' => $request->username,
+            'password' => $request->password
+        ];
+        if ($this->guard()->attempt($login)) {
+            $user = User::query()->where('username', $login['username'])->first()->toArray();
+            $request->session()->put('username', $login["username"]);
+            session(['username' => $login["username"]]);
+            session(['role' => $user['role']]);
+            return redirect('blog/profile');
+        } else {
+            return redirect()->back()->with('status', 'User hoặc Password không chính xác');
+        }
+    }
+
+
+    public function getLogout()
+    {
+        $this->guard()->logout();
+        return redirect()->route('home');
+    }
+
+    private function guard()
+    {
+        return Auth::guard('web');
     }
 }

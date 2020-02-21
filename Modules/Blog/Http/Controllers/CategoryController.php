@@ -116,6 +116,21 @@ class CategoryController extends Controller
         return view('blog::index',['producttab'=>$producttab,'productdesk'=>$productdesk,'productlap'=>$productlap,'newproduct'=>$newproduct]);
     }
 
+    public function allproduct()
+    {
+        $product = DB::table('products')
+            ->get();
+        $product = json_decode(json_encode($product),1);
+
+        $newproduct = DB::table('products')
+            ->orderBy('created_at')
+            ->limit(4)
+            ->get();
+        $newproduct = json_decode(json_encode($newproduct),1);
+
+        return view('blog::productfilter',['product'=>$product,'newproduct'=>$newproduct]);
+    }
+
     public function producttrade($id)
     {
         $product = DB::table('products')
@@ -123,7 +138,13 @@ class CategoryController extends Controller
             ->get();
         $product = json_decode(json_encode($product),1);
 
-        return view('blog::productfilter',['product'=>$product]);
+        $newproduct = DB::table('products')
+            ->orderBy('created_at')
+            ->limit(4)
+            ->get();
+        $newproduct = json_decode(json_encode($newproduct),1);
+
+        return view('blog::productfilter',['product'=>$product,'newproduct'=>$newproduct]);
     }
 
     public function productcate($id)
@@ -133,6 +154,12 @@ class CategoryController extends Controller
             ->get();
         $product = json_decode(json_encode($product),1);
 
-        return view('blog::productfilter',['product'=>$product]);
+        $newproduct = DB::table('products')
+            ->orderBy('created_at')
+            ->limit(4)
+            ->get();
+        $newproduct = json_decode(json_encode($newproduct),1);
+
+        return view('blog::productfilter',['product'=>$product,'newproduct'=>$newproduct]);
     }
 }

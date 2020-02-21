@@ -89,14 +89,12 @@ class LoginController extends Controller
             'password' => $request->password
         ];
         if ($this->guard()->attempt($login)) {
-            $user = User::query()->where('username',$login['username'])->first()->toArray();
-            if ($user['role'] == 1 || $user['role'] == 2) {
+            if (Auth::attempt($login)) {
+                $user = User::query()->where('username', $login['username'])->first()->toArray();
                 $request->session()->put('username', $login["username"]);
                 session(['username' => $login["username"]]);
                 session(['role' => $user['role']]);
-                return redirect('admin/success');
-            }else{
-                return redirect()->back()->with('status', 'Khong co quyen truy cap');
+                return redirect('blog/');
             }
         } else {
             return redirect()->back()->with('status', 'User hoặc Password không chính xác');
@@ -107,7 +105,8 @@ class LoginController extends Controller
     public function getLogout()
     {
         $this->guard()->logout();
-        return redirect()->route('getLogin');
+        Auth::logout();
+        return redirect()->route('home');
     }
 
     private function guard()

@@ -1,5 +1,5 @@
 <!-- cart-js -->
-<script src="{{Module::asset('blog:js/minicart.js')}}"></script>
+{{--<script src="{{Module::asset('blog:js/minicart.js')}}"></script>--}}
 <script>
     w3ls.render();
 

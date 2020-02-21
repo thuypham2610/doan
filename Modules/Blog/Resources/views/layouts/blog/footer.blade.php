@@ -6,9 +6,9 @@
                 <h3>Contact</h3>
                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
                 <ul class="address">
-                    <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>New York City.</span></li>
-                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
-                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
+                    <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>Ha Noi City.</span></li>
+                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">thuypham12049@gmail.com</a></li>
+                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>035 778 3399</li>
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">
@@ -24,18 +24,20 @@
             <div class="col-md-3 w3_footer_grid">
                 <h3>Category</h3>
                 <ul class="info">
-                    <li><a href="products.html">Mobiles</a></li>
-                    <li><a href="products1.html">Laptops</a></li>
-                    <li><a href="products.html">Purifiers</a></li>
-                    <li><a href="products1.html">Wearables</a></li>
-                    <li><a href="products2.html">Kitchen</a></li>
+                    <?php
+                    $cate = \App\Category::query()->get()->toArray();
+                    $cate = json_decode(json_encode($cate), 1);
+                    ?>
+                    @foreach($cate as $item)
+                        <li><a href="{{route('catefilter',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">
                 <h3>Profile</h3>
                 <ul class="info">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Today's Deals</a></li>
+                    <li><a href="{{route('home')}}">Home</a></li>
+                    <li><a href="{{route('all')}}">Today's Deals</a></li>
                 </ul>
                 <h4>Follow Us</h4>
                 <div class="agileits_social_button">
@@ -57,7 +59,7 @@
             </div>
         </div>
         <div class="container">
-            <p>&copy; 2017 Electronic Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+            <p>&copy; 2020 Electronic Store. All rights reserved | Design by <a href="http://w3layouts.com/">Thuy</a></p>
         </div>
     </div>
 </div>
