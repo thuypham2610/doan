@@ -116,11 +116,12 @@
                 </div>
                 <div class="simpleCart_shelfItem">
                     <p><i class="item_price">{!! $product['price'] !!}</i></p>
-                    <form action="#" method="post">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="add" value="1">
-                        <input type="hidden" name="w3ls_item" value="Smart Phone">
-                        <input type="hidden" name="amount" value="450.00">
+                    <form action="{{route('cart')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="quantity" value="1">
+                        <input type="hidden" name="name" value="{!! $item['name'] !!}">
+                        <input type="hidden" name="price" value="{!! $item['price'] !!}">
+                        <input type="hidden" name="id" value="{!! $item['id'] !!}">
                         <button type="submit" class="w3ls-cart">Add to cart</button>
                     </form>
                 </div>

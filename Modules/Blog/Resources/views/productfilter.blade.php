@@ -43,11 +43,13 @@
                                          aria-labelledby="headingOne">
                                         <div class="panel-body panel_text">
                                             <ul>
-                                                <li><a href="products.html">Mobiles</a></li>
-                                                <li><a href="products1.html">Laptop</a></li>
-                                                <li><a href="products2.html">Tv</a></li>
-                                                <li><a href="products.html">Wearables</a></li>
-                                                <li><a href="products2.html">Refrigerator</a></li>
+                                                <?php
+                                                $cate = \App\Category::query()->get()->toArray();
+                                                $cate = json_decode(json_encode($cate), 1);
+                                                ?>
+                                                @foreach($cate as $item)
+                                                    <li><a href="{{route('newarrivals',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -67,11 +69,13 @@
                                          aria-labelledby="headingTwo">
                                         <div class="panel-body panel_text">
                                             <ul>
-                                                <li><a href="products2.html">Grinder</a></li>
-                                                <li><a href="products2.html">Heater</a></li>
-                                                <li><a href="products2.html">Kid's Toys</a></li>
-                                                <li><a href="products2.html">Filters</a></li>
-                                                <li><a href="products2.html">AC</a></li>
+                                                <?php
+                                                $trade = \App\Trademark::query()->get()->toArray();
+                                                $trade = json_decode(json_encode($trade), 1);
+                                                ?>
+                                                @foreach($trade as $item)
+                                                    <li><a href="{{route('filter',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -172,11 +176,12 @@
                                 <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                 <div class="simpleCart_shelfItem">
                                     <p><i class="item_price">{!! $item['price'] !!}</i></p>
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="cmd" value="_cart"/>
-                                        <input type="hidden" name="add" value="1"/>
-                                        <input type="hidden" name="w3ls_item" value="{!! $item['name'] !!}"/>
-                                        <input type="hidden" name="amount" value="{!! $item['price'] !!}"/>
+                                    <form action="{{route('cart')}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="name" value="{!! $item['name'] !!}">
+                                        <input type="hidden" name="price" value="{!! $item['price'] !!}">
+                                        <input type="hidden" name="id" value="{!! $item['id'] !!}">
                                         <button type="submit" class="w3ls-cart">Add to cart</button>
                                     </form>
                                 </div>
@@ -187,521 +192,6 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-    <div class="modal video-modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModal9">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <section>
-                    <div class="modal-body">
-                        <div class="col-md-5 modal_body_left">
-                            <img src="images/27.jpg" alt=" " class="img-responsive"/>
-                        </div>
-                        <div class="col-md-7 modal_body_right">
-                            <h4>Latest Smart Phone </h4>
-                            <p>Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat.Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore
-                                eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.</p>
-                            <div class="rating">
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="modal_body_right_cart simpleCart_shelfItem">
-                                <p><span>$250</span> <i class="item_price">$245</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="w3ls_item" value="Smart Phone"/>
-                                    <input type="hidden" name="amount" value="245.00"/>
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                            <h5>Color</h5>
-                            <div class="color-quality">
-                                <ul>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#" class="brown"><span></span></a></li>
-                                    <li><a href="#" class="purple"><span></span></a></li>
-                                    <li><a href="#" class="gray"><span></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="modal video-modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModal8">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <section>
-                    <div class="modal-body">
-                        <div class="col-md-5 modal_body_left">
-                            <img src="images/25.jpg" alt=" " class="img-responsive"/>
-                        </div>
-                        <div class="col-md-7 modal_body_right">
-                            <h4>Latest Asus Red Laptop</h4>
-                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat.Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
-                            <div class="rating">
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="modal_body_right_cart simpleCart_shelfItem">
-                                <p><span>$980</span> <i class="item_price">$880</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="w3ls_item" value="Asus Laptop">
-                                    <input type="hidden" name="amount" value="880.00">
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                            <h5>Color</h5>
-                            <div class="color-quality">
-                                <ul>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#" class="brown"><span></span></a></li>
-                                    <li><a href="#" class="purple"><span></span></a></li>
-                                    <li><a href="#" class="gray"><span></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="modal video-modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModal7">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <section>
-                    <div class="modal-body">
-                        <div class="col-md-5 modal_body_left">
-                            <img src="images/p8.jpg" alt=" " class="img-responsive"/>
-                        </div>
-                        <div class="col-md-7 modal_body_right">
-                            <h4>Fastrack Digital Watch</h4>
-                            <p>Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat.Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore
-                                eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.</p>
-                            <div class="rating">
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="modal_body_right_cart simpleCart_shelfItem">
-                                <p><span>$30</span> <i class="item_price">$25</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="w3ls_item" value="Digital Watch"/>
-                                    <input type="hidden" name="amount" value="25.00"/>
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                            <h5>Color</h5>
-                            <div class="color-quality">
-                                <ul>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#" class="brown"><span></span></a></li>
-                                    <li><a href="#" class="purple"><span></span></a></li>
-                                    <li><a href="#" class="gray"><span></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="modal video-modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModal6">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <section>
-                    <div class="modal-body">
-                        <div class="col-md-5 modal_body_left">
-                            <img src="images/34.jpg" alt=" " class="img-responsive"/>
-                        </div>
-                        <div class="col-md-7 modal_body_right">
-                            <h4>Musical Kids Toy</h4>
-                            <p>Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat.Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore
-                                eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.</p>
-                            <div class="rating">
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="modal_body_right_cart simpleCart_shelfItem">
-                                <p><span>$150</span> <i class="item_price">$100</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="w3ls_item" value="Kids Toy">
-                                    <input type="hidden" name="amount" value="100.00">
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                            <h5>Color</h5>
-                            <div class="color-quality">
-                                <ul>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#" class="brown"><span></span></a></li>
-                                    <li><a href="#" class="purple"><span></span></a></li>
-                                    <li><a href="#" class="gray"><span></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="modal video-modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModal5">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                </div>
-                <section>
-                    <div class="modal-body">
-                        <div class="col-md-5 modal_body_left">
-                            <img src="images/p7.jpg" alt=" " class="img-responsive">
-                        </div>
-                        <div class="col-md-7 modal_body_right">
-                            <h4>Home Security Camera</h4>
-                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore
-                                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                qui officia deserunt mollit anim id est laborum.</p>
-                            <div class="rating">
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="modal_body_right_cart simpleCart_shelfItem">
-                                <p><span>$30</span> <i class="item_price">$22</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="w3ls_item" value="Security Camera">
-                                    <input type="hidden" name="amount" value="22.00">
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                            <h5>Color</h5>
-                            <div class="color-quality">
-                                <ul>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#" class="brown"><span></span></a></li>
-                                    <li><a href="#" class="purple"><span></span></a></li>
-                                    <li><a href="#" class="gray"><span></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="modal video-modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModal4">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <section>
-                    <div class="modal-body">
-                        <div class="col-md-5 modal_body_left">
-                            <img src="images/p3.jpg" alt=" " class="img-responsive"/>
-                        </div>
-                        <div class="col-md-7 modal_body_right">
-                            <h4>Music MP3 Player </h4>
-                            <p>Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat.Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore
-                                eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.</p>
-                            <div class="rating">
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="modal_body_right_cart simpleCart_shelfItem">
-                                <p><span>$60</span> <i class="item_price">$58</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="w3ls_item" value="MP3 Player"/>
-                                    <input type="hidden" name="amount" value=" $58.00"/>
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                            <h5>Color</h5>
-                            <div class="color-quality">
-                                <ul>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#" class="brown"><span></span></a></li>
-                                    <li><a href="#" class="purple"><span></span></a></li>
-                                    <li><a href="#" class="gray"><span></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="modal video-modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModal3">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                </div>
-                <section>
-                    <div class="modal-body">
-                        <div class="col-md-5 modal_body_left">
-                            <img src="images/38.jpg" alt=" " class="img-responsive">
-                        </div>
-                        <div class="col-md-7 modal_body_right">
-                            <h4>Kitchen &amp; Dining Accessories</h4>
-                            <p>Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat.Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore
-                                eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.</p>
-                            <div class="rating">
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive">
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="modal_body_right_cart simpleCart_shelfItem">
-                                <p><span>$650</span> <i class="item_price">$645</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="w3ls_item" value="Microwave Oven">
-                                    <input type="hidden" name="amount" value="645.00">
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                            <h5>Color</h5>
-                            <div class="color-quality">
-                                <ul>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#" class="brown"><span></span></a></li>
-                                    <li><a href="#" class="purple"><span></span></a></li>
-                                    <li><a href="#" class="gray"><span></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="modal video-modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <section>
-                    <div class="modal-body">
-                        <div class="col-md-5 modal_body_left">
-                            <img src="images/p6.jpg" alt=" " class="img-responsive"/>
-                        </div>
-                        <div class="col-md-7 modal_body_right">
-                            <h4>Latest Asus ZenPad Tablet</h4>
-                            <p>Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat.Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore
-                                eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.</p>
-                            <div class="rating">
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="modal_body_right_cart  simpleCart_shelfItem">
-                                <p><span>$45</span> <i class="item_price">$425</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="w3ls_item" value="Latest Tablet"/>
-                                    <input type="hidden" name="amount" value="425.00"/>
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                            <h5>Color</h5>
-                            <div class="color-quality">
-                                <ul>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#" class="brown"><span></span></a></li>
-                                    <li><a href="#" class="purple"><span></span></a></li>
-                                    <li><a href="#" class="gray"><span></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </section>
             </div>
         </div>
     </div>
@@ -730,11 +220,12 @@
                             <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                             <div class="simpleCart_shelfItem">
                                 <p class="flexisel_ecommerce_cart"><span>$150</span> <i class="item_price">{!! $item['price'] !!}</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="w3ls_item" value="{!! $item['name'] !!}">
-                                    <input type="hidden" name="amount" value="{!! $item['price'] !!}">
+                                <form action="{{route('cart')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="quantity" value="1">
+                                    <input type="hidden" name="name" value="{!! $item['name'] !!}">
+                                    <input type="hidden" name="price" value="{!! $item['price'] !!}">
+                                    <input type="hidden" name="id" value="{!! $item['id'] !!}">
                                     <button type="submit" class="w3ls-cart">Add to cart</button>
                                 </form>
                             </div>

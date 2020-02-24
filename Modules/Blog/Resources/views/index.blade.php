@@ -73,11 +73,11 @@
                                     <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                     <div class="simpleCart_shelfItem">
                                         <p><i class="item_price">{!! $item['price'] !!} đ</i></p>
-                                        <form action="#" method="post">
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="w3ls_item" value="{!! $item['name'] !!}" />
-                                            <input type="hidden" name="amount" value="{!! $item['price'] !!}" />
+                                        <form action="{{route('cart')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="quantity" value="1" />
+                                            <input type="hidden" name="name" value="{!! $item['name'] !!}" />
+                                            <input type="hidden" name="price" value="{!! $item['price'] !!}" />
                                             <button type="submit" class="w3ls-cart">Add to cart</button>
                                         </form>
                                     </div>
@@ -110,11 +110,12 @@
                                         <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                         <div class="simpleCart_shelfItem">
                                             <p><i class="item_price">{!! $item['price'] !!} đ</i></p>
-                                            <form action="#" method="post">
-                                                <input type="hidden" name="cmd" value="_cart" />
-                                                <input type="hidden" name="add" value="1" />
-                                                <input type="hidden" name="w3ls_item" value="{!! $item['name'] !!}" />
-                                                <input type="hidden" name="amount" value="{!! $item['price'] !!}" />
+                                            <form action="{{route('cart')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="quantity" value="1">
+                                                <input type="hidden" name="name" value="{!! $item['name'] !!}">
+                                                <input type="hidden" name="price" value="{!! $item['price'] !!}">
+                                                <input type="hidden" name="id" value="{!! $item['id'] !!}">
                                                 <button type="submit" class="w3ls-cart">Add to cart</button>
                                             </form>
                                         </div>
@@ -147,11 +148,12 @@
                                         <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                         <div class="simpleCart_shelfItem">
                                             <p><i class="item_price">{!! $item['price'] !!} đ</i></p>
-                                            <form action="#" method="post">
-                                                <input type="hidden" name="cmd" value="_cart" />
-                                                <input type="hidden" name="add" value="1" />
-                                                <input type="hidden" name="w3ls_item" value="{!! $item['name'] !!}" />
-                                                <input type="hidden" name="amount" value="{!! $item['price'] !!}" />
+                                            <form action="{{route('cart')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="quantity" value="1">
+                                                <input type="hidden" name="name" value="{!! $item['name'] !!}">
+                                                <input type="hidden" name="price" value="{!! $item['price'] !!}">
+                                                <input type="hidden" name="id" value="{!! $item['id'] !!}">
                                                 <button type="submit" class="w3ls-cart">Add to cart</button>
                                             </form>
                                         </div>
@@ -194,11 +196,12 @@
                         <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                         <div class="simpleCart_shelfItem">
                             <p><i class="item_price">{!! $item['price'] !!}</i></p>
-                            <form action="#" method="post">
-                                <input type="hidden" name="cmd" value="_cart">
-                                <input type="hidden" name="add" value="1">
-                                <input type="hidden" name="w3ls_item" value="{!! $item['name'] !!}">
-                                <input type="hidden" name="amount" value="{!! $item['price'] !!}">
+                            <form action="{{route('cart')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="quantity" value="1">
+                                <input type="hidden" name="id" value="{!! $item['id'] !!}">
+                                <input type="hidden" name="name" value="{!! $item['name'] !!}">
+                                <input type="hidden" name="price" value="{!! $item['price'] !!}">
                                 <button type="submit" class="w3ls-cart">Add to cart</button>
                             </form>
                         </div>

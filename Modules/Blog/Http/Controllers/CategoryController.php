@@ -162,4 +162,36 @@ class CategoryController extends Controller
 
         return view('blog::productfilter',['product'=>$product,'newproduct'=>$newproduct]);
     }
+
+    public function newarrivals($id)
+    {
+        $product = DB::table('products')
+            ->where('cate_id',$id)
+            ->orderBy('created_at')
+            ->get();
+        $product = json_decode(json_encode($product),1);
+
+        $newproduct = DB::table('products')
+            ->orderBy('created_at')
+            ->limit(4)
+            ->get();
+        $newproduct = json_decode(json_encode($newproduct),1);
+
+        return view('blog::productfilter',['product'=>$product,'newproduct'=>$newproduct]);
+    }
+
+    public function search(Request $request)
+    {
+        $product = DB::table('products')
+            ->where('name','like','%'.$request->search.'%')
+            ->get();
+        $product = json_decode(json_encode($product),1);
+        $newproduct = DB::table('products')
+            ->orderBy('created_at')
+            ->limit(4)
+            ->get();
+        $newproduct = json_decode(json_encode($newproduct),1);
+
+        return view('blog::productfilter',['product'=>$product,'newproduct'=>$newproduct]);
+    }
 }

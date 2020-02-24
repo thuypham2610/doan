@@ -2,6 +2,87 @@
 <script type="text/javascript" src="{{Module::asset('blog:js/bootstrap-3.1.1.min.js')}}"></script>
 <!-- //for bootstrap working -->
 <!-- header modal -->
+<style>
+    .main1 {
+        width: 30px;
+        height: 18px;
+        float: left;
+    }
+
+    .price {
+        float: left;
+        width: 16%;
+        text-align: right;
+    }
+
+    .ul {
+        clear: both;
+        float: left;
+        width: 100%;
+        margin: 5px 0 20px;
+        padding: 1em;
+        list-style-type: none;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        overflow-y: scroll;
+        max-height: 300px;
+    }
+
+    .divmain {
+        padding: 1em;
+        background: #fbfbfb;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -o-border-radius: 4px;
+        -ms-border-radius: 4px;
+        border-radius: 4px;
+        color: #333;
+        -webkit-box-shadow: 0px 0px 5px 2px #9a9a9a;
+        -moz-box-shadow: 0px 0px 5px 2px #9a9a9a;
+        -o-box-shadow: 0px 0px 5px 2px #9a9a9a;
+        -ms-box-shadow: 0px 0px 5px 2px #9a9a9a;
+        box-shadow: 0px 0px 5px 2px #9a9a9a;
+    }
+
+    .footer1{
+        clear: both;
+        text-align: center;
+        margin-right: 1.5em;
+        position: relative;
+        top: 0.7rem;
+    }
+
+    .total{
+        bottom: 3px;
+        padding-left: 0;
+        font-size: 16px;
+        font-weight: bold;
+        display: block;
+        text-align: left;
+        right: 0;
+        top: 0;
+    }
+
+    .pay{
+        margin-right: 6px;
+        padding: 0;
+        border: none;
+        color: #ff5063;
+        background: none;
+        outline: none;
+        font-size: 0.9em;
+        font-weight: 700;
+        position: absolute;
+        text-transform: uppercase;
+        right: 0;
+        top: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+</style>
 <div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -43,7 +124,7 @@
                                                 <input name="password" placeholder="Password" type="password">
                                                 <div class="sign-up">
                                                     <input type="submit" value="Sign in"/>
-                                                    <a>I forgot password</a>
+                                                    <a href="{{route('forgotpass')}}">I forgot password</a>
                                                 </div>
                                             </form>
                                         </div>
@@ -116,7 +197,9 @@
                 <a class="dropdown-toggle w3pages" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     <ul class="dropdown-menu">
-                        <li><a href="@if(Auth::user()->role == 1 || Auth::user()->role == 2){{route('profile')}} @else {{route('profileuser')}} @endif">Profile</a></li>
+                        <li>
+                            <a href="@if(Auth::user()->role == 1 || Auth::user()->role == 2){{route('profile')}} @else {{route('profileuser')}} @endif">Profile</a>
+                        </li>
                         <li><a href="{!! route('getLogout') !!}">Logout</a></li>
                     </ul>
                 </a>
@@ -135,19 +218,56 @@
             <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search"
                                                               aria-hidden="true"></span></label>
             <div class="search_form">
-                <form action="#" method="post">
-                    <input type="text" name="Search" placeholder="Search...">
+                <form action="{{ route('search') }}" method="post">
+                    @csrf
+                    <input type="text" name="search" placeholder="Search...">
                     <input type="submit" value="Send">
                 </form>
             </div>
         </div>
         <div class="cart cart box_1">
-            <form action="#" method="post" class="last">
-                <input type="hidden" name="cmd" value="_cart"/>
-                <input type="hidden" name="display" value="1"/>
-                <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down"
-                                                                                    aria-hidden="true"></i></button>
-            </form>
+                {{--<button class="w3view-cart" type="submit" name="submit" value=""></button>--}}
+
+                <div class="dropdown" id="bs-megadropdown-tabs"
+                     style="top: 2.5rem; position: fixed;left: 83%;width: 420px;">
+                    <a class="dropdown-toggle w3pages" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><i class="fa fa-cart-arrow-down"
+                                                aria-hidden="true" style="font-size: 50px;position: fixed;"></i>
+                        <ul class="dropdown-menu ul divmain" style="top: 49px;left: -17rem;width: 420px">
+                            <?php $pro = json_decode(json_encode(Cart::getContent()), 1);
+                                $total = 0;
+                            ?>
+                            @if($pro!= null)
+                                @foreach($pro as $item)
+                                    <?php $total+= ($item['price']*$item['quantity']);?>
+                                    <li class="sbmincart-item"
+                                        style="    clear: left;padding: 7px 0;min-height: 35px;font-size: 0.85em;">
+                                        <div class="sbmincart-details-name" style="float: left;width: 62%;">
+                                            <a class="sbmincart-name"
+                                               href="file:///Users/trente/Downloads/web/index.html">{{$item['name']}}</a>
+                                            <ul class="sbmincart-attributes"></ul>
+                                        </div>
+                                        <div class="sbmincart-details-quantity">
+                                            <input class="sbmincart-quantity main1" data-sbmincart-idx="0"
+                                                   name="quantity_1" type="text" pattern="[0-9]*" value="1"
+                                                   autocomplete="off"></div>
+                                        <div class="sbmincart-details-price"><span
+                                                class="sbmincart-price price">{{$item['price']}}</span></div></li>
+                                        @endforeach
+                                        <div class="footer1">
+                                            <div class="total">Subtotal: {{$total}}đ</div>
+                                            <button class="pay" type="submit"
+                                                    data-sbmincart-alt="undefined">Pay
+                                            </button>
+                                        </div>
+                                        @else
+                                            <div class="footer1">
+                                                <p class="sbmincart-empty-text">Your shopping cart is empty</p>
+                                            </div>
+                                    @endif
+                        </ul>
+                    </a>
+                </div>
         </div>
     </div>
 </div>

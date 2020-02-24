@@ -11,8 +11,8 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
 
-            <form action="recover-password.html" method="post">
-                @csrf
+            <form action="{{route('sendMail')}}" method="post">
+                {!! csrf_field() !!}
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="Email">
                     <div class="input-group-append">
@@ -28,12 +28,8 @@
                     <!-- /.col -->
                 </div>
             </form>
-
-            <p class="mt-3 mb-1">
-                <a href="{!! url('admin/login'); !!}">Login</a>
-            </p>
             <p class="mb-0">
-                <a href="{!! url('admin/register'); !!}" class="text-center">Register a new membership</a>
+                <a href="{!! route('home') !!}" class="text-center">Home</a>
             </p>
         </div>
         <!-- /.login-card-body -->
