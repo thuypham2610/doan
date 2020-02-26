@@ -98,13 +98,12 @@ class PageController extends Controller
     public function getpro()
     {
         if (Auth::check()) {
-            $pro = Product::query()->get()->toArray();
-            $pro = json_decode(json_encode($pro), 1);
+            $base = Product::paginate(5);
 
-            $name = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "products" ORDER BY ORDINAL_POSITION');
-            $name = json_decode(json_encode($name), 1);
+            $column = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "products" ORDER BY ORDINAL_POSITION');
 
-            return view('admin::danhsach', ['base' => $pro, 'column' => $name, 'table' => 'product']);
+            $table = 'product';
+            return view('admin::danhsach', compact('base','column','table'));
         } else {
             return view('admin::login');
         }

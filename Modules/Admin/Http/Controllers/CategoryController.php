@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use Modules\Admin\Http\Requests\CateRequest;
 use Modules\Admin\Http\Requests\TradeRequest;
 
@@ -93,13 +94,12 @@ class CategoryController extends Controller
     public function getcate()
     {
         if (Auth::check()) {
-            $cate = Category::query()->get()->toArray();
-            $cate = json_decode(json_encode($cate), 1);
+            $base = DB::table('categories')->paginate(5);
 
-            $name = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "categories" ORDER BY ORDINAL_POSITION');
-            $name = json_decode(json_encode($name), 1);
+            $column = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "categories" ORDER BY ORDINAL_POSITION');
 
-            return view('admin::danhsach', ['base' => $cate, 'column' => $name,'table'=>'category']);
+            $table = 'category';
+            return view('admin::danhsach', compact('base','column','table'));
         }else{
             return view('admin::login');
         }

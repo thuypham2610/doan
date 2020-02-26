@@ -91,13 +91,12 @@ class TrademarkController extends Controller
     public function gettrade()
     {
         if (Auth::check()) {
-            $trade = Trademark::query()->get()->toArray();
-            $trade = json_decode(json_encode($trade), 1);
+            $base = DB::table('Trademark')->paginate(5);
 
-            $name = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "Trademark" ORDER BY ORDINAL_POSITION');
-            $name = json_decode(json_encode($name), 1);
+            $column = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "Trademark" ORDER BY ORDINAL_POSITION');
 
-            return view('admin::danhsach', ['base' => $trade, 'column' => $name,'table'=>'trademark']);
+            $table = 'trademark';
+            return view('admin::danhsach', compact('base','column','table'));
         } else {
             return view('admin::login');
         }

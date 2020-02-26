@@ -25,13 +25,21 @@
                                 <tbody>
                                 @foreach($base as $item)
                                     <tr>
-                                        @foreach($item as $key => $base)
+                                        <?php
+                                            $item =  json_decode(json_encode($item), 1);
+                                        ?>
+                                        @foreach($item as $key => $base2)
+
                                             @if($key == 'picture')
-                                                <td><img src="{{Module::asset('admin:dist/img/')}}/{{$base}}" alt=" "
+                                                <td><img src="{{Module::asset('admin:dist/img/')}}/{{$base2}}" alt=" "
                                                          style="width: 50px; height: 50px"/></td>
                                             @else
-                                                <td>{!! $base !!}</td>
+                                                <td>{!! $base2 !!}</td>
                                             @endif
+                                            <?php
+                                                    if($key = 'id')
+                                                        $id = $base2;
+                                            ?>
                                         @endforeach
                                         <td>
                                             @if($table == 'product')
@@ -51,7 +59,7 @@
                                                    class="btn btn-success toastsDefaultSuccess" style="color: white">
                                                     Edit
                                                 </a>
-                                                <a href="{{ route('tradedelete', ['id' => $item['id']]) }}"
+                                                <a href="{{ route('tradedelete', ['id' => $item['id']]) }}}}"
                                                    class="btn btn-danger toastsDefaultSuccess"
                                                    style="color: white">
                                                     Delete
@@ -106,13 +114,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
-                            <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">»</a></li>
-                            </ul>
+                            {{$base->render()}}
                         </div>
                     </div>
                     <!-- /.card -->
