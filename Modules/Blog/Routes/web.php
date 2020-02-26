@@ -21,4 +21,9 @@ Route::prefix('blog')->group(function() {
     Route::get('product/newarrivals/{id}','CategoryController@newarrivals')->name('newarrivals');
     Route::post('search','CategoryController@search')->name('search');
     Route::post('cart','ShoppingCartController@store')->name('cart');
+    Route::view('detail','blog::pay')->name('paydetail');
+    Route::view('cart','blog::cart')->name('cart');
+    Route::get('delete/{id}','ShoppingCartController@delete')->name('delete');
+    Route::get('update','ShoppingCartController@update')->name('update');
+    Route::post('pay','ShoppingCartController@pay')->name('pay');
 });

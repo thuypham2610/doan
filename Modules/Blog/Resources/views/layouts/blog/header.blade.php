@@ -227,21 +227,21 @@
         </div>
         <div class="cart cart box_1">
                 {{--<button class="w3view-cart" type="submit" name="submit" value=""></button>--}}
-
+            <?php $pro = \Gloudemans\Shoppingcart\Facades\Cart::getContent()->toArray();
+            $total = 0;
+            ?>
                 <div class="dropdown" id="bs-megadropdown-tabs"
                      style="top: 2.5rem; position: fixed;left: 83%;width: 420px;">
                     <a class="dropdown-toggle w3pages" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-cart-arrow-down"
                                                 aria-hidden="true" style="font-size: 50px;position: fixed;"></i>
                         <ul class="dropdown-menu ul divmain" style="top: 49px;left: -17rem;width: 420px">
-                            <?php $pro = json_decode(json_encode(Cart::getContent()), 1);
-                                $total = 0;
-                            ?>
+
                             @if($pro!= null)
                                 @foreach($pro as $item)
                                     <?php $total+= ($item['price']*$item['quantity']);?>
                                     <li class="sbmincart-item"
-                                        style="    clear: left;padding: 7px 0;min-height: 35px;font-size: 0.85em;">
+                                        style="clear: left;padding: 7px 0;min-height: 35px;font-size: 0.85em;">
                                         <div class="sbmincart-details-name" style="float: left;width: 62%;">
                                             <a class="sbmincart-name"
                                                href="file:///Users/trente/Downloads/web/index.html">{{$item['name']}}</a>
@@ -249,16 +249,17 @@
                                         </div>
                                         <div class="sbmincart-details-quantity">
                                             <input class="sbmincart-quantity main1" data-sbmincart-idx="0"
-                                                   name="quantity_1" type="text" pattern="[0-9]*" value="1"
+                                                   type="text" pattern="[0-9]*"  @if(isset($item['value'])) value="{{$item['value']}}"@else value="{{$item['quantity']}}" @endif
                                                    autocomplete="off"></div>
                                         <div class="sbmincart-details-price"><span
                                                 class="sbmincart-price price">{{$item['price']}}</span></div></li>
                                         @endforeach
                                         <div class="footer1">
                                             <div class="total">Subtotal: {{$total}}đ</div>
-                                            <button class="pay" type="submit"
-                                                    data-sbmincart-alt="undefined">Pay
-                                            </button>
+                                            <a href="{{route('cart')}}" class="pay">Pay
+                                            </a>
+                                            <a href="{{route('paydetail')}}" class="pay" style=" left: 15rem;width: 50px;">Detail
+                                            </a>
                                         </div>
                                         @else
                                             <div class="footer1">

@@ -2,10 +2,15 @@
 
 namespace Modules\Blog\Http\Controllers;
 
+use App\Order;
+use App\Order_detail;
+use App\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ShoppingCartController extends Controller
 {
@@ -36,20 +41,18 @@ class ShoppingCartController extends Controller
     {
         $pro = $request->all();
         unset($pro['_token']);
-        Cart::add(['id'=>$request->id,'name'=>$request->name,'quantity'=>$request->quantity,'price'=>$request->price]);
-        $content = Cart::getContent()->toArray();
-        return redirect()->back();
+        $image = Product::query()->select('picture')->where('id', $pro['id'])->first()->toArray();
+        $add = Cart::add(['id'    => $request->id, 'name' => $request->name, 'quantity' => $request->quantity,
+                          'price' => $request->price, 'picture' => $image['picture'], 'value' => 0]);
+        if ($add) {
+            return redirect()->to('blog/');
+        }
     }
 
-    public function getDetailCart()
+    public function delete($id)
     {
-        if(isset($_GET["id"])&&isset($_GET["quantity"]))
-        {
-            $id = $_GET["id"];
-            $qty = $_GET["quantity"];
-            Cart::update($id, $qty);
-        }
-        return view('pages.cart');
+        Cart::remove($id);
+        return redirect('/blog/detail');
     }
 
     /**
@@ -57,9 +60,74 @@ class ShoppingCartController extends Controller
      * @param int $id
      * @return Response
      */
-    public function show($id)
+    public function pay(Request $request)
     {
-        return view('blog::show');
+        $total = 0;
+        $cart = Cart::getContent()->toArray();
+        foreach ($cart as $item) {
+            if (isset($item['value']))
+                $total += $item['price'] * $item['value'];
+            else
+                $total += $item['price'] * $item['quantity'];
+        }
+        if (Auth::check()) {
+            Order::create([
+                'user_id'     => Auth::user()->id,
+                'total_price' => $total,
+                'email'       => $request['email'],
+                'addresss'    => $request['address'],
+                'status'      => 0,
+                'phone'       => $request['phone']
+            ]);
+            $id = Order::query()->max('id');
+            foreach ($cart as $item) {
+                if (isset($item['value'])) {
+                    $qty = $item['value'];
+                } else {
+                    $qty = $item['quantity'];
+                }
+                Order_detail::create([
+                    'order_id'   => $id,
+                    'product_id' => $item['id'],
+                    'price'      => $item['price'],
+                    'quantity'   => $qty
+                ]);
+
+                $product = Product::query()->select('quantity')->where('id',$item['id']);
+                $product = $product - $qty;
+                DB::table('products')->where('id',$item['id'])->update('quantity',$product);
+            }
+            Cart::clear();
+        } else {
+            Order::create([
+                'user_id'     => 0,
+                'total_price' => $total,
+                'email'       => $request['email'],
+                'addresss'    => $request['address'],
+                'status'      => 0,
+                'phone'       => $request['phone']
+            ]);
+            $id = Order::query()->max('id');
+            foreach ($cart as $item) {
+                if (isset($item['value'])) {
+                    $qty = $item['value'];
+                } else {
+                    $qty = $item['quantity'];
+                }
+                Order_detail::create([
+                    'order_id'   => $id,
+                    'product_id' => $item['id'],
+                    'price'      => $item['price'],
+                    'quantity'   => $qty
+                ]);
+                $product = json_decode(json_encode(DB::table('products')->select('quantity')->where('id',$item['id'])->first()),1);
+                $product = $product['quantity'] - $qty;
+                DB::table('products')->where('id',$item['id'])->update(['quantity'=>$product]);
+            }
+            Cart::clear();
+        }
+
+        return redirect()->route('home');
     }
 
     /**
@@ -67,9 +135,9 @@ class ShoppingCartController extends Controller
      * @param int $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, $qty)
     {
-        return view('blog::edit');
+
     }
 
     /**
@@ -78,9 +146,12 @@ class ShoppingCartController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        Cart::update($request['id'], array(
+            'relative' => false,
+            'value'    => $request['quantity']
+        ));
     }
 
     /**
