@@ -45,7 +45,7 @@ class ShoppingCartController extends Controller
         $add = Cart::add(['id'    => $request->id, 'name' => $request->name, 'quantity' => $request->quantity,
                           'price' => $request->price, 'picture' => $image['picture'], 'value' => 0]);
         if ($add) {
-            return redirect()->to('blog/');
+            return redirect()->back();
         }
     }
 

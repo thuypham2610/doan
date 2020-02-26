@@ -78,6 +78,7 @@
                                             <input type="hidden" name="quantity" value="1" />
                                             <input type="hidden" name="name" value="{!! $item['name'] !!}" />
                                             <input type="hidden" name="price" value="{!! $item['price'] !!}" />
+                                            <input type="hidden" name="id" value="{!! $item['id'] !!}" />
                                             <button type="submit" class="w3ls-cart">Add to cart</button>
                                         </form>
                                     </div>
