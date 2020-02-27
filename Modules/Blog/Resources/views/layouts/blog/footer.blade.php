@@ -6,7 +6,7 @@
                 <h3>Contact</h3>
                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
                 <ul class="address">
-                    <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>Ha Noi City.</span></li>
+                    <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>298 Cầu Diễn, Bắc Từ Liêm <span>Ha Noi City.</span></li>
                     <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">thuypham12049@gmail.com</a></li>
                     <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>035 778 3399</li>
                 </ul>
@@ -14,11 +14,8 @@
             <div class="col-md-3 w3_footer_grid">
                 <h3>Information</h3>
                 <ul class="info">
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="mail.html">Contact Us</a></li>
-                    <li><a href="codes.html">Short Codes</a></li>
-                    <li><a href="faq.html">FAQ's</a></li>
-                    <li><a href="products.html">Special Products</a></li>
+                    <li><a href="{{route('about')}}">About Us</a></li>
+                    <li><a href="{{route('mailus')}}">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">

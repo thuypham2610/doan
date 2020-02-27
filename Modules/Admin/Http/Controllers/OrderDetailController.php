@@ -83,13 +83,12 @@ class OrderDetailController extends Controller
     public function getorderdetail()
     {
         if (Auth::check()) {
-            $detail = Order_detail::query()->get()->toArray();
-            $detail = json_decode(json_encode($detail), 1);
+            $base = Order_detail::paginate(5);
 
-            $name = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "order_detail" ORDER BY ORDINAL_POSITION');
-            $name = json_decode(json_encode($name), 1);
+            $column = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "order_detail" ORDER BY ORDINAL_POSITION');
 
-            return view('admin::danhsach', ['base' => $detail, 'column' => $name,'table'=>'order_detail']);
+            $table = 'order_detail';
+            return view('admin::danhsach', compact('base','column','table'));
         } else {
             return view('admin::login');
         }

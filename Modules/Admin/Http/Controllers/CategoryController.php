@@ -11,6 +11,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use Illuminate\Validation\Rule;
 use Modules\Admin\Http\Requests\CateRequest;
 use Modules\Admin\Http\Requests\TradeRequest;
 
@@ -70,8 +71,14 @@ class CategoryController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(CateRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        $catefind = Category::find($id);
+        $catefind = json_decode(json_encode($catefind), 1);
+        $request->validate(
+            [
+                'name' => ['required', 'string',Rule::unique('categories')->whereNotIn('name',[$catefind['name']])]
+            ]);
         $cate = $request->all();
         unset($cate['_token']);
         DB::table('categories')->where('id',$id)->update($cate);

@@ -26,4 +26,9 @@ Route::prefix('blog')->group(function() {
     Route::get('delete/{id}','ShoppingCartController@delete')->name('delete');
     Route::get('update','ShoppingCartController@update')->name('update');
     Route::post('pay','ShoppingCartController@pay')->name('pay');
+    Route::post('regist','BlogController@regist')->name('regist');
+    Route::view('about','blog::about')->name('about');
+    Route::view('mailus','blog::mailus')->name('mailus');
+
+    Route::post('updateprofile','BlogController@update')->name('updateprofile');
 });

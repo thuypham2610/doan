@@ -8,25 +8,49 @@
         </div>
     </div>
     <!-- //banner -->
-
-    <div style="margin: 2.5rem;display: block;float:left;" class="register col-md-12">
-        <form action="{{ route('postLogin') }}" method="post">
+    <div class="breadcrumb_dress">
+        <div class="container">
+            <ul>
+                <li><a href="{{route('home')}}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+                    <i>/</i></li>
+                <li>Profile</li>
+            </ul>
+        </div>
+    </div>
+    <div style="margin: 2.5rem;display: block;float:left" class="register col-md-12">
+        <div class="col-sm-5">
+        <form action="{{ route('updateprofile') }}" method="post">
             @csrf
             <div>
-                <input name="username" placeholder="Username" type="text" style="width: 30%">
+                <input name="username" placeholder="Username" type="text" style="width: 26rem" value="{{Auth::user()->username}}">
             </div>
             <div style="margin-top: 1.5rem">
-                <input name="username" placeholder="Username" type="text" style="width: 30%">
+                <input name="email" placeholder="Email" type="text" style="width: 26rem" value="{{Auth::user()->email}}">
             </div>
             <div style="margin-top: 1.5rem">
-                <input name="username" placeholder="Username" type="text" style="width: 30%">
+                <input name="address" placeholder="Address" type="text" style="width: 26rem" value="{{Auth::user()->address}}">
             </div>
             <div style="margin-top: 1.5rem">
-                <input name="username" placeholder="Username" type="text" style="width: 30%">
+                <input name="phone" placeholder="Phone" type="text" style="width: 26rem" value="{{Auth::user()->phone}}">
+            </div>
+            <div style="margin-top: 1.5rem">
+                <input name="old" placeholder="Password" type="password" style="width: 26rem" >
+            </div>
+            <div style="margin-top: 1.5rem">
+                <input name="password" placeholder="Password" type="password" style="width: 26rem" >
+            </div>
+            <div style="margin-top: 1.5rem">
+                <input name="password_confirmation" placeholder="Password Confirmation" type="password" style="width: 26rem">
             </div>
             <div class="sign-up">
-                <input type="submit" value="Sign in" style="width: 10%"/>
+                <input type="submit" value="Save" style="width: 5rem"/>
             </div>
         </form>
+        </div>
+        <div class="col-sm-7">
+            <img src="{{Module::asset('admin:dist/img/27585811288_21b8b07111_k.jpg')}}" alt=" " class="img-responsive" style="height: 400px;width: 800px;text-align: center"/>
+        </div>
     </div>
+
+
 @endsection

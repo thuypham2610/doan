@@ -14,6 +14,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
+                                    <th>STT</th>
                                     @foreach($column as $name)
                                         @foreach($name as $key => $va)
                                             <th>{!! $va !!}</th>
@@ -23,23 +24,29 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $i = 1;?>
                                 @foreach($base as $item)
                                     <tr>
+                                        <td>{{$i}}</td>
                                         <?php
-                                            $item =  json_decode(json_encode($item), 1);
+                                        $i++;
+                                        $item = json_decode(json_encode($item), 1);
                                         ?>
                                         @foreach($item as $key => $base2)
-
                                             @if($key == 'picture')
                                                 <td><img src="{{Module::asset('admin:dist/img/')}}/{{$base2}}" alt=" "
                                                          style="width: 50px; height: 50px"/></td>
                                             @else
-                                                <td>{!! $base2 !!}</td>
+                                                @if($key == 'status')
+                                                    <td><a href="{{ route('tradeedit', ['id' => $item['id']]) }}"
+                                                           class="btn btn-success toastsDefaultSuccess"
+                                                           style="color: white">
+                                                            Confirm
+                                                        </a></td>
+                                                @else
+                                                    <td>{!! $base2 !!}</td>
+                                                @endif
                                             @endif
-                                            <?php
-                                                    if($key = 'id')
-                                                        $id = $base2;
-                                            ?>
                                         @endforeach
                                         <td>
                                             @if($table == 'product')
@@ -77,27 +84,13 @@
                                                 </a>
                                             @endif
                                             @if($table == 'order')
-                                                <a href="{{ route('orderedit', ['id' => $item['id']]) }}"
-                                                   class="btn btn-success toastsDefaultSuccess" style="color: white">
-                                                    Edit
-                                                </a>
-                                                <a href="" class="btn btn-danger toastsDefaultSuccess"
-                                                   style="color: white">
-                                                    Delete
-                                                </a>
-                                            @endif
-                                            @if($table == 'order_detail')
-                                                <a href="{{ route('detailedit', ['id' => $item['id']]) }}"
-                                                   class="btn btn-success toastsDefaultSuccess" style="color: white">
-                                                    Edit
-                                                </a>
                                                 <a href="" class="btn btn-danger toastsDefaultSuccess"
                                                    style="color: white">
                                                     Delete
                                                 </a>
                                             @endif
                                             @if($table == 'users')
-                                                <a href="{{ route('detailedit', ['id' => $item['id']]) }}"
+                                                <a href="{{ route('useredit', ['id' => $item['id']]) }}"
                                                    class="btn btn-success toastsDefaultSuccess" style="color: white">
                                                     Edit
                                                 </a>

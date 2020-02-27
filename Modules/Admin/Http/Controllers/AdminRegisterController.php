@@ -6,8 +6,10 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Modules\Admin\Http\Requests\AdminregisterRequest;
 
 class AdminRegisterController extends Controller
@@ -66,9 +68,9 @@ class AdminRegisterController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
     }
 
     /**
@@ -90,20 +92,14 @@ class AdminRegisterController extends Controller
             'email'    => $request->email,
             'address'  => $request->address,
             'phone'    => $request->phone,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'created_at'=>now()
         ];
 
         if (session('role') == 2) {
             $insert['role'] = $request->role;
         }
-        $admin = User::where('username', $login['username'])->get()->toArray();
-        if ($admin != null) {
-            return redirect()->back()->with('status', 'Username da ton tai');
-        } elseif ($login['password'] != $login['password_confirmation']) {
-            return redirect()->back()->with('status', 'Password khong chinh xac');
-        } else {
-            DB::table('users')->insert($insert);
-            return redirect('admin/success');
-        }
+        DB::table('users')->insert($insert);
+        return redirect('admin/userlist');
     }
 }

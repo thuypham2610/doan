@@ -23,7 +23,9 @@ Route::prefix('admin')->group(function() {
     {
         Route::view('success', 'admin::profile')->name('profile');
         Route::get('userlist', 'AdminController@index')->name('userlist');
-        Route::view('regist', 'admin::registeradmin')->name('regist');
+        Route::get('user/edit/{id}', 'AdminController@edit')->name('useredit');
+        Route::post('user/update/{id}', 'AdminController@update')->name('updateadmin');
+        Route::view('regist', 'admin::registeradmin')->name('regist1');
         Route::post('registadmin', 'AdminRegisterController@registadmin')->name('registadmin');
 
         //product

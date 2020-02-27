@@ -60,8 +60,8 @@
                             </div>
                         </ul>
                     </li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="mail.html">Mail Us</a></li>
+                    <li><a href="{{route('about')}}">About Us</a></li>
+                    <li><a href="{{route('mailus')}}">Mail Us</a></li>
                 </ul>
             </div>
         </nav>

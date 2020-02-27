@@ -30,7 +30,7 @@
                         <li class='nav-item '><a href="{!! route('userlist') !!}" class='nav-link active'>
                                 <i class='far fa-circle nav-icon'></i>
                                 <p>List</p></a></li>
-                        <li class='nav-item '><a href="{!! route('regist') !!}" class='nav-link '>
+                        <li class='nav-item '><a href="{!! route('regist1') !!}" class='nav-link '>
                                 <i class='far fa-circle nav-icon'></i>
                                 <p>Add</p></a></li>
                     </ul>
@@ -71,11 +71,11 @@
                                 <p>Add</p></a></li>
                     </ul>
                 </li>
-                <li class='nav-item '><a href="{!! route('detaillist') !!}" class='nav-link '>
+                <li class='nav-item '><a href="{!! route('orderlist') !!}" class='nav-link '>
                         <i class='nav-icon far fa-circle text-info'></i>
                         <p>Order</p></a>
                 </li>
-                <li class='nav-item '><a href="{!! route('orderlist') !!}" class='nav-link '>
+                <li class='nav-item '><a href="{!! route('detaillist') !!}" class='nav-link '>
                         <i class='nav-icon far fa-circle text-info'></i>
                         <p>Order Detail</p></a>
                 </li>

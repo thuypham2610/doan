@@ -133,15 +133,18 @@
                                 <div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
                                     <div class="facts">
                                         <div class="register">
-                                            <form action="#" method="post">
+                                            <form action="{{route('regist')}}" method="post">
                                                 @csrf
-                                                <input placeholder="Name" name="name" type="text" required="">
+                                                <input placeholder="Name" name="username" type="text" required="">
                                                 <input placeholder="Email Address" name="email" type="email"
+                                                       required="" style="margin-bottom: 1rem">
+                                                <input placeholder="Phone" name="phone" type="text"
+                                                       required="" style="margin-bottom: 1rem">
+                                                <input placeholder="Address" name="address" type="text"
                                                        required="">
                                                 <input placeholder="Password" name="password" type="password"
                                                        required="">
-                                                <input placeholder="Confirm Password" name="password_confirmation"
-                                                       type="password"
+                                                <input placeholder="Confirm Password" name="password_confirmation" type="password"
                                                        required="">
                                                 <div class="sign-up">
                                                     <input type="submit" value="Create Account"/>

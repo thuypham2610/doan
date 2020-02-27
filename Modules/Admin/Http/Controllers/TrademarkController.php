@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Modules\Admin\Http\Requests\TradeRequest;
 
 class TrademarkController extends Controller
@@ -66,8 +67,14 @@ class TrademarkController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(TradeRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        $tradefind = Trademark::find($id);
+        $tradefind = json_decode(json_encode($tradefind), 1);
+        $request->validate(
+            [
+                'name' => ['required', 'string',Rule::unique('Trademark')->whereNotIn('name',[$tradefind['name']])]
+            ]);
         $trade = $request->all();
         unset($trade['_token']);
         DB::table('Trademark')->where('id',$id)->update($trade);

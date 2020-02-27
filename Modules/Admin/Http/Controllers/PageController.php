@@ -68,9 +68,17 @@ class PageController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $pro_esists = Product::find($id);
+        $request->validate(
+            [
+                'name' => ['required', 'string',Rule::unique('products')->whereNotIn('name',[$pro_esists['name']])],
+                'quantity'     => ['required', 'numeric'],
+                'price'        => ['required', 'numeric'],
+                'picture'      => ['required'],
+                'description'  => ['required', 'string'],
+            ]);
         $pro = $request->all();
         $fileName = $request->file('picture')->getClientOriginalName();
         $request->file('picture')->move('modules/admin/dist/img/', $fileName);

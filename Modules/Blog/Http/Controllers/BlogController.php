@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Modules\Admin\Http\Requests\AdminregisterRequest;
 
 class BlogController extends Controller
 {
@@ -14,9 +18,20 @@ class BlogController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function regist(AdminregisterRequest $request)
     {
-        return view('blog::index');
+        $login = $request->all();
+
+        $insert = [
+            'username' => $request->username,
+            'email'    => $request->email,
+            'address'  => $request->address,
+            'phone'    => $request->phone,
+            'password' => Hash::make($request->password)
+        ];
+
+        DB::table('users')->insert($insert);
+        return redirect('blog/');
     }
 
     /**
@@ -64,9 +79,31 @@ class BlogController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'username'              => ['required', 'string','max:10',Rule::unique('users')->whereNotIn('username',[Auth::user()->username])],
+                'email'                 => ['required', 'string','max:30',Rule::unique('users')->whereNotIn('email',[Auth::user()->email])],
+                'address'               => ['required', 'string','max:100'],
+                'phone'                 => ['required', 'string','max:10'],
+                'password'              => ['required', 'confirmed', 'string','max:20'],
+                'password_confirmation' => ['required', 'string','max:20']
+            ]);
+        if (Hash::check($request->old, Auth::user()->password)) {
+            $user = $request->all();
+            $user['password'] = Hash::make($request->password);
+            $user['updated_at'] = now();
+            unset($user['_token']);
+            unset($user['password_confirmation']);
+            unset($user['old']);
+            DB::table('users')->where('id', Auth::user()->id)->update($user);
+            $this->guard()->logout();
+            Auth::logout();
+            return redirect()->route('home');
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**

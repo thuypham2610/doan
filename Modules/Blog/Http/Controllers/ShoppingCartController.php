@@ -64,7 +64,7 @@ class ShoppingCartController extends Controller
     {
         $total = 0;
         $cart = Cart::getContent()->toArray();
-        foreach ($cart as $item) {
+        foreach ($cart as $key => $item) {
             if (isset($item['value']))
                 $total += $item['price'] * $item['value'];
             else
@@ -93,9 +93,12 @@ class ShoppingCartController extends Controller
                     'quantity'   => $qty
                 ]);
 
-                $product = Product::query()->select('quantity')->where('id',$item['id']);
-                $product = $product - $qty;
-                DB::table('products')->where('id',$item['id'])->update('quantity',$product);
+                $product = json_decode(json_encode(Db::table('products')->select('quantity')->where('id',$key)->first()),1);
+                $p = $product['quantity'] - $qty;
+                $product= [
+                    'quantity' => $p
+                ];
+                DB::table('products')->where('id',$item['id'])->update($product);
             }
             Cart::clear();
         } else {
