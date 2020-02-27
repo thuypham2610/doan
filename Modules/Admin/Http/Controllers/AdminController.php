@@ -23,7 +23,7 @@ class AdminController extends Controller
         $base = DB::table('users')->paginate(5);
         $column = [
           [
-              'id','username','email','address','phone','password',
+              'id','username','email','birthday','address','phone','password',
               'role','remember_token','created_at','updated_at'
           ]
         ];

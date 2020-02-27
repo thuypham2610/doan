@@ -45,7 +45,7 @@
 
                     <strong><i class="fas fa-map-marker-alt mr-1"></i> username</strong>
 
-                    <p class="text-muted"> {!! Auth::user()->username !!}</p>
+                    <p class="text-muted"><a href="{{route('profile')}}">{!! Auth::user()->username !!}</a></p>
 
                     <hr>
 
@@ -70,8 +70,7 @@
             <div class="card">
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Timeline</a></li>
                         <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                     </ul>
                 </div><!-- /.card-header -->
@@ -79,7 +78,7 @@
                     <div class="tab-content">
 
                         <!-- /.tab-pane -->
-                        <div class="tab-pane" id="timeline">
+                        <div class="tab-pane active" id="timeline">
                             <!-- The timeline -->
                             <div class="timeline timeline-inverse">
                                 <!-- timeline time label -->
@@ -177,33 +176,33 @@
                         <div class="tab-pane" id="settings">
                             <form class="form-horizontal">
                                 <div class="form-group row">
-                                    <label for="inputName" class="col-sm-2 col-form-label">Login ID</label>
+                                    <label for="inputName" class="col-sm-2 col-form-label">Username</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName" placeholder="ID" value="{!! Auth::user()->login_id !!}">
+                                        <input type="text" class="form-control" id="inputName" name="username" placeholder="ID" value="{!! Auth::user()->username !!}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="inputEmail" class="col-sm-2 col-form-label">Login Pass</label>
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputEmail" placeholder="Password" value="{!! Auth::user()->login_pass !!}">
+                                        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" value="{!! Auth::user()->email !!}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="inputName2" class="col-sm-2 col-form-label">User Sei</label>
+                                    <label for="inputName2" class="col-sm-2 col-form-label">Address</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName2" placeholder="Sei" value="{!! Auth::user()->user_sei !!}">
+                                        <input type="text" class="form-control" id="inputName2" name="address" placeholder="Address" value="{!! Auth::user()->address !!}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="inputSkills" class="col-sm-2 col-form-label">User Mei</label>
+                                    <label for="inputSkills" class="col-sm-2 col-form-label">Phone</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputSkills" placeholder="Mei" value="{!! Auth::user()->user_mei !!}">
+                                        <input type="text" class="form-control" id="inputSkills" placeholder="Phone" name="phone" value="{!! Auth::user()->phone !!}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="inputSkills" class="col-sm-2 col-form-label">Tel</label>
+                                    <label for="inputSkills" class="col-sm-2 col-form-label">Birthday</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputSkills" placeholder="Tel" value="{!! Auth::user()->tel_no !!}">
+                                        <input type="date" class="form-control" id="inputSkills" placeholder="Birthday" name="birthday" value="{!! Auth::user()->birthday !!}">
                                     </div>
                                 </div>
                                 <div class="form-group row">

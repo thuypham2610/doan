@@ -44,18 +44,6 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                <div class="col-sm-2">
-                                    <ul class="multi-column-dropdown">
-                                        <?php
-                                        $cate = \App\Category::query()->get()->toArray();
-                                        $cate = json_decode(json_encode($cate), 1);
-                                        ?>
-                                        <h6>Category</h6>
-                                        @foreach($cate as $item)
-                                            <li><a href="products.html">{!! $item['name'] !!}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
                                 <div class="clearfix"></div>
                             </div>
                         </ul>

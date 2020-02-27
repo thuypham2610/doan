@@ -31,16 +31,10 @@
                 <input name="address" placeholder="Address" type="text" style="width: 26rem" value="{{Auth::user()->address}}">
             </div>
             <div style="margin-top: 1.5rem">
+                <input name="birthday" placeholder="Birthday" type="date" style="width: 26rem" value="{{Auth::user()->birthday}}">
+            </div>
+            <div style="margin-top: 1.5rem">
                 <input name="phone" placeholder="Phone" type="text" style="width: 26rem" value="{{Auth::user()->phone}}">
-            </div>
-            <div style="margin-top: 1.5rem">
-                <input name="old" placeholder="Password" type="password" style="width: 26rem" >
-            </div>
-            <div style="margin-top: 1.5rem">
-                <input name="password" placeholder="Password" type="password" style="width: 26rem" >
-            </div>
-            <div style="margin-top: 1.5rem">
-                <input name="password_confirmation" placeholder="Password Confirmation" type="password" style="width: 26rem">
             </div>
             <div class="sign-up">
                 <input type="submit" value="Save" style="width: 5rem"/>

@@ -48,6 +48,14 @@
                                            name="address" value="{{$user['address']}}">
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-md-3 col-sm-10">
+                                    <input type="date" class="form-control  input_file" placeholder="korea"
+                                           name="birthday" value="{{$user['birthday']}}">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Phone</label>
                                 <div class="col-md-3 col-sm-10 ">
@@ -118,6 +126,14 @@
                                 <div class="col-md-3 col-sm-10">
                                     <input type="text" class="form-control  input_file" placeholder="korea"
                                            name="address">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-md-3 col-sm-10">
+                                    <input type="date" class="form-control  input_file" placeholder="korea"
+                                           name="birthday">
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Modules\Admin\Http\Requests\ChangdePasswordRequest;
 
 class LoginController extends Controller
 {
@@ -67,9 +71,12 @@ class LoginController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function updatePass(ChangdePasswordRequest $request)
     {
-        //
+        $user['password'] = Hash::make($request->password);
+        $user['updated_at'] = now();
+        DB::table('users')->where('id',Auth::user()->id)->update($user);
+        $this->getLogout();
     }
 
     /**
@@ -88,16 +95,29 @@ class LoginController extends Controller
             'username' => $request->username,
             'password' => $request->password
         ];
-        if ($this->guard()->attempt($login)) {
+        $user = json_decode(json_encode(User::query()->where('username', $login['username'])->first()),1);
+        if ($user['role'] == 1 || $user == 2) {
+            if ($this->guard()->attempt($login)) {
+                if (Auth::attempt($login)) {
+                    $user = User::query()->where('username', $login['username'])->first()->toArray();
+                    $request->session()->put('username', $login["username"]);
+                    session(['username' => $login["username"]]);
+                    session(['role' => $user['role']]);
+                    return redirect('blog/');
+                }
+            } else {
+                return redirect()->back()->with('status', 'User hoặc Password không chính xác');
+            }
+        } else {
             if (Auth::attempt($login)) {
                 $user = User::query()->where('username', $login['username'])->first()->toArray();
                 $request->session()->put('username', $login["username"]);
                 session(['username' => $login["username"]]);
                 session(['role' => $user['role']]);
                 return redirect('blog/');
+            } else {
+                return redirect()->back()->with('status', 'User hoặc Password không chính xác');
             }
-        } else {
-            return redirect()->back()->with('status', 'User hoặc Password không chính xác');
         }
     }
 

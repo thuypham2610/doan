@@ -12,7 +12,6 @@
 */
 Route::get('reset-password/changepassword/{token}','ResetPasswordController@changepassword');
 Route::prefix('blog')->group(function() {
-    Route::view('/profile','blog::profile')->name('profileuser');
     Route::get('/','CategoryController@getdanhsach')->name('home');
     Route::get('/product','CategoryController@allproduct')->name('all');
     Route::get('/product/{id}','CategoryController@index')->name('detail');
@@ -30,5 +29,10 @@ Route::prefix('blog')->group(function() {
     Route::view('about','blog::about')->name('about');
     Route::view('mailus','blog::mailus')->name('mailus');
 
-    Route::post('updateprofile','BlogController@update')->name('updateprofile');
+    Route::group(['middleware'=>'auth:web'],function() {
+        Route::post('updateprofile', 'BlogController@update')->name('updateprofile');
+        Route::view('/profile','blog::profile')->name('profileuser');
+        Route::view('changepass', 'admin::recover-password')->name('changepass');
+        Route::post('change/password', 'BlogController@updatepass')->name('changepassword');
+    });
 });

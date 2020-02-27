@@ -14,6 +14,7 @@
 Route::post('login', 'LoginController@postLogin')->name('postLogin');
 Route::get('check', 'LoginController@getLogout')->name('getLogout');
 Route::view('forgotpassword', 'admin::forgotpassword')->name('forgotpass');
+
 Route::prefix('admin')->group(function() {
     Route::view('login', 'admin::login');
     Route::view('recover-password', 'admin::recover-password');
@@ -59,7 +60,5 @@ Route::prefix('admin')->group(function() {
         //order detail
         Route::get('detaillist', 'OrderDetailController@getorderdetail')->name('detaillist');
         Route::view('detail/edit/{id}', 'admin::proregist')->name('detailedit');
-
-
     });
 });

@@ -88,12 +88,13 @@ class AdminRegisterController extends Controller
         $login = $request->all();
 
         $insert = [
-            'username' => $request->username,
-            'email'    => $request->email,
-            'address'  => $request->address,
-            'phone'    => $request->phone,
-            'password' => Hash::make($request->password),
-            'created_at'=>now()
+            'username'   => $request->username,
+            'email'      => $request->email,
+            'address'    => $request->address,
+            'phone'      => $request->phone,
+            'birthday'   => $request->birthday,
+            'password'   => Hash::make($request->password),
+            'created_at' => now()
         ];
 
         if (session('role') == 2) {

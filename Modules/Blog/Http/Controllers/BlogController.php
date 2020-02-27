@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Modules\Admin\Http\Requests\AdminregisterRequest;
+use Modules\Admin\Http\Requests\ChangdePasswordRequest;
 
 class BlogController extends Controller
 {
@@ -38,9 +39,14 @@ class BlogController extends Controller
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create()
+    public function updatepass(ChangdePasswordRequest $request)
     {
-        return view('blog::create');
+        $user['password'] = Hash::make($request->password);
+        $user['updated_at'] = now();
+        DB::table('users')->where('id',Auth::user()->id)->update($user);
+        $this->guard()->logout();
+        Auth::logout();
+        return redirect()->route('home');
     }
 
     /**
