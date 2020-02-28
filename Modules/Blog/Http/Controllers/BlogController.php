@@ -37,6 +37,7 @@ class BlogController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param ChangdePasswordRequest $request
      * @return Response
      */
     public function updatepass(ChangdePasswordRequest $request)

@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('reset-password/changepassword/{token}','ResetPasswordController@changepassword');
+Route::post('reset-password', 'ResetPasswordController@sendMail')->name('sendMail');
+Route::post('reset-password/{token}', 'ResetPasswordController@reset')->name('resetpassword');
+Route::get('reset-password/changepassword/{token}','ResetPasswordController@changepassword')->name('savepass');
 Route::prefix('blog')->group(function() {
     Route::get('/','CategoryController@getdanhsach')->name('home');
     Route::get('/product','CategoryController@allproduct')->name('all');

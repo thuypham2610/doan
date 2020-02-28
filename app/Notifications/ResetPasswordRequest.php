@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class ResetPasswordRequest extends Notification
 {
     use Queueable;
+    protected $token;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**

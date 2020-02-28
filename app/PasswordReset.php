@@ -11,9 +11,10 @@ class PasswordReset extends Authenticatable
     use Notifiable;
 
     protected $table        = 'password_resets';
-    protected $primaryKey   = 'email';
     protected $guard        = 'admin';
 
+    public $timestamps = false;
+    public $primaryKey = 'email';
 
     /**
      * The attributes that are mass assignable.

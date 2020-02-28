@@ -14,7 +14,6 @@
 Route::post('login', 'LoginController@postLogin')->name('postLogin');
 Route::get('check', 'LoginController@getLogout')->name('getLogout');
 Route::view('forgotpassword', 'admin::forgotpassword')->name('forgotpass');
-
 Route::prefix('admin')->group(function() {
     Route::view('login', 'admin::login');
     Route::view('recover-password', 'admin::recover-password');

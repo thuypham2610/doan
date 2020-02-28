@@ -2,10 +2,16 @@
 
 namespace Modules\Blog\Http\Controllers;
 
+use App\PasswordReset;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use App\Notifications\ResetPasswordRequest;
+use Modules\Admin\Http\Requests\ChangdePasswordRequest;
 
 class ResetPasswordController extends Controller
 {
@@ -93,7 +99,7 @@ class ResetPasswordController extends Controller
             $user->notify(new ResetPasswordRequest($passwordReset->token));
         }
 
-        return view('admin::forgotpassword');
+        return redirect()->back()->with('Da gui email thanh cong');
     }
 
     public function changepassword($token)
@@ -107,21 +113,19 @@ class ResetPasswordController extends Controller
             ], 422);
         }
 
-        return view('admin::forgotpassword',['token'=>$token]);
+        return view('admin::recover-password',['token'=>$token]);
     }
 
-    public function reset(PasswordRequest $request, $token)
+    public function reset(ChangdePasswordRequest $request, $token)
     {
         $passwordReset = PasswordReset::where('token', $token)->first();
 
         $user = User::where('email', $passwordReset->email)->firstOrFail();
         $password = $request->password;
-        $updatePasswordUser = $user->update(array('password'=> bcrypt($password)));
+        $updatePasswordUser = $user->update(array('password'=> Hash::make($password)));
         $passwordReset->delete();
 
-        return response()->json([
-            'success' => $updatePasswordUser,
-        ]);
+        return redirect()->route('home');
     }
 
 
