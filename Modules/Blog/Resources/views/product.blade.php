@@ -73,23 +73,10 @@
                         <div class="quantity">
                             <div class="quantity-select">
                                 <div class="entry value-minus1">&nbsp;</div>
-                                <div class="entry value1"><span>1</span></div>
+                                <div class="entry value1"><span id="q2">1</span></div>
                                 <div class="entry value-plus1 active">&nbsp;</div>
                             </div>
                         </div>
-                        <!--quantity-->
-                        <script>
-                            $('.value-plus1').on('click', function () {
-                                var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10) + 1;
-                                divUpd.text(newVal);
-                            });
-
-                            $('.value-minus1').on('click', function () {
-                                var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10) - 1;
-                                if (newVal >= 1) divUpd.text(newVal);
-                            });
-                        </script>
-                        <!--quantity-->
 
                     </div>
                     <div class="clearfix"></div>
@@ -118,13 +105,28 @@
                     <p><i class="item_price">{!! $product['price'] !!}</i></p>
                     <form action="{{route('cart')}}" method="post">
                         @csrf
-                        <input type="hidden" name="quantity" value="1">
+                        <input type="hidden" name="quantity" value="" id="2">
                         <input type="hidden" name="name" value="{!! $product['name'] !!}">
                         <input type="hidden" name="price" value="{!! $product['price'] !!}">
                         <input type="hidden" name="id" value="{!! $product['id'] !!}">
                         <button type="submit" class="w3ls-cart">Add to cart</button>
                     </form>
                 </div>
+                <!--quantity-->
+                <script>
+                    $('.value-plus1').on('click', function () {
+                        var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10) + 1;
+                        divUpd.text(newVal);
+                        document.getElementById("2").value = newVal;
+                    });
+
+                    $('.value-minus1').on('click', function () {
+                        var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10) - 1;
+                        if (newVal >= 1) divUpd.text(newVal);
+                        document.getElementById("2").value = newVal;
+                    });
+                </script>
+                <!--quantity-->
             </div>
             <div class="clearfix"></div>
         </div>
