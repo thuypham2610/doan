@@ -205,6 +205,7 @@
                         </li>
                         <li><a href="{!! route('getLogout') !!}">Logout</a></li>
                         <li><a href="{{route('changepass')}}">Change password</a></li>
+                        <li><a href="{{route('changepass')}}">History order</a></li>
                     </ul>
                 </a>
             </div>
@@ -235,7 +236,7 @@
             $total = 0;
             ?>
                 <div class="dropdown" id="bs-megadropdown-tabs"
-                     style="top: 2.5rem; position: fixed;left: 83%;width: 420px;">
+                     style="top: 3.5rem; position: fixed;left: 83%;width: 420px;">
                     <a class="dropdown-toggle w3pages" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-cart-arrow-down"
                                                 aria-hidden="true" style="font-size: 50px;position: fixed;"></i>

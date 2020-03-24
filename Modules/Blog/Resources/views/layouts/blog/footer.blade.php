@@ -39,10 +39,10 @@
                 <h4>Follow Us</h4>
                 <div class="agileits_social_button">
                     <ul>
-                        <li><a href="#" class="facebook"> </a></li>
-                        <li><a href="#" class="twitter"> </a></li>
-                        <li><a href="#" class="google"> </a></li>
-                        <li><a href="#" class="pinterest"> </a></li>
+                        <li><a href="https://www.facebook.com/thuthuy26101998" class="facebook"> </a></li>
+                        <li><a href="https://www.facebook.com/thuthuy26101998" class="twitter"> </a></li>
+                        <li><a href="https://www.facebook.com/thuthuy26101998" class="google"> </a></li>
+                        <li><a href="https://www.facebook.com/thuthuy26101998" class="pinterest"> </a></li>
                     </ul>
                 </div>
             </div>

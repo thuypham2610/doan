@@ -2,15 +2,14 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Message extends Authenticatable
 {
     use Notifiable;
-
-    protected $table        = 'users';
+    protected $table        = 'message';
     protected $primaryKey   = 'id';
     protected $guard        = 'admin';
 
@@ -20,16 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email','address','phone','birthday', 'password','role'
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
+        'user_id', 'message'
     ];
 
     /**
@@ -41,8 +31,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function messages()
+    public function user()
     {
-        return $this->hasMany(Message::class);
+        return $this->belongsTo(User::class);
     }
 }
