@@ -23,14 +23,14 @@ class AdminController extends Controller
     {
         $base = DB::table('users')->paginate(5);
         $column = [
-          [
-              'id','username','email','birthday','address','phone','password',
-              'role','remember_token','created_at','updated_at'
-          ]
+            [
+                'id', 'username', 'name', 'email', 'birthday', 'address', 'phone', 'password',
+                'role', 'remember_token', 'created_at', 'updated_at'
+            ]
         ];
 
         $table = 'users';
-        return view('admin::danhsach', compact('base','column','table'));
+        return view('admin::danhsach', compact('base', 'column', 'table'));
     }
 
     /**
@@ -71,7 +71,7 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $user = json_decode(json_encode($user), 1);
-        return view('admin::registeradmin',['user'=>$user]);
+        return view('admin::registeradmin', ['user' => $user]);
     }
 
     /**
@@ -86,19 +86,20 @@ class AdminController extends Controller
         $user = json_decode(json_encode($user), 1);
         $request->validate(
             [
-                'username'              => ['required', 'string','max:10',Rule::unique('users')->whereNotIn('username',[$user['username']])],
-                'email'                 => ['required', 'string','max:30',Rule::unique('users')->whereNotIn('email',[$user['email']])],
-                'address'               => ['required', 'string','max:100'],
-                'phone'                 => ['required', 'string','max:10'],
-                'password'              => ['required', 'confirmed', 'string','max:20'],
-                'password_confirmation' => ['required', 'string','max:20']
-            ]);
+                'username'              => ['required', 'string', 'max:10', Rule::unique('users')->whereNotIn('username', [$user['username']])],
+                'email'                 => ['required', 'string', 'max:30', Rule::unique('users')->whereNotIn('email', [$user['email']])],
+                'address'               => ['required', 'string', 'max:100'],
+                'phone'                 => ['required', 'string', 'max:10'],
+                'password'              => ['required', 'confirmed', 'string', 'min:6', 'max:20'],
+                'password_confirmation' => ['required', 'string', 'min:6', 'max:20']
+            ]
+        );
         $user = $request->all();
         $user['password'] = Hash::make($request->password);
         $user['updated_at'] = now();
         unset($user['_token']);
         unset($user['password_confirmation']);
-        DB::table('users')->where('id',$id)->update($user);
+        DB::table('users')->where('id', $id)->update($user);
         return redirect('admin/userlist');
     }
 

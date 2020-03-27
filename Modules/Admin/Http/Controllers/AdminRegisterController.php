@@ -71,7 +71,6 @@ class AdminRegisterController extends Controller
      */
     public function update(Request $request)
     {
-
     }
 
     /**
@@ -90,6 +89,7 @@ class AdminRegisterController extends Controller
 
         $insert = [
             'username'   => $request->username,
+            'name'       => $request->name,
             'email'      => $request->email,
             'address'    => $request->address,
             'phone'      => $request->phone,

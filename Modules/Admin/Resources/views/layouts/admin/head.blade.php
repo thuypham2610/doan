@@ -24,8 +24,13 @@
     <link rel="stylesheet" href="{{Module::asset('admin:plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{Module::asset('admin:plugins/summernote/summernote-bs4.css')}}">
+    <link rel="stylesheet" href="{{ Module::asset('admin:plugins/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ Module::asset('admin:plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 

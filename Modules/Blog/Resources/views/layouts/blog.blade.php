@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('blog::layouts.blog.head')
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

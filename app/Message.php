@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Message extends Authenticatable
 {
     use Notifiable;
-    protected $table        = 'message';
+    protected $table        = 'messages';
     protected $primaryKey   = 'id';
     protected $guard        = 'admin';
 

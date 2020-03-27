@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
         $user = [
             // 一般 Sample account
             [
-                'username' => '1',
+                'username' => 'thuy123',
+                'name'     => 'Thuy',
                 'email'    => '1',
                 'phone'    => '12345',
                 'address'  => 'nam trieu',

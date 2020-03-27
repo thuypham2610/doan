@@ -2,7 +2,8 @@
     <title>Electronic Store a Ecommerce Online Shopping Category Bootstrap Responsive Website Template | Home :: w3layouts</title>
     <!-- for-mobile-apps -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="{{ asset('js/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+    <script defer src="{{ asset('js/app.js') }}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Electronic Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -11,7 +12,6 @@
         function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //for-mobile-apps -->
     <!-- Custom Theme files -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{Module::asset('blog:css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{Module::asset('blog:css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{Module::asset('blog:css/fasthover.css')}}" rel="stylesheet" type="text/css" media="all" />
@@ -37,6 +37,5 @@
             });
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
     <!-- //end-smooth-scrolling -->
 </head>

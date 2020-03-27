@@ -15,12 +15,13 @@ class AdminregisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'              => ['required', 'string','max:10','unique:users'],
-            'email'                 => ['required', 'string','max:30','unique:users'],
-            'address'               => ['required', 'string','max:100'],
-            'phone'                 => ['required', 'string','max:10'],
-            'password'              => ['required', 'confirmed', 'string','max:20'],
-            'password_confirmation' => ['required', 'string','max:20']
+            'username'              => ['required', 'string', 'max:10', 'unique:users'],
+            'name'                  => ['alpha'],
+            'email'                 => ['required', 'email', 'string', 'max:30', 'unique:users'],
+            'address'               => ['required', 'string', 'max:100'],
+            'phone'                 => ['required', 'string', 'max:10'],
+            'password'              => ['required', 'confirmed', 'string', 'min:6', 'max:20'],
+            'password_confirmation' => ['required', 'string', 'min:6', 'max:20']
         ];
     }
 
