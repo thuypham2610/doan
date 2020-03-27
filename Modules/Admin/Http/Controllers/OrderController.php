@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -65,9 +66,17 @@ class OrderController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $email = $_REQUEST['email'];
+        $chu = ['email' => 'thuypham12049@gmail.com', 'tinnhan' => 'Xac nhan don hang thanh cong. Cam on ban da mua hang tai shop'];
+        Mail::send('pages.blanks', $chu, function ($msg) use ($email, $chu) {
+            $msg->from($chu, 'Chu')->subject('Thu swift mailer');
+            $msg->to($email, 'Khach hang');
+        });
+        $order = ['status' => '1'];
+        DB::table('order')->where('id', $id)->update($order);
+        return redirect('admin/orderlist');
     }
 
     /**
@@ -88,7 +97,7 @@ class OrderController extends Controller
             $column = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "order" ORDER BY ORDINAL_POSITION');
 
             $table = 'order';
-            return view('admin::danhsach', compact('base','column','table'));
+            return view('admin::danhsach', compact('base', 'column', 'table'));
         } else {
             return view('admin::login');
         }

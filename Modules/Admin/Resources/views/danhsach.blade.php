@@ -38,7 +38,7 @@
                                                          style="width: 50px; height: 50px"/></td>
                                             @else
                                                 @if($key == 'status')
-                                                    <td><a href="{{ route('tradeedit', ['id' => $item['id']]) }}"
+                                                    <td><a href="{{ route('confirmorder', ['id' => $item['id'],'email'=> $item['email']]) }}"
                                                            class="btn btn-success toastsDefaultSuccess"
                                                            style="color: white">
                                                             Confirm

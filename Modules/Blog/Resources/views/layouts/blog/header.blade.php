@@ -203,9 +203,10 @@
                         <li>
                             <a href="@if(Auth::user()->role == 1 || Auth::user()->role == 2){{route('profile')}} @else {{route('profileuser')}} @endif">Profile</a>
                         </li>
-                        <li><a href="{!! route('getLogout') !!}">Logout</a></li>
                         <li><a href="{{route('changepass')}}">Change password</a></li>
+                        <li><a href="{{route('chatvue')}}">Chat</a></li>
                         <li><a href="{{route('changepass')}}">History order</a></li>
+                        <li><a href="{!! route('getLogout') !!}">Logout</a></li>
                     </ul>
                 </a>
             </div>

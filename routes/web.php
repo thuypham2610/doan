@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/chats','ChatsController@index');
+Route::get('/chats', 'ChatsController@index')->name('chatvue');
 Route::get('messages', 'ChatsController@fetchMessages');
 Route::post('messages', 'ChatsController@sendMessage');

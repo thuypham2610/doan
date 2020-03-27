@@ -42,8 +42,10 @@ class ShoppingCartController extends Controller
         $pro = $request->all();
         unset($pro['_token']);
         $image = Product::query()->select('picture')->where('id', $pro['id'])->first()->toArray();
-        $add = Cart::add(['id'    => $request->id, 'name' => $request->name, 'quantity' => $request->quantity,
-                          'price' => $request->price, 'picture' => $image['picture'], 'value' => 0]);
+        $add = Cart::add([
+            'id'    => $request->id, 'name' => $request->name, 'quantity' => $request->quantity,
+            'price' => $request->price, 'picture' => $image['picture'], 'value' => 0
+        ]);
         if ($add) {
             return redirect()->back();
         }
@@ -75,7 +77,7 @@ class ShoppingCartController extends Controller
                 'user_id'     => Auth::user()->id,
                 'total_price' => $total,
                 'email'       => $request['email'],
-                'addresss'    => $request['address'],
+                'addresss'    => $request['address'] . $request['city'],
                 'status'      => 0,
                 'phone'       => $request['phone']
             ]);
@@ -93,12 +95,12 @@ class ShoppingCartController extends Controller
                     'quantity'   => $qty
                 ]);
 
-                $product = json_decode(json_encode(Db::table('products')->select('quantity')->where('id',$key)->first()),1);
+                $product = json_decode(json_encode(Db::table('products')->select('quantity')->where('id', $key)->first()), 1);
                 $p = $product['quantity'] - $qty;
-                $product= [
+                $product = [
                     'quantity' => $p
                 ];
-                DB::table('products')->where('id',$item['id'])->update($product);
+                DB::table('products')->where('id', $item['id'])->update($product);
             }
             Cart::clear();
         } else {
@@ -123,9 +125,9 @@ class ShoppingCartController extends Controller
                     'price'      => $item['price'],
                     'quantity'   => $qty
                 ]);
-                $product = json_decode(json_encode(DB::table('products')->select('quantity')->where('id',$item['id'])->first()),1);
+                $product = json_decode(json_encode(DB::table('products')->select('quantity')->where('id', $item['id'])->first()), 1);
                 $product = $product['quantity'] - $qty;
-                DB::table('products')->where('id',$item['id'])->update(['quantity'=>$product]);
+                DB::table('products')->where('id', $item['id'])->update(['quantity' => $product]);
             }
             Cart::clear();
         }
@@ -140,7 +142,6 @@ class ShoppingCartController extends Controller
      */
     public function edit($id, $qty)
     {
-
     }
 
     /**

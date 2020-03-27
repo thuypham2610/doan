@@ -13,13 +13,12 @@
 Route::post('login', 'LoginController@postLogin')->name('postLogin');
 Route::get('check', 'LoginController@getLogout')->name('getLogout');
 Route::view('forgotpassword', 'admin::forgotpassword')->name('forgotpass');
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->group(function () {
     //Route::view('login', 'admin::login')->name('login');
     Route::view('recover-password', 'admin::recover-password');
     Route::view('register', 'admin::register');
     Route::get('menu', 'MenuController@getmenu');
-    Route::group(['middleware'=>'auth:admin'],function()
-    {
+    Route::group(['middleware' => 'auth:admin'], function () {
         Route::view('success', 'admin::profile')->name('profile');
         Route::get('userlist', 'AdminController@index')->name('userlist');
         Route::get('user/edit/{id}', 'AdminController@edit')->name('useredit');
@@ -54,6 +53,7 @@ Route::prefix('admin')->group(function() {
         //order
         Route::get('orderlist', 'OrderController@getorder')->name('orderlist');
         Route::view('order/edit/{id}', 'admin::proregist')->name('orderedit');
+        Route::get('order/confirm/{id}', 'OrderController@update')->name('confirmorder');
 
         //order detail
         Route::get('detaillist', 'OrderDetailController@getorderdetail')->name('detaillist');
