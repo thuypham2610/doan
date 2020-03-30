@@ -30,11 +30,13 @@ Route::prefix('blog')->group(function () {
     Route::post('regist', 'BlogController@regist')->name('regist');
     Route::view('about', 'blog::about')->name('about');
     Route::view('mailus', 'blog::mailus')->name('mailus');
+    Route::post('/sendmail', 'BlogController@mail')->name('sendmail');
 
     Route::group(['middleware' => 'auth:web'], function () {
         Route::post('updateprofile', 'BlogController@update')->name('updateprofile');
         Route::view('/profile', 'blog::profile')->name('profileuser');
         Route::view('/oder', 'blog::order')->name('order_user');
+        Route::get('/deleteorder/{id}', 'BlogController@destroy')->name('deleteorder');
         Route::view('changepass', 'admin::recover-password')->name('changepass');
         Route::post('change/password', 'BlogController@updatepass')->name('changepassword');
     });

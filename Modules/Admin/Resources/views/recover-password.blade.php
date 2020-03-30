@@ -66,7 +66,7 @@
                 </form>
             @endif
             <p class="mt-3 mb-1">
-                <a href="{!! url('admin/login'); !!}">Login</a>
+            <a href="{{ route('home') }}">Back</a>
             </p>
         </div>
         <!-- /.login-card-body -->

@@ -79,8 +79,63 @@
         right: 0;
         top: 0;
         font-family: inherit;
+        line-height: inherit;
+    }
+
+    ul.dropdown-menu{
+        margin-left: -59px;
+    }
+    .dropdown-menu li{
+        padding: 5px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 18px;
+    }
+
+    .login{
+        font-size: .8em;
+        color: #3c43a4;
+        width: 50px;
+        height: 50px;
+        display: block;
+        text-align: center;
+        border: 1px solid #3c43a4;
+    }
+
+    .login a span{
+        top: 1.3em;
+        color: #3c43a4;
+        text-align: center;
+    }
+    .w3view-cart {
+        background: #ff5063;
+        border: none;
+        -o-border-radius: 7%;
+        -ms-border-radius: 7%;
+        -moz-border-radius: 7%;
+        -webkit-border-radius: 7%;
+        border-radius: 7%;
+        width: 50px;
+        height: 44px;
+        text-align: center;
+        outline: none;
+        position: fixed;
+        right: 14%;
+        z-index: 999;
+        font-family: inherit;
         font-size: inherit;
         line-height: inherit;
+    }
+    .fa {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+    }
+    .w3view-cart i.fa{
+        font-size: 1.8em;
+        color: #ffffff;
+        vertical-align: middle;
     }
 </style>
 <div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88" aria-hidden="true">
@@ -188,20 +243,10 @@
         </div>
     </div>
 </div>
-<style>
-    ul.dropdown-menu{
-        margin-left: -59px;
-    }
-    .dropdown-menu li{
-        padding: 5px;
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 18px;
-    }
-</style>
 <div class="header" id="home1">
     <div class="container">
         @if(Auth::check())
-            <div class="dropdown" id="bs-megadropdown-tabs" style="top: 2.5rem">
+            <div class="dropdown login" id="bs-megadropdown-tabs" style="top: 3.5rem;margin-top: -54px;">
                 <a class="dropdown-toggle w3pages" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     <ul class="dropdown-menu">
@@ -237,15 +282,12 @@
             </div>
         </div>
         <div class="cart cart box_1">
-                {{--<button class="w3view-cart" type="submit" name="submit" value=""></button>--}}
             <?php $pro = \Gloudemans\Shoppingcart\Facades\Cart::getContent()->toArray();
             $total = 0;
             ?>
-                <div class="dropdown" id="bs-megadropdown-tabs"
-                     style="top: 3.5rem; position: fixed;left: 83%;width: 420px;">
+                <div class="dropdown w3view-cart" id="bs-megadropdown-tabs">
                     <a class="dropdown-toggle w3pages" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><i class="fa fa-cart-arrow-down"
-                                                aria-hidden="true" style="font-size: 50px;position: fixed;"></i>
+                       aria-expanded="false"><i class="fa fa-cart-arrow-down" aria-hidden="true" style="margin-top: .4rem;"></i>
                         <ul class="dropdown-menu ul divmain" style="top: 49px;left: -17rem;width: 420px">
 
                             @if($pro!= null)
@@ -272,11 +314,11 @@
                                             <a href="{{route('paydetail')}}" class="pay" style=" left: 15rem;width: 50px;">Detail
                                             </a>
                                         </div>
-                                        @else
-                                            <div class="footer1">
-                                                <p class="sbmincart-empty-text">Your shopping cart is empty</p>
-                                            </div>
-                                    @endif
+                            @else
+                                <div class="footer1">
+                                    <p class="sbmincart-empty-text">Your shopping cart is empty</p>
+                                </div>
+                            @endif
                         </ul>
                     </a>
                 </div>

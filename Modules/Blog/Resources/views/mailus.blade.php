@@ -34,9 +34,10 @@
                 </div>
                 <div class="col-md-7 contact-left">
                     <h4>Contact Form</h4>
-                    <form action="#" method="post">
-                        <input type="text" name="Name" placeholder="Your Name" required="">
-                        <input type="email" name="Email" placeholder="Your Email" required="">
+                <form action="{{ route('sendmail') }}" method="post">
+                        @csrf
+                        <input type="text" name="name" placeholder="Your Name" required="">
+                        <input type="email" name="email" placeholder="Your Email" required="">
                         <input type="text" name="Telephone" placeholder="Telephone No" required="">
                         <textarea name="message" placeholder="Message..." required=""></textarea>
                         <input type="submit" value="Submit" >

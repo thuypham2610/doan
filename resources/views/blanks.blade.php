@@ -1,1 +1,1 @@
-Day la mail duoc gui di: {{$email}} va {{$tinnhan}}
+Được gửi từ: {{$email}} va {{$tinnhan}}

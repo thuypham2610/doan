@@ -101,11 +101,11 @@
         width: 25%;
     }
 
-    img {
+    .img {
         vertical-align: middle;
     }
 
-    img {
+    .img {
         border: 0;
         width: 8rem;
         height: 8rem;
@@ -217,20 +217,6 @@
         font-size: 13px;
     }
 </style>
-<script type="text/javascript">
-    function updateCart(quantity, id) {
-        $.get(
-            '{{asset('
-            blog / update ')}}', {
-                quantity: quantity,
-                id: id
-            },
-            function() {
-                location.reload();
-            }
-        );
-    }
-</script>
 <div>
     <?php
 
@@ -267,7 +253,7 @@
                 <tr class="cart-item variant-44161625418 first last" data-variant="44161625418" data-title="ChaChaga: Pure Chaga Tea" data-url="/products/chaga-tea">
                     <td class="product-item">
                         <a class="image" href="/products/chaga-tea">
-                            <img alt="" src="{{Module::asset('admin:dist/img/')}}/{{$pro['picture']}}">
+                            <img alt="" src="{{Module::asset('admin:dist/img/')}}/{{$pro['picture']}}" class="img">
                         </a>
                         <div class="product-item-details">
                             <span class="cart-title">
@@ -292,6 +278,9 @@
 
         <div class="cart-totals">
             <p class="cart-price"><span class="money">{{ $item['total_price'] }}</span></p>
+            @if ($item['status']==0)
+                <a class="cart-checkout button pay_a" href="{{route('deleteorder',['id'=>$item['id']])}}">Abort</a>
+            @endif
         </div>
     </form>
     @endforeach

@@ -40,7 +40,7 @@
             float: left;
         }
 
-        a {
+        .pay_a{
             color: #7dcbb6;
             text-decoration: none;
         }
@@ -243,18 +243,18 @@
                     <tr class="cart-item variant-44161625418 first last" data-variant="44161625418"
                         data-title="ChaChaga: Pure Chaga Tea" data-url="/products/chaga-tea">
                             <td class="product-item">
-                                <a class="image" href="/products/chaga-tea">
+                                <a class="image pay_a" href="/products/chaga-tea">
                                     <img alt=""
                                          src="{{Module::asset('admin:dist/img/')}}/{{$img['picture']}}">
                                 </a>
                                 <div class="product-item-details">
                                 <span class="cart-title">
-                                    <a href="/products/chaga-tea" title="">{{$item['name']}}</a>
+                                    <a class="pay_a" href="/products/chaga-tea" title="">{{$item['name']}}</a>
                                 </span>
                                     <div class="cart-item-properties">
                                     </div>
                                 </div>
-                                <a class="remove" href="{{route('delete',['id'=>$item['id']])}}">x</a>
+                                <a class="remove pay_a" href="{{route('delete',['id'=>$item['id']])}}">x</a>
                             </td>
                             <td class="price" style="line-height: 13rem" data-title="Price">
                                 <span class="money">{{$item['price']}}đ</span>
@@ -272,7 +272,7 @@
 
             <div class="cart-totals">
                 <p class="cart-price"><span class="money">{{$total}}đ</span></p>
-                <a class="cart-checkout button" href="{{route('cart')}}">Pay</a>
+                <a class="cart-checkout button pay_a" href="{{route('cart')}}">Pay</a>
             </div>
         </form>
     </div>

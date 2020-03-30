@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Modules\Admin\Http\Requests\AdminregisterRequest;
 use Modules\Admin\Http\Requests\ChangdePasswordRequest;
@@ -44,7 +45,7 @@ class BlogController extends Controller
     {
         $user['password'] = Hash::make($request->password);
         $user['updated_at'] = now();
-        DB::table('users')->where('id',Auth::user()->id)->update($user);
+        DB::table('users')->where('id', Auth::user()->id)->update($user);
         $this->guard()->logout();
         Auth::logout();
         return redirect()->route('home');
@@ -75,9 +76,11 @@ class BlogController extends Controller
      * @param int $id
      * @return Response
      */
-    public function edit($id)
+    public function destroy($id)
     {
-        return view('blog::edit');
+        DB::table('order')->where('id', $id)->delete();
+        DB::table('order_detail')->where('order_id', $id)->delete();
+        return redirect('blog/');
     }
 
     /**
@@ -90,27 +93,18 @@ class BlogController extends Controller
     {
         $request->validate(
             [
-                'username'              => ['required', 'string','max:10',Rule::unique('users')->whereNotIn('username',[Auth::user()->username])],
-                'email'                 => ['required', 'string','max:30',Rule::unique('users')->whereNotIn('email',[Auth::user()->email])],
-                'address'               => ['required', 'string','max:100'],
-                'phone'                 => ['required', 'string','max:10'],
-                'password'              => ['required', 'confirmed', 'string','max:20'],
-                'password_confirmation' => ['required', 'string','max:20']
-            ]);
-        if (Hash::check($request->old, Auth::user()->password)) {
-            $user = $request->all();
-            $user['password'] = Hash::make($request->password);
-            $user['updated_at'] = now();
-            unset($user['_token']);
-            unset($user['password_confirmation']);
-            unset($user['old']);
-            DB::table('users')->where('id', Auth::user()->id)->update($user);
-            $this->guard()->logout();
-            Auth::logout();
-            return redirect()->route('home');
-        }else{
-            return redirect()->back();
-        }
+                'username'              => ['required', 'string', 'max:10', Rule::unique('users')->whereNotIn('username', [Auth::user()->username])],
+                'email'                 => ['required', 'string', 'max:30', Rule::unique('users')->whereNotIn('email', [Auth::user()->email])],
+                'address'               => ['required', 'string', 'max:100'],
+                'phone'                 => ['required', 'string', 'max:10'],
+                'name'                  => ['required']
+            ]
+        );
+        $user = $request->all();
+        $user['updated_at'] = now();
+        unset($user['_token']);
+        DB::table('users')->where('id', Auth::user()->id)->update($user);
+        return redirect()->route('home');
     }
 
     /**
@@ -118,9 +112,14 @@ class BlogController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function mail(Request $request)
     {
-        //
+        $chu = ['email' => $request->email, 'tinnhan' => $request->message];
+        Mail::send('blanks', $chu, function ($msg) use ($chu) {
+            $msg->to('thuypham12049@gmail.com', 'Khach');
+            $msg->from($chu['email'], 'Chu')->subject('Thu swift mailer');
+        });
+        return redirect('blog/');
     }
 
     public function postLogin(Request $request)
