@@ -68,11 +68,10 @@ class OrderController extends Controller
      */
     public function update($id)
     {
-        $email = $_REQUEST['email'];
         $chu = ['email' => 'thuypham12049@gmail.com', 'tinnhan' => 'Xac nhan don hang thanh cong. Cam on ban da mua hang tai shop'];
-        Mail::send('pages.blanks', $chu, function ($msg) use ($email, $chu) {
-            $msg->from($chu, 'Chu')->subject('Thu swift mailer');
-            $msg->to($email, 'Khach hang');
+        Mail::send('blanks', $chu, function ($msg) use ($chu) {
+            $msg->from('thuypham12049@gmail.com', 'Chu')->subject('Thu swift mailer');
+            $msg->to($_REQUEST['email'], 'Khach hang');
         });
         $order = ['status' => '1'];
         DB::table('order')->where('id', $id)->update($order);
@@ -86,7 +85,14 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $chu = ['email' => 'thuypham12049@gmail.com', 'tinnhan' => 'Sản phẩm hết hàng. Shop sẽ sớm nhập hàng mới. Cảm ơn bạn nhiều!'];
+        Mail::send('blanks', $chu, function ($msg) use ($chu) {
+            $msg->from('thuypham12049@gmail.com', 'Chu')->subject('Thu swift mailer');
+            $msg->to($_REQUEST['email'], 'Khach hang');
+        });
+        DB::table('order')->where('id', $id)->delete();
+        DB::table('order_detail')->where('order_id', $id)->delete();
+        return redirect('admin/orderlist');
     }
 
     public function getorder()
@@ -95,7 +101,6 @@ class OrderController extends Controller
             $base = Order::paginate(5);
 
             $column = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "order" ORDER BY ORDINAL_POSITION');
-
             $table = 'order';
             return view('admin::danhsach', compact('base', 'column', 'table'));
         } else {

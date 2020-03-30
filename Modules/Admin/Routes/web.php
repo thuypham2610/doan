@@ -54,6 +54,7 @@ Route::prefix('admin')->group(function () {
         Route::get('orderlist', 'OrderController@getorder')->name('orderlist');
         Route::view('order/edit/{id}', 'admin::proregist')->name('orderedit');
         Route::get('order/confirm/{id}', 'OrderController@update')->name('confirmorder');
+        Route::get('order/delete/{id}', 'OrderController@destroy')->name('destroy');
 
         //order detail
         Route::get('detaillist', 'OrderDetailController@getorderdetail')->name('detaillist');

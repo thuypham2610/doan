@@ -1,0 +1,1 @@
+Day la mail duoc gui di: {{$email}} va {{$tinnhan}}

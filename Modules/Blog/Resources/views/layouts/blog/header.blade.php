@@ -188,11 +188,16 @@
         </div>
     </div>
 </div>
-{{--<script>--}}
-{{--    $('#myModal88').modal('show');--}}
-{{--</script>--}}
-<!-- header modal -->
-<!-- header -->
+<style>
+    ul.dropdown-menu{
+        margin-left: -59px;
+    }
+    .dropdown-menu li{
+        padding: 5px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 18px;
+    }
+</style>
 <div class="header" id="home1">
     <div class="container">
         @if(Auth::check())
@@ -205,8 +210,8 @@
                         </li>
                         <li><a href="{{route('changepass')}}">Change password</a></li>
                         <li><a href="{{route('chatvue')}}">Chat</a></li>
-                        <li><a href="{{route('changepass')}}">History order</a></li>
-                        <li><a href="{!! route('getLogout') !!}">Logout</a></li>
+                        <li><a href="{{route('order_user')}}">Order</a></li>
+                        <li><a href="{!! route('getLogout') !!}" style="color:red">Logout</a></li>
                     </ul>
                 </a>
             </div>
