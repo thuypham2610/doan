@@ -1,3 +1,6 @@
+<?php
+    $dash = 'Profile';
+?>
 @extends('admin::layouts.admin')
 
 @section('content')

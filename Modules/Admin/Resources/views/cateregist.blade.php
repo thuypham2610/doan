@@ -1,3 +1,6 @@
+<?php
+    $dash = 'Category Register';
+?>
 @extends('admin::layouts.admin')
 
 @section('content')

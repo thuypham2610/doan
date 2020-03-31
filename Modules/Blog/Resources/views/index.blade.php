@@ -70,7 +70,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
+                                    <h5 class="h5"><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                     <div class="simpleCart_shelfItem">
                                         <p><i class="item_price">{!! $item['price'] !!} đ</i></p>
                                         <form action="{{route('cart')}}" method="post">
@@ -108,7 +108,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
+                                        <h5 class="h5"><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                         <div class="simpleCart_shelfItem">
                                             <p><i class="item_price">{!! $item['price'] !!} đ</i></p>
                                             <form action="{{route('cart')}}" method="post">
@@ -146,7 +146,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
+                                        <h5 class="h5"><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                         <div class="simpleCart_shelfItem">
                                             <p><i class="item_price">{!! $item['price'] !!} đ</i></p>
                                             <form action="{{route('cart')}}" method="post">
@@ -194,7 +194,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
+                        <h5 class="h5"><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                         <div class="simpleCart_shelfItem">
                             <p><i class="item_price">{!! $item['price'] !!}</i></p>
                             <form action="{{route('cart')}}" method="post">

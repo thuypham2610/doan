@@ -59,5 +59,8 @@ Route::prefix('admin')->group(function () {
         //order detail
         Route::get('detaillist', 'OrderDetailController@getorderdetail')->name('detaillist');
         Route::view('detail/edit/{id}', 'admin::proregist')->name('detailedit');
+
+        //statistic
+        Route::get('statistic/', 'ChartController@index')->name('statistic');
     });
 });

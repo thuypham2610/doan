@@ -52,6 +52,11 @@
                                     @endif
                                     @endforeach
                                     <td>
+                                        @if ($table == 'order_detail')
+                                        <?php
+                                            $dash = 'Order detail List';
+                                        ?>
+                                        @endif
                                         @if($table == 'product')
                                         <a href="{{ route('proedit', ['id' => $item['id']]) }}" class="btn btn-success toastsDefaultSuccess" style="color: white">
                                             Edit
@@ -59,6 +64,10 @@
                                         <a href="{{ route('prodelete', ['id' => $item['id']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
                                             Delete
                                         </a>
+                                        <?php
+                                            $dash = 'Product List';
+                                        ?>
+
                                         @endif
 
                                         @if($table == 'trademark')
@@ -68,6 +77,9 @@
                                         <a href="{{ route('tradedelete', ['id' => $item['id']]) }}}}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
                                             Delete
                                         </a>
+                                        <?php
+                                            $dash = 'Trademark List';
+                                        ?>
                                         @endif
                                         @if($table == 'category')
                                         <a href="{{ route('cateedit', ['id' => $item['id']]) }}" class="btn btn-success toastsDefaultSuccess" style="color: white">
@@ -76,11 +88,17 @@
                                         <a href="{{ route('catedelete', ['id' => $item['id']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
                                             Delete
                                         </a>
+                                        <?php
+                                            $dash = 'Category List';
+                                        ?>
                                         @endif
                                         @if($table == 'order')
                                         <a href="{{ route('destroy',['id' => $item['id'],'email'=> $item['email']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
                                             Delete
                                         </a>
+                                        <?php
+                                            $dash = 'Order List';
+                                        ?>
                                         @endif
                                         @if($table == 'users')
                                         <a href="{{ route('useredit', ['id' => $item['id']]) }}" class="btn btn-success toastsDefaultSuccess" style="color: white">
@@ -89,6 +107,9 @@
                                         <a href="" class="btn btn-danger toastsDefaultSuccess" style="color: white">
                                             Delete
                                         </a>
+                                        <?php
+                                            $dash = 'User List';
+                                        ?>
                                         @endif
                                     </td>
                                 </tr>

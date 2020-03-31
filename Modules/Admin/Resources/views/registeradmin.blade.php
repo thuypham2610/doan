@@ -1,3 +1,6 @@
+<?php
+    $dash = 'Register User';
+?>
 @extends('admin::layouts.admin')
 
 @section('content')

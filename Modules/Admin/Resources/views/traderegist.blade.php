@@ -1,3 +1,6 @@
+<?php
+    $dash = 'Trademark Register';
+?>
 @extends('admin::layouts.admin')
 
 @section('content')

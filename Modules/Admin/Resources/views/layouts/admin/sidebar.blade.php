@@ -24,7 +24,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class='nav-item has-treeview menu-open'><a href="" class='nav-link'>
-                        <i class='nav-icon far fa-circle text-warning'></i>
+                        <i class='nav-icon far fa-id-badge text-warning'></i>
                         <p>User<i class='right fas fa-angle-left'></i></p></a>
                     <ul class='nav nav-treeview'>
                         <li class='nav-item '><a href="{!! route('userlist') !!}" class='nav-link active'>
@@ -36,7 +36,7 @@
                     </ul>
                 </li>
                 <li class='nav-item '><a href="" class='nav-link '>
-                        <i class='nav-icon fas fa-tachometer-alt'></i>
+                        <i class='nav-icon fas fa-table text-danger'></i>
                         <p>Product<i class='right fas fa-angle-left'></i></p></a>
                     <ul class='nav nav-treeview'>
                         <li class='nav-item '><a href="{!! route('prolist') !!}" class='nav-link '>
@@ -48,7 +48,7 @@
                     </ul>
                 </li>
                 <li class='nav-item '><a href="" class='nav-link '>
-                        <i class='nav-icon fas fa-tachometer-alt'></i>
+                        <i class='nav-icon far fa-plus-square'></i>
                         <p>Category<i class='right fas fa-angle-left'></i></p></a>
                     <ul class='nav nav-treeview'>
                         <li class='nav-item '><a href="{!! route('catelist') !!}" class='nav-link '>
@@ -60,7 +60,7 @@
                     </ul>
                 </li>
                 <li class='nav-item '><a href="" class='nav-link '>
-                        <i class='nav-icon far fa-circle text-warning'></i>
+                        <i class='nav-icon fab fa-artstation text-success'></i>
                         <p>Trademark<i class='right fas fa-angle-left'></i></p></a>
                     <ul class='nav nav-treeview'>
                         <li class='nav-item '><a href="{!! route('tradelist') !!}" class='nav-link '>
@@ -72,12 +72,16 @@
                     </ul>
                 </li>
                 <li class='nav-item '><a href="{!! route('orderlist') !!}" class='nav-link '>
-                        <i class='nav-icon far fa-circle text-info'></i>
+                        <i class='nav-icon fas fa-compass'></i>
                         <p>Order</p></a>
                 </li>
                 <li class='nav-item '><a href="{!! route('detaillist') !!}" class='nav-link '>
-                        <i class='nav-icon far fa-circle text-info'></i>
+                        <i class='nav-icon fas fa-atom'></i>
                         <p>Order Detail</p></a>
+                </li>
+                <li class='nav-item '><a href="{!! route('statistic') !!}" class='nav-link '>
+                        <i class='nav-icon fas fa-chart-pie'></i>
+                        <p>Statistic</p></a>
                 </li>
             </ul>
         </nav>
