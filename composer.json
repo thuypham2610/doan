@@ -19,6 +19,7 @@
         "nesbot/carbon": "^2.30",
         "nwidart/laravel-modules": "^6.2",
         "pusher/pusher-php-server": "~3.0",
+        "unisharp/laravel-filemanager": "^2.0",
         "yoeunes/toastr": "^1.2"
     },
     "require-dev": {

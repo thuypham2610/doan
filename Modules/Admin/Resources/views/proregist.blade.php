@@ -100,7 +100,7 @@
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-md-3 col-sm-10">
-                                <textarea type="text" id="inputPassword3" placeholder="destop"
+                                <textarea type="text" id="editor1" placeholder="destop"
                                           class="form-control input_width" name="description" id="editor1">{!! $pro['description'] !!}</textarea>
                                     @isset($description)
                                         <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
@@ -257,5 +257,17 @@
                 URL.revokeObjectURL(output.src) // free memory
             }
         };
+    </script>
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('editor1', options);
     </script>
 @endsection
