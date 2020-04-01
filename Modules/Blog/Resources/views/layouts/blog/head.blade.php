@@ -1,5 +1,5 @@
 <head>
-    <title>Electronic Store a Ecommerce Online Shopping Category Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <title>An Duơng</title>
     <!-- for-mobile-apps -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" />

@@ -4,11 +4,13 @@ namespace Modules\Admin\Http\Controllers;
 
 use App\Product;
 use App\Trademark;
+use Faker\Provider\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Modules\Admin\Http\Requests\ProductRequest;
 use Modules\Admin\Http\Requests\TradeRequest;
 
@@ -80,15 +82,19 @@ class PageController extends Controller
                 'description'  => ['required', 'string'],
             ]);
         $pro = $request->all();
-        $temp = explode(".", $_FILES["picture"]["name"]);
-        $newfilename = round(microtime(true)) . '.' . end($temp);
-        $request->file('picture')->move('modules/admin/dist/img/', $newfilename);
-        unlink("modules/admin/dist/img/" . $pro_esists['picture']);
-        $pro['picture'] = $newfilename;
-        $pro['updated_at'] = now();
-        unset($pro['_token']);
-        DB::table('products')->where('id', $id)->update($pro);
-        return redirect('admin/prolist');
+        if (file_exists('modules/admin/dist/img/'. $pro_esists['picture'])) {
+            $temp = explode(".", $_FILES["picture"]["name"]);
+            $newfilename = round(microtime(true)) . '.' . end($temp);
+            $request->file('picture')->move('modules/admin/dist/img/', $newfilename);
+            unlink("modules/admin/dist/img/" . $pro_esists['picture']);
+            $pro['picture'] = $newfilename;
+            $pro['updated_at'] = now();
+            unset($pro['_token']);
+            DB::table('products')->where('id', $id)->update($pro);
+            return redirect('admin/prolist');
+        }
+
+        return redirect()->back();
     }
 
     /**

@@ -33,5 +33,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script> CKEDITOR.replace('editor1'); </script>
 </head>

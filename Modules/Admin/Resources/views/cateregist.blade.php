@@ -34,7 +34,7 @@
                         </div>
                         @endif
                         @else
-                        <input type="text" id="inputPassword3" placeholder="Dell" class="form-control input_width" name="name">
+                        <input type="text" id="inputPassword3" placeholder="Dell" class="form-control input_width" name="name" value="{{ old('name') }}">
                         @if (count($errors) >0)
                         <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

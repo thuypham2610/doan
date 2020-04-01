@@ -156,7 +156,7 @@
                     </div>
                     <div class="w3ls_mobiles_grid_right_grid3">
                         @foreach($product as $item)
-                        <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
+                        <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles" style="margin-top: 10px">
                             <div class="agile_ecommerce_tab_left mobiles_grid">
                                 <div class="hs-wrapper hs-wrapper2">
                                     <img src="{{Module::asset('admin:dist/img/')}}/{{$item['picture']}}" alt=" " class="img-responsive"/>
@@ -173,7 +173,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <h5><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
+                                <h5 class="h5"><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                 <div class="simpleCart_shelfItem">
                                     <p><i class="item_price">{!! $item['price'] !!}</i></p>
                                     <form action="{{route('cart')}}" method="post">

@@ -172,7 +172,7 @@
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-md-3 col-sm-10">
-                            <input type="text" id="inputPassword3" placeholder="thuy123" class="form-control input_width" name="username">
+                            <input type="text" id="inputPassword3" placeholder="thuy123" class="form-control input_width" name="username" value="{{ old('username') }}">
                             @isset($username)
                             <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -184,7 +184,7 @@
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-md-3 col-sm-10">
-                            <input type="text" id="inputPassword3" placeholder="Thuy" class="form-control input_width" name="name">
+                            <input type="text" id="inputPassword3" placeholder="Thuy" class="form-control input_width" name="name" value="{{ old('name') }}">
                             @isset($name)
                             <div class="alert alert-danger alert-dismissible" style="margin-top: 10px;margin-bottom: -4px;">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -196,7 +196,7 @@
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-md-3 col-sm-10">
-                            <input type="email" class="form-control  input_file" placeholder="abc@gmail.com" name="email">
+                            <input type="email" class="form-control  input_file" placeholder="abc@gmail.com" name="email" value="{{ old('email') }}">
                             @isset($email)
                             <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -208,7 +208,7 @@
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
                         <div class="col-md-3 col-sm-10">
-                            <input type="text" class="form-control  input_file" placeholder="korea" name="address">
+                            <input type="text" class="form-control  input_file" placeholder="korea" name="address" value="{{ old('address') }}">
                             @isset($address)
                             <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -221,13 +221,13 @@
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
                         <div class="col-md-3 col-sm-10">
-                            <input type="date" class="form-control  input_file" placeholder="korea" name="birthday">
+                            <input type="date" class="form-control  input_file" placeholder="korea" name="birthday" value="{{ old('birthday') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">Phone</label>
                         <div class="col-md-3 col-sm-10 ">
-                            <input type="tel" id="inputPassword3" placeholder="0357783399" class="form-control input_width" name="phone">
+                            <input type="tel" id="inputPassword3" placeholder="0357783399" class="form-control input_width" name="phone" value="{{ old('phone') }}">
                             @isset($phone)
                             <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -278,7 +278,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-success toastsDefaultSuccess toastsDefaultDanger">
+                    <button type="submit" class="btn btn-success toastsDefaultSuccess">
                         Save
                     </button>
                     <button type="submit" class="btn btn-default float-right">Reset</button>

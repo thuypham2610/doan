@@ -8,11 +8,25 @@
         <div class="col-12">
             <div class="card card-info">
                 @if (count($errors) >0)
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li class="text-danger"> {{ $error }}</li>
-                        @endforeach
-                    </ul>
+
+                    <?php
+                    $s = json_decode($errors, 1);
+                    if (isset($s['name'])) {
+                        $name = json_decode(json_encode($s['name'][0]), 1);
+                    }
+                    if (isset($s['quantity'])) {
+                        $quantity = json_decode(json_encode($s['quantity'][0]), 1);
+                    }
+                    if (isset($s['price'])) {
+                        $price = json_decode(json_encode($s['price'][0]), 1);
+                    }
+                    if (isset($s['picture'])) {
+                        $picture = json_decode(json_encode($s['picture'][0]), 1);
+                    }
+                    if (isset($s['description'])) {
+                        $description = json_decode(json_encode($s['description'][0]), 1);
+                    }
+                    ?>
                 @endif
 
                 @if (session('status'))
@@ -26,7 +40,7 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form class="form-horizontal" enctype="multipart/form-data" method="POST"
-                      action="@if(isset($pro)){{route('update', ['id' => $pro['id']])}} @else {{route('registpro')}} @endif">
+                      action="@if(isset($pro)){{route('update_pro', ['id' => $pro['id']])}} @else {{route('registpro')}} @endif">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="card-body">
                         @if(isset($pro))
@@ -35,6 +49,12 @@
                                 <div class="col-md-3 col-sm-10">
                                     <input type="text" id="inputPassword3" placeholder="Acer"
                                            class="form-control input_width" name="name" value="{!! $pro['name'] !!}">
+                                    @isset($name)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $name }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -42,6 +62,12 @@
                                 <div class="col-md-3 col-sm-10">
                                     <input type="text" id="inputPassword3" placeholder="122"
                                            class="form-control input_width" name="quantity" value="{!! $pro['quantity'] !!}">
+                                    @isset($quantity)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $quantity }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -50,6 +76,12 @@
                                     <input type="file" id="inputPassword3" placeholder="Acer"
                                            class="form-control input_width" name="picture" style="line-height: 1.2rem" accept="image/*" onchange="loadFile(event)">
                                     <img id="output" style="height: 100px; width: 100px; margin-top: 10px" src="{{Module::asset('admin:dist/img/')}}/{{$pro['picture']}}"/>
+                                    @isset($picture)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $picture }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -57,13 +89,25 @@
                                 <div class="col-md-3 col-sm-10">
                                     <input type="text" id="inputPassword3" placeholder="1222222"
                                            class="form-control input_width" name="price" value="{!! $pro['price'] !!}">
+                                    @isset($price)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $price }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-md-3 col-sm-10">
                                 <textarea type="text" id="inputPassword3" placeholder="destop"
-                                          class="form-control input_width" name="description">{!! $pro['description'] !!}</textarea>
+                                          class="form-control input_width" name="description" id="editor1">{!! $pro['description'] !!}</textarea>
+                                    @isset($description)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $description }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -99,36 +143,66 @@
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-md-3 col-sm-10">
                                     <input type="text" id="inputPassword3" placeholder="Acer"
-                                           class="form-control input_width" name="name">
+                                           class="form-control input_width" name="name" value="{{ old('name') }}">
+                                    @isset($name)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $name }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Quantity</label>
                                 <div class="col-md-3 col-sm-10">
                                     <input type="text" id="inputPassword3" placeholder="122"
-                                           class="form-control input_width" name="quantity">
+                                           class="form-control input_width" name="quantity" value="{{ old('quantity') }}">
+                                    @isset($quantity)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $quantity }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Picture</label>
                                 <div class="col-md-3 col-sm-10">
                                     <input type="file" id="inputPassword3" placeholder="Acer"
-                                           class="form-control input_width" name="picture" style="line-height: 1.2rem" accept="image/*" onchange="loadFile(event)">
+                                           class="form-control input_width" name="picture" style="line-height: 1.2rem" accept="image/*" onchange="loadFile(event)" value="{{ old('picture') }}">
                                     <img id="output" style="height: 100px; width: 100px; margin-top: 10px; display: none"/>
+                                    @isset($picture)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $picture }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Price</label>
                                 <div class="col-md-3 col-sm-10">
                                     <input type="text" id="inputPassword3" placeholder="1222222"
-                                           class="form-control input_width" name="price">
+                                           class="form-control input_width" name="price" value="{{ old('price') }}">
+                                    @isset($price)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $price }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-md-3 col-sm-10">
-                                <textarea type="text" id="inputPassword3" placeholder="destop"
-                                          class="form-control input_width" name="description"></textarea>
+                                <textarea type="text" id="editor1" placeholder="destop"
+                                          class="form-control input_width" name="description">{{ old('description') }}</textarea>
+                                    @isset($description)
+                                        <div class="alert alert-danger" style="margin-top: 10px;margin-bottom: -4px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            {{ $description }}
+                                        </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="form-group row">

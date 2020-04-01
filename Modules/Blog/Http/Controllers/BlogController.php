@@ -80,7 +80,7 @@ class BlogController extends Controller
     {
         DB::table('order')->where('id', $id)->delete();
         DB::table('order_detail')->where('order_id', $id)->delete();
-        return redirect('blog/');
+        return redirect()->back();
     }
 
     /**
@@ -104,7 +104,7 @@ class BlogController extends Controller
         $user['updated_at'] = now();
         unset($user['_token']);
         DB::table('users')->where('id', Auth::user()->id)->update($user);
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     /**

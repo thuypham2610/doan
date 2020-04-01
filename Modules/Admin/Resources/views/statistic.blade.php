@@ -1,5 +1,5 @@
 <?php
-    $dash = 'Chart Js';
+    $dash = 'Statistic';
 ?>
 @extends('admin::layouts.admin')
 

@@ -31,7 +31,7 @@ Route::prefix('admin')->group(function () {
         Route::view('pro/regist', 'admin::proregist')->name('addproduct');
         Route::post('pro/registpro', 'PageController@regist')->name('registpro');
         Route::get('pro/edit/{id}', 'PageController@getedit')->name('proedit');
-        Route::post('pro/update/{id}', 'PageController@update')->name('update');
+        Route::post('pro/update/{id}', 'PageController@update')->name('update_pro');
         Route::get('pro/delete/{id}', 'PageController@destroy')->name('prodelete');
 
         //trademark
