@@ -48,7 +48,8 @@
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Picture</label>
                                 <div class="col-md-3 col-sm-10">
                                     <input type="file" id="inputPassword3" placeholder="Acer"
-                                           class="form-control input_width" name="picture" style="line-height: 1.2rem" value="{!! $pro['picture'] !!}">
+                                           class="form-control input_width" name="picture" style="line-height: 1.2rem" accept="image/*" onchange="loadFile(event)">
+                                    <img id="output" style="height: 100px; width: 100px; margin-top: 10px" src="{{Module::asset('admin:dist/img/')}}/{{$pro['picture']}}"/>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -112,7 +113,8 @@
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Picture</label>
                                 <div class="col-md-3 col-sm-10">
                                     <input type="file" id="inputPassword3" placeholder="Acer"
-                                           class="form-control input_width" name="picture" style="line-height: 1.2rem">
+                                           class="form-control input_width" name="picture" style="line-height: 1.2rem" accept="image/*" onchange="loadFile(event)">
+                                    <img id="output" style="height: 100px; width: 100px; margin-top: 10px; display: none"/>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -171,4 +173,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var loadFile = function(event) {
+            document.getElementById("output").style.display = "block";
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+    </script>
 @endsection

@@ -80,10 +80,11 @@ class PageController extends Controller
                 'description'  => ['required', 'string'],
             ]);
         $pro = $request->all();
-        $fileName = $request->file('picture')->getClientOriginalName();
-        $request->file('picture')->move('modules/admin/dist/img/', $fileName);
+        $temp = explode(".", $_FILES["picture"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $request->file('picture')->move('modules/admin/dist/img/', $newfilename);
         unlink("modules/admin/dist/img/" . $pro_esists['picture']);
-        $pro['picture'] = $fileName;
+        $pro['picture'] = $newfilename;
         $pro['updated_at'] = now();
         unset($pro['_token']);
         DB::table('products')->where('id', $id)->update($pro);
@@ -127,9 +128,10 @@ class PageController extends Controller
     public function regist(ProductRequest $request)
     {
         $pro = $request->all();
-        $fileName = $request->file('picture')->getClientOriginalName();
-        $pro['picture'] = $fileName;
-        $request->file('picture')->move('modules/admin/dist/img/', $fileName);
+        $temp = explode(".", $_FILES["picture"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $pro['picture'] = $newfilename;
+        $request->file('picture')->move('modules/admin/dist/img/', $newfilename);
         $pro['created_at'] = now();
         unset($pro['_token']);
         $pro_esist = Trademark::where('name', $pro['name'])->get()->toArray();
