@@ -73,7 +73,7 @@
                         <div class="quantity">
                             <div class="quantity-select">
                                 <div class="entry value-minus1">&nbsp;</div>
-                                <div class="entry value1"><span id="q2">1</span></div>
+                                <div class="entry value1"><span id="2">1</span></div>
                                 <div class="entry value-plus1 active">&nbsp;</div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                     <p><i class="item_price">{!! $product['price'] !!}</i></p>
                     <form action="{{route('cart')}}" method="post">
                         @csrf
-                        <input type="hidden" name="quantity" value="" id="2">
+                        <input type="hidden" name="quantity" value="1" id="2">
                         <input type="hidden" name="name" value="{!! $product['name'] !!}">
                         <input type="hidden" name="price" value="{!! $product['price'] !!}">
                         <input type="hidden" name="id" value="{!! $product['id'] !!}">

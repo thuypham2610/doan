@@ -309,7 +309,7 @@
                                         @endforeach
                                         <div class="footer1">
                                             <div class="total">Subtotal: {{$total}}đ</div>
-                                            <a href="{{route('cart')}}" class="pay">Pay
+                                            <a href="{{route('cart_detail')}}" class="pay">Pay
                                             </a>
                                             <a href="{{route('paydetail')}}" class="pay" style=" left: 15rem;width: 50px;">Detail
                                             </a>
