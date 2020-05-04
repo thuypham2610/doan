@@ -243,13 +243,13 @@
                     <tr class="cart-item variant-44161625418 first last" data-variant="44161625418"
                         data-title="ChaChaga: Pure Chaga Tea" data-url="/products/chaga-tea">
                             <td class="product-item">
-                                <a class="image pay_a" href="/products/chaga-tea">
+                                <a class="image pay_a" href="{{route('detail',['id'=>$item['id']])}}">
                                     <img alt=""
                                          src="{{Module::asset('admin:dist/img/')}}/{{$img['picture']}}">
                                 </a>
                                 <div class="product-item-details">
                                 <span class="cart-title">
-                                    <a class="pay_a" href="/products/chaga-tea" title="">{{$item['name']}}</a>
+                                    <a class="pay_a" href="{{route('detail',['id'=>$item['id']])}}" title="">{{$item['name']}}</a>
                                 </span>
                                     <div class="cart-item-properties">
                                     </div>

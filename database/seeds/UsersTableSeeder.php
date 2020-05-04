@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
                 'username' => 'thuy123',
                 'name'     => 'Thuy',
                 'email'    => '1',
-                'phone'    => '12345',
+                'phone'    => '123456',
                 'address'  => 'nam trieu',
                 'birthday' => Carbon::parse('26-10-1998'),
                 'password' => Hash::make('12345'),

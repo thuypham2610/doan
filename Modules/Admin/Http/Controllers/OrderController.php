@@ -99,7 +99,6 @@ class OrderController extends Controller
     {
         if (Auth::check()) {
             $base = Order::paginate(5);
-
             $column = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "order" ORDER BY ORDINAL_POSITION');
             $table = 'order';
             return view('admin::danhsach', compact('base', 'column', 'table'));

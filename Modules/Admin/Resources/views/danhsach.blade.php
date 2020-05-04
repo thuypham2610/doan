@@ -23,6 +23,7 @@
                                     <th>action</th>
                                 </tr>
                             </thead>
+                            @if (json_decode($base,1)!='null')
                             <tbody>
                                 <?php $i = 1; ?>
                                 @foreach($base as $item)
@@ -121,6 +122,7 @@
                     <div class="card-footer clearfix">
                         {{$base->render()}}
                     </div>
+                    @endif
                 </div>
                 <!-- /.card -->
             </div>
