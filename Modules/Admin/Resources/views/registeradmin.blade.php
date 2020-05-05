@@ -161,7 +161,6 @@
                     <button type="submit" class="btn btn-success toastsDefaultSuccess toastsDefaultDanger">
                         Save
                     </button>
-                    <button type="submit" class="btn btn-default float-right">Reset</button>
                 </div>
                 <!-- /.card-footer -->
             </form>
@@ -281,7 +280,6 @@
                     <button type="submit" class="btn btn-success toastsDefaultSuccess">
                         Save
                     </button>
-                    <button type="submit" class="btn btn-default float-right">Reset</button>
                 </div>
                 <!-- /.card-footer -->
             </form>

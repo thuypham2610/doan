@@ -89,7 +89,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="w3ls_mobiles_grid_left_grid">
+                    {{-- <div class="w3ls_mobiles_grid_left_grid">
                         <h3>Color</h3>
                         <div class="w3ls_mobiles_grid_left_grid_sub">
                             <div class="ecommerce_color">
@@ -103,17 +103,17 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="w3ls_mobiles_grid_left_grid">
                         <h3>Price</h3>
                         <div class="w3ls_mobiles_grid_left_grid_sub">
                             <div class="ecommerce_color ecommerce_size">
                                 <ul>
-                                    <li><a href="#">Below $ 100</a></li>
-                                    <li><a href="#">$ 100-500</a></li>
-                                    <li><a href="#">$ 1k-10k</a></li>
-                                    <li><a href="#">$ 10k-20k</a></li>
-                                    <li><a href="#">$ Above 20k</a></li>
+                                    <li><a href="{{route('pricefilter',['price'=>5])}}">Below 15.000.000đ</a></li>
+                                    <li><a href="{{route('pricefilter',['price'=>4])}}">13.000.000 - 15.000.000đ</a></li>
+                                    <li><a href="{{route('pricefilter',['price'=>3])}}">10.000.000 - 13.000.000đ</a></li>
+                                    <li><a href="{{route('pricefilter',['price'=>2])}}">7.000.000 - 10.000.000đ</a></li>
+                                    <li><a href="{{route('pricefilter',['price'=>1])}}">Above 7.000.000đ</a></li>
                                 </ul>
                             </div>
                         </div>

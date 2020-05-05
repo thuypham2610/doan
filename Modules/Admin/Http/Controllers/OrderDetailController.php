@@ -84,11 +84,7 @@ class OrderDetailController extends Controller
     {
         if (Auth::check()) {
             $base = Order_detail::paginate(5);
-
-            $column = DB::select('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "order_detail" ORDER BY ORDINAL_POSITION');
-
-            $table = 'order_detail';
-            return view('admin::danhsach', compact('base','column','table'));
+            return view('admin::orderlist', compact('base'));
         } else {
             return view('admin::login');
         }

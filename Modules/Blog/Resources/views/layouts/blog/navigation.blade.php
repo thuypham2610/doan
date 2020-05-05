@@ -44,6 +44,16 @@
                                         @endforeach
                                     </ul>
                                 </div>
+                                <div class="col-sm-5">
+                                    <ul class="multi-column-dropdown">
+                                        <h6>Price</h6>
+                                        <li><a href="{{route('pricefilter',['price'=>5])}}">Below 15.000.000đ</a></li>
+                                        <li><a href="{{route('pricefilter',['price'=>4])}}">13.000.000 - 15.000.000đ</a></li>
+                                        <li><a href="{{route('pricefilter',['price'=>3])}}">10.000.000 - 13.000.000đ</a></li>
+                                        <li><a href="{{route('pricefilter',['price'=>2])}}">7.000.000 - 10.000.000đ</a></li>
+                                        <li><a href="{{route('pricefilter',['price'=>1])}}">Above 7.000.000đ</a></li>
+                                    </ul>
+                                </div>
                                 <div class="clearfix"></div>
                             </div>
                         </ul>

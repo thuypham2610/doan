@@ -23,9 +23,9 @@
     }
 
     .col-25 {
-        -ms-flex: 40%;
+        -ms-flex: 30%;
         /* IE10 */
-        flex: 40%;
+        flex: 30%;
     }
 
     .col-50 {
@@ -35,9 +35,9 @@
     }
 
     .col-75 {
-        -ms-flex: 60%;
+        -ms-flex: 40%;
         /* IE10 */
-        flex: 60%;
+        flex: 40%;
     }
 
     .col-25,

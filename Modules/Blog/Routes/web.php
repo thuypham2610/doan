@@ -15,6 +15,7 @@ Route::post('reset-password', 'ResetPasswordController@sendMail')->name('sendMai
 Route::post('reset-password/{token}', 'ResetPasswordController@reset')->name('resetpassword');
 Route::get('reset-password/changepassword/{token}', 'ResetPasswordController@changepassword')->name('savepass');
 Route::prefix('blog')->group(function () {
+    Route::get('/pricefilter/{price}', 'BlogController@price')->name('pricefilter');
     Route::get('/product', 'CategoryController@allproduct')->name('all');
     Route::get('/product/{id}', 'CategoryController@index')->name('detail');
     Route::get('/producttradefilter/{id}', 'CategoryController@producttrade')->name('filter');

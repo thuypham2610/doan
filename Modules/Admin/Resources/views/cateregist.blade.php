@@ -52,7 +52,6 @@
                     <button type="submit" class="btn btn-success toastsDefaultSuccess">
                         Save
                     </button>
-                    <button type="submit" class="btn btn-default float-right">Reset</button>
                 </div>
                 <!-- /.card-footer -->
             </form>

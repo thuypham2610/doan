@@ -139,6 +139,56 @@ class BlogController extends Controller
         }
     }
 
+    public function price($price)
+    {
+        if($price == '1'){
+            $sql = DB::select('SELECT * FROM doan.products where doan.products.price < 7000000');
+            $filter = json_decode(json_encode($sql),1);
+            $newproduct = DB::table('products')
+                        ->orderBy('created_at')
+                        ->limit(4)
+                        ->get();
+            $newproduct = json_decode(json_encode($newproduct),1);
+            return view('blog::productfilter',['product'=>$filter,'newproduct'=>$newproduct]);
+        }else if($price == 2){
+            $sql = DB::select('SELECT * FROM doan.products where doan.products.price between 7000000 and 10000000');
+            $filter = json_decode(json_encode($sql),1);
+            $newproduct = DB::table('products')
+                        ->orderBy('created_at')
+                        ->limit(4)
+                        ->get();
+            $newproduct = json_decode(json_encode($newproduct),1);
+            return view('blog::productfilter',['product'=>$filter,'newproduct'=>$newproduct]);
+        }elseif($price == 3){
+            $sql = DB::select('SELECT * FROM doan.products where doan.products.price between 1000000 and 13000000');
+            $filter = json_decode(json_encode($sql),1);
+            $newproduct = DB::table('products')
+                        ->orderBy('created_at')
+                        ->limit(4)
+                        ->get();
+            $newproduct = json_decode(json_encode($newproduct),1);
+            return view('blog::productfilter',['product'=>$filter,'newproduct'=>$newproduct]);
+        }elseif($price == 4){
+            $sql = DB::select('SELECT * FROM doan.products where doan.products.price between 13000000 and 15000000');
+            $filter = json_decode(json_encode($sql),1);
+            $newproduct = DB::table('products')
+                        ->orderBy('created_at')
+                        ->limit(4)
+                        ->get();
+            $newproduct = json_decode(json_encode($newproduct),1);
+            return view('blog::productfilter',['product'=>$filter,'newproduct'=>$newproduct]);
+        }else{
+            $sql = DB::select('SELECT * FROM doan.products where doan.products.price > 15000000');
+            $filter = json_decode(json_encode($sql),1);
+            $newproduct = DB::table('products')
+                        ->orderBy('created_at')
+                        ->limit(4)
+                        ->get();
+            $newproduct = json_decode(json_encode($newproduct),1);
+            return view('blog::productfilter',['product'=>$filter,'newproduct'=>$newproduct]);
+        }
+    }
+
 
     public function getLogout()
     {
