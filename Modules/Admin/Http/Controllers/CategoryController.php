@@ -92,6 +92,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $pro = DB::select('SELECT * FROM `products` where products.cate_id = ?', [$id]);
+        if($pro!= null){
+            $pro =  DB::delete('DELETE FROM `products` WHERE products.cate_id =', [$id]);
+        }
         $cate = Category::find($id);
         $cate->delete();
 

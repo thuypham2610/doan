@@ -88,6 +88,10 @@ class TrademarkController extends Controller
      */
     public function destroy($id)
     {
+        $pro = DB::select('SELECT * FROM `products` where products.trademark_id = ?', [$id]);
+        if($pro!= null){
+            $pro =  DB::delete('DELETE FROM `products` WHERE products.trademark_id =', [$id]);
+        }
         $trade = Trademark::find($id);
         $trade->delete();
 
