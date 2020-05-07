@@ -9,6 +9,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Order Detail Table</h3>
                     </div>
+                    @if (json_decode($base,1)!='null')
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered">
@@ -25,7 +26,6 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            @if (json_decode($base,1)!='null')
                             <tbody>
                                 <?php $i = 1; $dash = "Order Detail" ?>
                                 @foreach($base as $item)

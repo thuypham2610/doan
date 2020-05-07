@@ -152,10 +152,14 @@ class ShoppingCartController extends Controller
      */
     public function update(Request $request)
     {
-        Cart::update($request['id'], array(
-            'relative' => false,
-            'value'    => $request['quantity']
-        ));
+        $pro = DB::select('select * from products where id = ?', [$request['id']]);
+        $pro = json_decode(json_encode($pro),1);
+        if($request['quantity'] <= $pro[0]['quantity']){
+            Cart::update($request['id'], array(
+                'relative' => false,
+                'value'    => $request['quantity']
+            ));
+        }
     }
 
     /**

@@ -163,7 +163,7 @@
 
         .cart-item .quantity input {
             display: inline-block;
-            width: 50px;
+            width: 80px;
             text-align: center;
         }
 

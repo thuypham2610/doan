@@ -11,6 +11,7 @@
         "php": "^7.2",
         "beyondcode/laravel-websockets": "^1.4",
         "botble/assets": "^1.0",
+        "brian2694/laravel-toastr": "^5.53",
         "bumbummen99/shoppingcart": "^2.9",
         "darryldecode/cart": "~4.0",
         "fideloper/proxy": "^4.0",

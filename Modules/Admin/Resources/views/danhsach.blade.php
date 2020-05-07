@@ -9,6 +9,7 @@
                     <div class="card-header">
                         <h3 class="card-title">{!! $table !!} Table</h3>
                     </div>
+                    @if (json_decode($base,1)!='null')
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered">
@@ -23,7 +24,6 @@
                                     <th>action</th>
                                 </tr>
                             </thead>
-                            @if (json_decode($base,1)!='null')
                             <tbody>
                                 <?php $i = 1; ?>
                                 @foreach($base as $item)
@@ -59,39 +59,61 @@
                                         ?>
                                         @endif
                                         @if($table == 'product')
+                                        <?php
+                                            $dash = 'Product List';
+                                            $order = DB::select('SELECT * FROM `order_detail` where order_detail.product_id = ?', [$item['id']]);
+                                        ?>
                                         <a href="{{ route('proedit', ['id' => $item['id']]) }}" class="btn btn-success toastsDefaultSuccess" style="color: white">
                                             Edit
                                         </a>
-                                        <a href="{{ route('prodelete', ['id' => $item['id']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
-                                            Delete
-                                        </a>
-                                        <?php
-                                            $dash = 'Product List';
-                                        ?>
+                                            @if ($order == null)
+                                                <a href="{{ route('prodelete', ['id' => $item['id']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
+                                                    Delete
+                                                </a>
+                                            @else
+                                                <button type="button" class="btn btn-danger toastrDefaultWarning">
+                                                    Delete
+                                                </button>
+                                            @endif
 
                                         @endif
 
                                         @if($table == 'trademark')
+                                        <?php
+                                            $dash = 'Trademark List';
+                                            $pro = DB::select('SELECT * FROM `products` where products.trademark_id = ?', [$item['id']]);
+                                        ?>
                                         <a href="{{ route('tradeedit', ['id' => $item['id']]) }}" class="btn btn-success toastsDefaultSuccess" style="color: white">
                                             Edit
                                         </a>
-                                        <a href="{{ route('tradedelete', ['id' => $item['id']]) }}}}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
+                                        @if($pro != null)
+                                        <button type="button" class="btn btn-danger toastrDefaultWarning">
+                                            Delete
+                                        </button>
+                                        @else
+                                        <a href="{{ route('tradedelete', ['id' => $item['id']]) }}" class="btn btn-danger" style="color: white">
                                             Delete
                                         </a>
-                                        <?php
-                                            $dash = 'Trademark List';
-                                        ?>
+                                        @endif
+                                        
                                         @endif
                                         @if($table == 'category')
+                                        <?php
+                                            $dash = 'Category List';
+                                            $pro = DB::select('SELECT * FROM `products` where products.trademark_id = ?', [$item['id']]);
+                                        ?>
                                         <a href="{{ route('cateedit', ['id' => $item['id']]) }}" class="btn btn-success toastsDefaultSuccess" style="color: white">
                                             Edit
                                         </a>
-                                        <a href="{{ route('catedelete', ['id' => $item['id']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
-                                            Delete
-                                        </a>
-                                        <?php
-                                            $dash = 'Category List';
-                                        ?>
+                                            @if ($pro == null)
+                                                <a href="{{ route('catedelete', ['id' => $item['id']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
+                                                    Delete
+                                                </a>
+                                            @else
+                                                <button type="button" class="btn btn-danger toastrDefaultWarning">
+                                                    Delete
+                                                </button>
+                                            @endif
                                         @endif
                                         @if($table == 'order')
                                         <a href="{{ route('destroy',['id' => $item['id'],'email'=> $item['email']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
@@ -130,4 +152,18 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+<script type="text/javascript">
+    $(function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $('.toastrDefaultWarning').click(function() {
+            toastr.warning('Không thể xoá trường này!!!')
+        });
+    })
+</script>
 @endsection

@@ -9,12 +9,22 @@
         <!-- ORDER CHART -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Order Chart</h3>
+                <h3 class="card-title">Order Chart
+                </h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    <?php
+                        $order = DB::select('SELECT DISTINCT year(created_at) as orderyear FROM doan.order ORDER BY orderyear desc');
+                        $order = json_decode(json_encode($order),1);
+                    ?>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        @foreach ($order as $order)
+                            <option>{{ $order['orderyear'] }}</option>
+                        @endforeach
+                    </select> 
                 </div>
             </div>
             <div class="card-body">
@@ -35,6 +45,15 @@
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    <?php
+                        $trade = DB::select('SELECT DISTINCT year(created_at) as Tradeyear FROM doan.Trademark ORDER BY Tradeyear desc');
+                        $trade = json_decode(json_encode($trade),1);
+                    ?>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        @foreach ($trade as $trade)
+                            <option>{{ $trade['Tradeyear'] }}</option>
+                        @endforeach
+                    </select> 
                 </div>
             </div>
             <div class="card-body">
@@ -55,6 +74,15 @@
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    <?php
+                        $users = DB::select('SELECT DISTINCT year(created_at) as usersyear FROM doan.users ORDER BY usersyear desc');
+                        $users = json_decode(json_encode($users),1);
+                    ?>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        @foreach ($users as $users)
+                            <option>{{ $users['usersyear'] }}</option>
+                        @endforeach
+                    </select> 
                 </div>
             </div>
             <div class="card-body">
@@ -75,6 +103,15 @@
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    <?php
+                        $cade = DB::select('SELECT DISTINCT year(created_at) as Cadeyear FROM doan.categories ORDER BY Cadeyear desc');
+                        $cade = json_decode(json_encode($cade),1);
+                    ?>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        @foreach ($cade as $cade)
+                            <option>{{ $cade['Cadeyear'] }}</option>
+                        @endforeach
+                    </select> 
                 </div>
             </div>
             <div class="card-body">
