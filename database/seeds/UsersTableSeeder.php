@@ -26,6 +26,7 @@ class UsersTableSeeder extends Seeder
                 'birthday' => Carbon::parse('26-10-1998'),
                 'password' => Hash::make('12345'),
                 'role'     => 1, // 区分 1: 一般/ 2: 管理者/ 3: アシスタント
+                'created_at' => now()
             ],
         ];
 

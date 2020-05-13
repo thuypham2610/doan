@@ -16,10 +16,13 @@ class CategoryTableSeeder extends Seeder
             // 一般 Sample account
             [
                 'name'   => 'Máy tính bảng',
+                'created_at' => now()
             ],[
                 'name'   => 'Laptop',
+                'created_at' => now()
             ],[
                 'name'   => 'Desktop',
+                'created_at' => now()
             ]
         ];
 

@@ -17,7 +17,7 @@ Route::prefix('admin')->group(function () {
     //Route::view('login', 'admin::login')->name('login');
     Route::view('recover-password', 'admin::recover-password');
     Route::view('register', 'admin::register');
-    Route::get('menu', 'MenuController@getmenu');
+    // Route::get('menu', 'MenuController@getmenu');
     Route::group(['middleware' => 'auth:admin'], function () {
         Route::view('success', 'admin::profile')->name('profile');
         Route::get('userlist', 'AdminController@index')->name('userlist');
@@ -61,7 +61,7 @@ Route::prefix('admin')->group(function () {
         Route::view('detail/edit/{id}', 'admin::proregist')->name('detailedit');
 
         //statistic
-        Route::get('statistic/', 'ChartController@index')->name('statistic');
+        Route::get('statistic', 'ChartController@index')->name('statistic');
         Route::get('statistic/trade/{year}', 'ChartController@trade');
         Route::get('statistic/cade/{year}', 'ChartController@index');
         Route::get('statistic/user/{year}', 'ChartController@index');

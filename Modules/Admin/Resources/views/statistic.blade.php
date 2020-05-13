@@ -4,7 +4,7 @@
 @extends('admin::layouts.admin')
 
 @section('content')
-<div class="row">
+<div class="row stats-all">
     <div class="col-md-6">
         <!-- ORDER CHART -->
         <div class="card card-primary">
@@ -24,7 +24,7 @@
                         @foreach ($order as $order)
                             <option>{{ $order['orderyear'] }}</option>
                         @endforeach
-                    </select> 
+                    </select>
                 </div>
             </div>
             <div class="card-body">
@@ -37,7 +37,7 @@
         <!-- /.card -->
 
         <!-- TRADE CHART -->
-        <div class="card card-danger">
+        <div class="card card-danger card-trademark">
             <div class="card-header">
                 <h3 class="card-title">Trademark Chart</h3>
 
@@ -49,16 +49,17 @@
                         $trade = DB::select('SELECT DISTINCT year(created_at) as Tradeyear FROM doan.Trademark ORDER BY Tradeyear desc');
                         $trade = json_decode(json_encode($trade),1);
                     ?>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" id="select-year-trademark">
                         @foreach ($trade as $trade)
-                            <option onchange="trade('{{$trade['Tradeyear']}}')">{{ $trade['Tradeyear'] }}</option>
+                            <option value="{{ $trade['Tradeyear'] }}">{{ $trade['Tradeyear'] }}</option>
                         @endforeach
-                    </select> 
+                    </select>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body cart-trade">
                 <canvas id="tradeChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
             </div>
+
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -82,7 +83,7 @@
                         @foreach ($users as $users)
                             <option >{{ $users['usersyear'] }}</option>
                         @endforeach
-                    </select> 
+                    </select>
                 </div>
             </div>
             <div class="card-body">
@@ -111,7 +112,7 @@
                         @foreach ($cade as $cade)
                             <option>{{ $cade['Cadeyear'] }}</option>
                         @endforeach
-                    </select> 
+                    </select>
                 </div>
             </div>
             <div class="card-body">
@@ -138,18 +139,44 @@
 <script src="{{Module::asset('admin:dist/js/demo.js')}}"></script>
 <!-- page script -->
 <script>
-    $(document).ready(function(year) {
-        $('#exampleFormControlSelect1').click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: 'admin/statistic/trade',
-                type: 'GET',
-                dataType: 'html',
+    $(document).ready(function() {
+        $(document).on('change', '#select-year-trademark', function() {
+            var yearSelected = $('#select-year-trademark option:selected').val();
+            // alert('1');
+            $.get({
+                url: '/admin/statistic',
                 data: {
-                    year: year
+                    year: yearSelected
+                },
+                success: function(result) {
+                    // $('#tradedata').html('<input type="text" value={{ json_encode($tradedata) }} id="tradedata">');
+                    // console.log(result.tradedata);
+                    // console.log($tradedata);
+                    // $('.card-trademark').html(result.tradedata);
+                    $('.cart-trade').html(result)
+                     //trade
+                    // new Chart(document.getElementById("tradeChart"), {
+                    //     type: 'horizontalBar',
+                    //     data: {
+                    //         labels: <?php echo json_encode($nametrade) ?>,
+                    //         datasets: [{
+                    //             label: "Population (millions)",
+                    //             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    //             data: <?php echo json_encode($tradedata) ?>,
+                    //         }]
+                    //     },
+                    //     options: {
+                    //         legend: {
+                    //             display: false
+                    //         },
+                    //         title: {
+                    //             display: true,
+                    //             text: 'Predicted world population (millions) in 2050'
+                    //         }
+                    //     }
+                    // });
                 }
-            })
-            
+            });
         });
     });
     //order

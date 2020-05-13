@@ -99,11 +99,8 @@
             width: 25%;
         }
 
-        img {
+        .img {
             vertical-align: middle;
-        }
-
-        img {
             border: 0;
             width: 8rem;
             height: 8rem;
@@ -244,7 +241,7 @@
                         data-title="ChaChaga: Pure Chaga Tea" data-url="/products/chaga-tea">
                             <td class="product-item">
                                 <a class="image pay_a" href="{{route('detail',['id'=>$item['id']])}}">
-                                    <img alt=""
+                                    <img class="img" alt=""
                                          src="{{Module::asset('admin:dist/img/')}}/{{$img['picture']}}">
                                 </a>
                                 <div class="product-item-details">
