@@ -272,7 +272,7 @@
 
             <div class="cart-totals">
                 <p class="cart-price"><span class="money">{{$total}}đ</span></p>
-                <a class="cart-checkout button pay_a" href="{{route('cart')}}">Pay</a>
+                <a class="cart-checkout button pay_a" href="{{route('cart_detail')}}">Pay</a>
             </div>
         </form>
     </div>

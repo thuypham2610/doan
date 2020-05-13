@@ -62,5 +62,9 @@ Route::prefix('admin')->group(function () {
 
         //statistic
         Route::get('statistic/', 'ChartController@index')->name('statistic');
+        Route::get('statistic/trade/{year}', 'ChartController@trade');
+        Route::get('statistic/cade/{year}', 'ChartController@index');
+        Route::get('statistic/user/{year}', 'ChartController@index');
+        Route::get('statistic/order/{year}', 'ChartController@index');
     });
 });

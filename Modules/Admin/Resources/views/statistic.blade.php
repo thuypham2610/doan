@@ -51,7 +51,7 @@
                     ?>
                     <select class="form-control" id="exampleFormControlSelect1">
                         @foreach ($trade as $trade)
-                            <option>{{ $trade['Tradeyear'] }}</option>
+                            <option onchange="trade('{{$trade['Tradeyear']}}')">{{ $trade['Tradeyear'] }}</option>
                         @endforeach
                     </select> 
                 </div>
@@ -80,7 +80,7 @@
                     ?>
                     <select class="form-control" id="exampleFormControlSelect1">
                         @foreach ($users as $users)
-                            <option>{{ $users['usersyear'] }}</option>
+                            <option >{{ $users['usersyear'] }}</option>
                         @endforeach
                     </select> 
                 </div>
@@ -138,6 +138,20 @@
 <script src="{{Module::asset('admin:dist/js/demo.js')}}"></script>
 <!-- page script -->
 <script>
+    $(document).ready(function(year) {
+        $('#exampleFormControlSelect1').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'admin/statistic/trade',
+                type: 'GET',
+                dataType: 'html',
+                data: {
+                    year: year
+                }
+            })
+            
+        });
+    });
     //order
     new Chart(document.getElementById("orderChart"), {
         type: 'bar',

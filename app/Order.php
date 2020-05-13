@@ -20,7 +20,7 @@ class Order extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user_id','total_price','email','addresss','phone','status'
+        'user_id','total_price','email','addresss','phone','status','name'
     ];
 
     /**

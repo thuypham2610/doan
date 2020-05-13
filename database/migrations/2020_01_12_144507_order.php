@@ -16,6 +16,7 @@ class Order extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
             $table->integer('user_id')->unsigned();
+            $table->string('name');
             $table->integer('total_price');
             $table->string('email',30);
             $table->string('addresss',60);

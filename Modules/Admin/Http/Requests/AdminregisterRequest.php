@@ -2,8 +2,12 @@
 
 namespace Modules\Admin\Http\Requests;
 
+use Darryldecode\Cart\Validators\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class AdminregisterRequest extends FormRequest
 {
@@ -25,6 +29,21 @@ class AdminregisterRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'email.required' => 'Email is required!',
+            'name.required' => 'Name is required!',
+            'password.required' => 'Password is required!',
+            'username.unique' =>'Username is unique',
+            'username.max' =>'Max is 10',
+            'email.email' => 'Email not type',
+            'email.unique' => 'Email is unique',
+            'email.max'     => 'Length max is 30',
+            'address.max'   => 'Max length is 100',
+            'phone.max'     => 'Max length is 10'     
+        ];
+    }
     /**
      * Determine if the user is authorized to make this request.
      *

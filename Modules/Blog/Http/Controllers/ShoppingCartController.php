@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Modules\Blog\Http\Requests\PayRequest;
 
 class ShoppingCartController extends Controller
 {
@@ -62,7 +63,7 @@ class ShoppingCartController extends Controller
      * @param int $id
      * @return Response
      */
-    public function pay(Request $request)
+    public function pay(PayRequest $request)
     {
         $total = 0;
         $cart = Cart::getContent()->toArray();
@@ -79,7 +80,8 @@ class ShoppingCartController extends Controller
                 'email'       => $request['email'],
                 'addresss'    => $request['address'] . $request['city'],
                 'status'      => 0,
-                'phone'       => $request['phone']
+                'phone'       => $request['phone'],
+                'name'        => $request['name']
             ]);
             $id = Order::query()->max('id');
             foreach ($cart as $item) {
@@ -110,7 +112,8 @@ class ShoppingCartController extends Controller
                 'email'       => $request['email'],
                 'addresss'    => $request['address'],
                 'status'      => 0,
-                'phone'       => $request['phone']
+                'phone'       => $request['phone'],
+                'name'        => $request['name']
             ]);
             $id = Order::query()->max('id');
             foreach ($cart as $item) {

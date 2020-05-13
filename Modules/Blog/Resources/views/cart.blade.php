@@ -124,7 +124,7 @@
                         <div class="col-50">
                             <h3>Billing Address</h3>
                             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                            <input class="input_pay" type="text" id="fname" name="name" placeholder="John M. Doe">
+                            <input class="input_pay" type="text" id="name" name="name" placeholder="John M. Doe">
                             <label for="email"><i class="fa fa-envelope"></i> Email</label>
                             <input class="input_pay" type="text" id="email" name="email" placeholder="john@example.com">
                             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
@@ -159,10 +159,15 @@
                 @foreach($content as $item)
                 <?php
                     if (isset($item['value']))
-                     $total += $item['price'] * $item['value'];
+                    {
+                        $total += $item['price'] * $item['value'];
+                        $items +=$item['value'];
+                    }
                     else
+                    {
                         $total += $item['price'] * $item['quantity'];
-                    $items++;
+                        $items +=$item['quantity'];
+                    }
                 ?>
                 <p><a href="{{route('detail',['id'=>$item['id']])}}">{{$item['name']}}</a> <span class="price">{{$item['price']}}đ</span></p>
                 @endforeach
