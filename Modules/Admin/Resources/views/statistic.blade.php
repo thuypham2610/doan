@@ -20,7 +20,7 @@
                         $order = DB::select('SELECT DISTINCT year(created_at) as orderyear FROM doan.order ORDER BY orderyear desc');
                         $order = json_decode(json_encode($order),1);
                     ?>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" id="select-year-order">
                         @foreach ($order as $order)
                             <option>{{ $order['orderyear'] }}</option>
                         @endforeach
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="chart">
+                <div class="chart cart-order">
                     <canvas id="orderChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                         $users = DB::select('SELECT DISTINCT year(created_at) as usersyear FROM doan.users ORDER BY usersyear desc');
                         $users = json_decode(json_encode($users),1);
                     ?>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" id="select-year-user">
                         @foreach ($users as $users)
                             <option >{{ $users['usersyear'] }}</option>
                         @endforeach
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="chart">
+                <div class="chart cart-user">
                     <canvas id="userChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                         $cade = DB::select('SELECT DISTINCT year(created_at) as Cadeyear FROM doan.categories ORDER BY Cadeyear desc');
                         $cade = json_decode(json_encode($cade),1);
                     ?>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" id="select-year-cate">
                         @foreach ($cade as $cade)
                             <option>{{ $cade['Cadeyear'] }}</option>
                         @endforeach
@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="chart">
+                <div class="chart cart-cate">
                     <canvas id="cateChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
             </div>
@@ -142,39 +142,58 @@
     $(document).ready(function() {
         $(document).on('change', '#select-year-trademark', function() {
             var yearSelected = $('#select-year-trademark option:selected').val();
-            // alert('1');
             $.get({
                 url: '/admin/statistic',
                 data: {
-                    year: yearSelected
+                    yeartrade: yearSelected
                 },
                 success: function(result) {
-                    // $('#tradedata').html('<input type="text" value={{ json_encode($tradedata) }} id="tradedata">');
-                    // console.log(result.tradedata);
-                    // console.log($tradedata);
-                    // $('.card-trademark').html(result.tradedata);
                     $('.cart-trade').html(result)
-                     //trade
-                    // new Chart(document.getElementById("tradeChart"), {
-                    //     type: 'horizontalBar',
-                    //     data: {
-                    //         labels: <?php echo json_encode($nametrade) ?>,
-                    //         datasets: [{
-                    //             label: "Population (millions)",
-                    //             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                    //             data: <?php echo json_encode($tradedata) ?>,
-                    //         }]
-                    //     },
-                    //     options: {
-                    //         legend: {
-                    //             display: false
-                    //         },
-                    //         title: {
-                    //             display: true,
-                    //             text: 'Predicted world population (millions) in 2050'
-                    //         }
-                    //     }
-                    // });
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $(document).on('change', '#select-year-cate', function() {
+            var yearSelected = $('#select-year-cate option:selected').val();
+            $.get({
+                url: '/admin/statistic',
+                data: {
+                    yearcate: yearSelected
+                },
+                success: function(result) {
+                    $('.cart-cate').html(result)
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $(document).on('change', '#select-year-user', function() {
+            var yearSelected = $('#select-year-user option:selected').val();
+            $.get({
+                url: '/admin/statistic',
+                data: {
+                    yearuser: yearSelected
+                },
+                success: function(result) {
+                    $('.cart-user').html(result)
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $(document).on('change', '#select-year-order', function() {
+            var yearSelected = $('#select-year-order option:selected').val();
+            $.get({
+                url: '/admin/statistic',
+                data: {
+                    yearorder: yearSelected
+                },
+                success: function(result) {
+                    $('.cart-order').html(result)
                 }
             });
         });
@@ -248,7 +267,7 @@
             }
         }
     });
-    //trade
+    //cate
     new Chart(document.getElementById("cateChart"), {
         type: 'doughnut',
         data: {
