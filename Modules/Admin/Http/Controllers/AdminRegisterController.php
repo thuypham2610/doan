@@ -98,7 +98,7 @@ class AdminRegisterController extends Controller
             'created_at' => now()
         ];
 
-        if (session('role') == 2) {
+        if (Auth::user()->role == 2) {
             $insert['role'] = $request->role;
         }
         DB::table('users')->insert($insert);

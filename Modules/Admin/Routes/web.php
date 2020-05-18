@@ -23,6 +23,7 @@ Route::prefix('admin')->group(function () {
         Route::get('userlist', 'AdminController@index')->name('userlist');
         Route::get('user/edit/{id}', 'AdminController@edit')->name('useredit');
         Route::post('user/update/{id}', 'AdminController@update')->name('updateadmin');
+        Route::get('user/delete/{id}', 'AdminController@destroy')->name('deleteadmin');
         Route::view('regist', 'admin::registeradmin')->name('regist1');
         Route::post('registadmin', 'AdminRegisterController@registadmin')->name('registadmin');
 

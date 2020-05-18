@@ -67,7 +67,7 @@
                                             Edit
                                         </a>
                                             @if ($order == null)
-                                                <a href="{{ route('prodelete', ['id' => $item['id']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
+                                                <a href="{{ route('prodelete', ['id' => $item['id']]) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger toastsDefaultSuccess" style="color: white">
                                                     Delete
                                                 </a>
                                             @else
@@ -83,7 +83,7 @@
                                             $dash = 'Trademark List';
                                             $pro = DB::select('SELECT * FROM `products` where products.trademark_id = ?', [$item['id']]);
                                         ?>
-                                        <a href="{{ route('tradeedit', ['id' => $item['id']]) }}" class="btn btn-success toastsDefaultSuccess" style="color: white">
+                                        <a href="{{ route('tradeedit', ['id' => $item['id']]) }}" onclick="return confirm('Are you sure?')" class="btn btn-success toastsDefaultSuccess" style="color: white">
                                             Edit
                                         </a>
                                         @if($pro != null)
@@ -91,7 +91,7 @@
                                             Delete
                                         </button>
                                         @else
-                                        <a href="{{ route('tradedelete', ['id' => $item['id']]) }}" class="btn btn-danger" style="color: white">
+                                        <a href="{{ route('tradedelete', ['id' => $item['id']]) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger" style="color: white">
                                             Delete
                                         </a>
                                         @endif
@@ -106,7 +106,7 @@
                                             Edit
                                         </a>
                                             @if ($pro == null)
-                                                <a href="{{ route('catedelete', ['id' => $item['id']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
+                                                <a href="{{ route('catedelete', ['id' => $item['id']]) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger toastsDefaultSuccess" style="color: white">
                                                     Delete
                                                 </a>
                                             @else
@@ -116,7 +116,7 @@
                                             @endif
                                         @endif
                                         @if($table == 'order')
-                                        <a href="{{ route('destroy',['id' => $item['id'],'email'=> $item['email']]) }}" class="btn btn-danger toastsDefaultSuccess" style="color: white">
+                                        <a href="{{ route('destroy',['id' => $item['id'],'email'=> $item['email']]) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger toastsDefaultSuccess" style="color: white">
                                             Delete
                                         </a>
                                         <?php
@@ -127,9 +127,22 @@
                                         <a href="{{ route('useredit', ['id' => $item['id']]) }}" class="btn btn-success toastsDefaultSuccess" style="color: white">
                                             Edit
                                         </a>
-                                        <a href="" class="btn btn-danger toastsDefaultSuccess" style="color: white">
-                                            Delete
-                                        </a>
+                                        @if (Auth::user()->role == 2 && $item['role'] != 2)
+                                            <a href="{{ route('deleteadmin', ['id' => $item['id']]) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger toastsDefaultSuccess" style="color: white">
+                                                Delete
+                                            </a>
+                                        @else 
+                                            @if(Auth::user()->role == 1 && $item['role']== 0)
+                                                <a href="{{ route('deleteadmin', ['id' => $item['id']]) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger toastsDefaultSuccess" style="color: white">
+                                                    Delete
+                                                </a>
+                                            @else
+                                                <button type="button" class="btn btn-danger toastrDefaultWarning">
+                                                    Delete
+                                                </button>
+                                            @endif
+                                        @endif
+                                            
                                         <?php
                                             $dash = 'User List';
                                         ?>

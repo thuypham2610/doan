@@ -96,7 +96,7 @@ class LoginController extends Controller
             'password' => $request->password
         ];
         $user = json_decode(json_encode(User::query()->where('username', $login['username'])->first()),1);
-        if ($user['role'] == 1 || $user == 2) {
+        if ($user['role'] == 1 || $user['role'] == 2) {
             if ($this->guard()->attempt($login)) {
                 if (Auth::attempt($login)) {
                     $user = User::query()->where('username', $login['username'])->first()->toArray();
