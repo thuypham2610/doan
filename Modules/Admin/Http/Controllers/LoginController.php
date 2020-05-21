@@ -76,7 +76,7 @@ class LoginController extends Controller
         $user['password'] = Hash::make($request->password);
         $user['updated_at'] = now();
         DB::table('users')->where('id',Auth::user()->id)->update($user);
-        $this->getLogout();
+         $this->getLogout();
     }
 
     /**
@@ -114,7 +114,7 @@ class LoginController extends Controller
                 $request->session()->put('username', $login["username"]);
                 session(['username' => $login["username"]]);
                 session(['role' => $user['role']]);
-                return redirect('blog/');
+                return redirect('/');
             } else {
                 return redirect()->back()->with('status', 'User hoặc Password không chính xác');
             }

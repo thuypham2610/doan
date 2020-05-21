@@ -92,6 +92,15 @@ class PageController extends Controller
             unset($pro['_token']);
             DB::table('products')->where('id', $id)->update($pro);
             return redirect('admin/prolist');
+        }else{
+            $temp = explode(".", $_FILES["picture"]["name"]);
+            $newfilename = round(microtime(true)) . '.' . end($temp);
+            $request->file('picture')->move('modules/admin/dist/img/', $newfilename);
+            $pro['picture'] = $newfilename;
+            $pro['updated_at'] = now();
+            unset($pro['_token']);
+            DB::table('products')->where('id', $id)->update($pro);
+            return redirect('admin/prolist');
         }
 
         return redirect()->back();
