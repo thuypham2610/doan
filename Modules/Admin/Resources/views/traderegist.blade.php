@@ -13,7 +13,7 @@
             </ul>
             @endif
             <div class="card-header">
-                <h3 class="card-title">Add Trademark</h3>
+                <h3 class="card-title">@if(isset($trade)) Edit @else Add @endif Trademark</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
