@@ -73,14 +73,20 @@
                                     <h5 class="h5"><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                     <div class="simpleCart_shelfItem">
                                         <p><i class="item_price">{!! $item['price'] !!} đ</i></p>
+                                        @if ($item['quantity']==0)
+                                        <button type="button" class="w3ls-cart toastrDefaultWarning">
+                                            Add to cart
+                                        </button>
+                                        @else
                                         <form action="{{route('cart')}}" method="post">
                                             @csrf
-                                            <input type="hidden" name="quantity" value="1" />
-                                            <input type="hidden" name="name" value="{!! $item['name'] !!}" />
-                                            <input type="hidden" name="price" value="{!! $item['price'] !!}" />
-                                            <input type="hidden" name="id" value="{!! $item['id'] !!}" />
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" name="id" value="{!! $item['id'] !!}">
+                                            <input type="hidden" name="name" value="{!! $item['name'] !!}">
+                                            <input type="hidden" name="price" value="{!! $item['price'] !!}">
                                             <button type="submit" class="w3ls-cart">Add to cart</button>
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                                 @endforeach
@@ -111,14 +117,20 @@
                                         <h5 class="h5"><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                         <div class="simpleCart_shelfItem">
                                             <p><i class="item_price">{!! $item['price'] !!} đ</i></p>
+                                            @if ($item['quantity']==0)
+                                            <button type="button" class="w3ls-cart toastrDefaultWarning">
+                                                Add to cart
+                                            </button>
+                                            @else
                                             <form action="{{route('cart')}}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="quantity" value="1">
+                                                <input type="hidden" name="id" value="{!! $item['id'] !!}">
                                                 <input type="hidden" name="name" value="{!! $item['name'] !!}">
                                                 <input type="hidden" name="price" value="{!! $item['price'] !!}">
-                                                <input type="hidden" name="id" value="{!! $item['id'] !!}">
                                                 <button type="submit" class="w3ls-cart">Add to cart</button>
                                             </form>
+                                            @endif
                                         </div>
                                     </div>
                                 @endforeach
@@ -149,14 +161,20 @@
                                         <h5 class="h5"><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                                         <div class="simpleCart_shelfItem">
                                             <p><i class="item_price">{!! $item['price'] !!} đ</i></p>
+                                            @if ($item['quantity']==0)
+                                            <button type="button" class="w3ls-cart toastrDefaultWarning">
+                                                Add to cart
+                                            </button>
+                                            @else
                                             <form action="{{route('cart')}}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="quantity" value="1">
+                                                <input type="hidden" name="id" value="{!! $item['id'] !!}">
                                                 <input type="hidden" name="name" value="{!! $item['name'] !!}">
                                                 <input type="hidden" name="price" value="{!! $item['price'] !!}">
-                                                <input type="hidden" name="id" value="{!! $item['id'] !!}">
                                                 <button type="submit" class="w3ls-cart">Add to cart</button>
                                             </form>
+                                            @endif
                                         </div>
                                     </div>
                                 @endforeach
@@ -197,6 +215,11 @@
                         <h5 class="h5"><a href="{{route('detail',['id'=>$item['id']])}}">{!! $item['name'] !!}</a></h5>
                         <div class="simpleCart_shelfItem">
                             <p><i class="item_price">{!! $item['price'] !!}</i></p>
+                            @if ($item['quantity']==0)
+                            <button type="button" class="w3ls-cart toastrDefaultWarning">
+                                Add to cart
+                            </button>
+                            @else
                             <form action="{{route('cart')}}" method="post">
                                 @csrf
                                 <input type="hidden" name="quantity" value="1">
@@ -205,6 +228,7 @@
                                 <input type="hidden" name="price" value="{!! $item['price'] !!}">
                                 <button type="submit" class="w3ls-cart">Add to cart</button>
                             </form>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -265,8 +289,26 @@
 
                 });
             </script>
+            <script type="text/javascript">
+                $(function() {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+
+                    $('.toastrDefaultWarning').click(function() {
+                        Toast.fire({
+                            type: 'error',
+                            title: 'Sản phẩm tạm thời hết hàng!!!'
+                        })
+                    });
+                });
+            </script>
             <script type="text/javascript" src="{{Module::asset('blog:js/jquery.flexisel.js')}}"></script>
         </div>
     </div>
     <!-- //top-brands -->
+
 @endsection

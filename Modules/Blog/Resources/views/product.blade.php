@@ -103,6 +103,11 @@
                 </div>
                 <div class="simpleCart_shelfItem">
                     <p><i class="item_price">{!! $product['price'] !!}</i></p>
+                    @if ($product['quantity']==0)
+                    <button type="button" class="w3ls-cart toastrDefaultWarning">
+                        Add to cart
+                    </button>
+                    @else
                     <form action="{{route('cart')}}" method="post">
                         @csrf
                         <input type="hidden" name="quantity" value="1" id="2">
@@ -111,6 +116,7 @@
                         <input type="hidden" name="id" value="{!! $product['id'] !!}">
                         <button type="submit" class="w3ls-cart">Add to cart</button>
                     </form>
+                    @endif
                 </div>
                 <!--quantity-->
                 <script>
@@ -131,4 +137,21 @@
             <div class="clearfix"></div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(function() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            $('.toastrDefaultWarning').click(function() {
+                Toast.fire({
+                    type: 'error',
+                    title: 'Sản phẩm tạm thời hết hàng!!!'
+                })
+            });
+        });
+    </script>
 @endsection

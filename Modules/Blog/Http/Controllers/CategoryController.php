@@ -87,21 +87,21 @@ class CategoryController extends Controller
     public function getdanhsach()
     {
         $producttab = DB::table('products')
-            ->select('products.name', 'products.picture','products.price','products.id')
+            ->select('products.name', 'products.picture','products.price','products.id','products.quantity')
             ->join('doan.categories', 'products.cate_id', '=', 'doan.categories.id')
             ->where('doan.categories.name','Máy tính bảng')->limit(3)
             ->get();
         $producttab = json_decode(json_encode($producttab),1);
 
         $productdesk = DB::table('products')
-            ->select('products.name', 'products.picture','products.price','products.id')
+            ->select('products.name', 'products.picture','products.price','products.id','products.quantity')
             ->join('doan.categories', 'products.cate_id', '=', 'doan.categories.id')
             ->where('doan.categories.name','Desktop')->limit(3)
             ->get();
         $productdesk = json_decode(json_encode($productdesk),1);
 
         $productlap = DB::table('products')
-            ->select('products.name', 'products.picture','products.price','products.id')
+            ->select('products.name', 'products.picture','products.price','products.id','products.quantity')
             ->join('doan.categories', 'products.cate_id', '=', 'doan.categories.id')
             ->where('doan.categories.name','Laptop')->limit(3)
             ->get();
