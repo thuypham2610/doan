@@ -190,11 +190,13 @@
                                         <div class="register">
                                             <form action="{{route('regist')}}" method="post">
                                                 @csrf
-                                                <input placeholder="Name" name="username" type="text" required="">
+                                                <input placeholder="UserName" name="username" type="text" required="">
                                                 <input placeholder="Email Address" name="email" type="email"
                                                        required="" style="margin-bottom: 1rem">
                                                 <input placeholder="Phone" name="phone" type="text"
                                                        required="" style="margin-bottom: 1rem">
+                                                <input placeholder="Birthday" name="birth" type="date"
+                                                       required="" style="margin-bottom: 1rem; width: 100%">
                                                 <input placeholder="Address" name="address" type="text"
                                                        required="">
                                                 <input placeholder="Password" name="password" type="password"

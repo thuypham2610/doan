@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
-use Modules\Admin\Http\Requests\AdminregisterRequest;
 use Modules\Admin\Http\Requests\ChangdePasswordRequest;
+use Modules\Blog\Http\Requests\RegistRequest;
 
 class BlogController extends Controller
 {
@@ -20,7 +20,7 @@ class BlogController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function regist(AdminregisterRequest $request)
+    public function regist(RegistRequest $request)
     {
         $login = $request->all();
 
@@ -28,12 +28,18 @@ class BlogController extends Controller
             'username' => $request->username,
             'email'    => $request->email,
             'address'  => $request->address,
+            'birthday' => $request->birth,
             'phone'    => $request->phone,
             'password' => Hash::make($request->password)
         ];
 
         DB::table('users')->insert($insert);
-        return redirect('blog/');
+        $chu = ['email' => 'thuypham12049@gmail.com', 'tinnhan' => 'Bạn đã đăng ký tài khoản thành công. Cảm ơn bạn nhiều!'];
+        Mail::send('blanks', $chu, function ($msg) use ($chu) {
+            $msg->from('thuypham12049@gmail.com', 'Chu')->subject('Thu swift mailer');
+            $msg->to($_REQUEST['email'], 'Khach hang');
+        });
+        return redirect('/');
     }
 
     /**
